@@ -34,11 +34,6 @@ const router = new Router({
           path: 'home',
           name: '首页',
           component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/home/home')
-        },
-        {
-          path: 'warning',
-          name: '告警设置',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/warning/warning')
         }
       ]
     },

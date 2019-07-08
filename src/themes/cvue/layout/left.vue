@@ -5,7 +5,7 @@
         <div class="" v-show="isCollapse">B</div>
       </transition>
       <transition name="fade">
-        <div class="" v-show="!isCollapse"> 网络拨测平台</div>
+        <div class="" v-show="!isCollapse">后台管理系统</div>
       </transition>
     </div>
     <div class="menu">
