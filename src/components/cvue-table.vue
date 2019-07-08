@@ -7,6 +7,8 @@
                     ref="homeTable"
                     :class="cssClass"
                     class="home-table"
+                    v-loading="loading"
+                    @cell-click="handleClick"
                     :data="data">
             <!-- 复选框 -->
             <el-table-column type="selection" width="55"  v-if="option.selected"  align="center" header-align="center"></el-table-column>
@@ -19,16 +21,14 @@
                             :align="cloumn.align"
                             :headerAlign="cloumn.headerAlign"
                             :key="cloumn.prop"
-                            v-for="(cloumn) in option.cloumn">
-                            
-                            <template v-if="cloumn.solt">
-                                <slot name="cloumnSlot"></slot>
-                            </template>
-                            <template v-else>
-                                <template slot-scope="scope">
-                                    <div class="cell-wrap" @click="handleClick(scope.row,scope.$index,cloumn.prop)">
-                                        <span>{{scope.row[cloumn.prop]}} {{cloumn.solt+1111}}</span>
-                                    </div>
+                            v-for="cloumn in option.cloumn">
+                            <template slot-scope="scope">
+                                <slot v-if="cloumn.slotStatus" :name="cloumn.prop" :row="scope.row"></slot>
+                                <template v-else>
+                                     <span v-if="cloumn.prop=='index'">
+                                        {{(scope.$index + 1) + pageSize * (tablePage - 1) }}
+                                    </span>
+                                    <span v-else>{{scope.row[cloumn.prop]}}</span>
                                 </template>
                             </template>
             </el-table-column>
@@ -44,8 +44,9 @@
             background
             :page-sizes="page.pageSizes"
             :page-size="page.pageSize"
-            layout="total,sizes,prev,pager,next,jumper"
+            :layout="layout"
             :total="page.total"
+            :pager-count="5"
             @current-change="handleCurrentChange"
             @size-change="handleSizeChange">
         </el-pagination>
@@ -117,6 +118,22 @@ export default {
         summaryFun: {
             type: Function,
             default: null
+        },
+        loading: {
+            type: Boolean,
+            default: false
+        },
+        layout: {
+            type: String,
+            default: 'total,sizes,prev,pager,next,jumper'
+        },
+        tablePage: {
+            type: Number,
+            default: 1
+        },
+        pageSize: {
+            type: Number,
+            default: 1
         }
     },
     methods: {
@@ -142,5 +159,9 @@ export default {
             border: 1px solid #dcdfe6;
         }
     }
-} 
+    .el-table thead tr th{
+        background-color: #f6f6fd;
+        color: #333;
+    }
+}
 </style>

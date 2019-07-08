@@ -32,39 +32,6 @@
                             @size-change="handleSizeChange"
                             @cellClick = "handleCellClick"
                             :isShowPage="true">
-                    <el-button type="text" size="small" @click="handleClick(scope.row)" slot="cloumnSlot">编辑</el-button>
-                    <!-- 本网质量 -->
-                    <el-table-column label="本网质量" slot="multipleCloumn" align="center">
-                        <el-table-column :prop="cloumn.prop"
-                            :label="cloumn.label"
-                            :width="cloumn.width"
-                            :align="cloumn.align"
-                            :headerAlign="cloumn.headerAlign"
-                            :key="cloumn.prop"
-                            v-for="(cloumn) in ownNetworkQuality">
-                            <template slot-scope="scope">
-                                <div class="cell-wrap" @click="handleCellClick(scope.row,scope.$index,cloumn.prop)">
-                                    <span >{{scope.row[cloumn.prop]}}</span>
-                                </div>
-                            </template>
-                        </el-table-column>
-                    </el-table-column>
-                    <!-- 出口质量 -->
-                    <el-table-column label="出口质量" slot="multipleCloumn" align="center">
-                        <el-table-column :prop="cloumn.prop"
-                            :label="cloumn.label"
-                            :width="cloumn.width"
-                            :align="cloumn.align"
-                            :headerAlign="cloumn.headerAlign"
-                            :key="cloumn.prop"
-                            v-for="(cloumn) in thirdNetworkQuality">
-                            <template slot-scope="scope">
-                                <div class="cell-wrap" @click="handleCellClick(scope.row,scope.$index,cloumn.prop)">
-                                    <span >{{scope.row[cloumn.prop]}}</span>
-                                </div>
-                            </template>
-                        </el-table-column>
-                    </el-table-column>
                     <!-- 操作按钮 -->
                     <el-table-column fixed="right" slot="actionMenu" label="操作" align="center"
                         header-align="center"  width="160">
