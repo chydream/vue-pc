@@ -16,6 +16,8 @@
 </template>
 <script>
 import echarts from 'echarts'
+import 'echarts/theme/macarons.js'
+import 'echarts/map/js/china.js'
 export default {
   name: 'CvueChart',
   data () {
@@ -71,7 +73,7 @@ export default {
     }
   },
   mounted () {
-    var myChart = echarts.init(document.getElementById(this.chartId))
+    var myChart = echarts.init(document.getElementById(this.chartId), 'macarons')
     var option = this.option
     myChart.setOption(option)
   }
