@@ -1,5 +1,5 @@
 <template>
-  <el-aside :style="{width:isCollapse? '64px':'230px'}">
+  <el-aside :style="{width:isCollapse? '64px':'230px'}" :class="{isCollapse:isCollapse}">
     <div class="logo">
       <transition name="fade">
         <div class="" v-show="isCollapse">B</div>
@@ -123,5 +123,9 @@ export default {
   }
   .el-menu{
     border-right: none!important;
+  }
+  .isCollapse .el-menu-item span, .isCollapse .el-submenu span{
+    opacity: 0;
+    transition:all 0.3s ease;
   }
 </style>

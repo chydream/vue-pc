@@ -15,7 +15,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="scss">
 @import url('./style/reset.css');
 html,body{
   width: 100%;
@@ -27,5 +27,26 @@ html,body{
 }
 body .el-table th.gutter {
   display: table-cell !important;
+}
+.home-form{
+    .el-form-item{
+        margin-bottom: 0px !important;
+    }
+    .search-btn{
+        margin-top: 3px;
+    }
+}
+.mt-15{
+    margin-bottom: 10px;
+}
+.el-tooltip__popper.is-dark{
+  background-color: rgba(50, 50, 50, 0.7) !important;
+}
+.el-tooltip__popper[x-placement^="top"] .popper__arrow{
+  border-top-color: rgba(50, 50, 50, 0.7) !important;
+}
+.el-tooltip__popper[x-placement^="top"] .popper__arrow::after{
+  border-top-color: rgba(50, 50, 50, 0.7) !important;
+  opacity: 0 !important;
 }
 </style>

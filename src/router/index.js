@@ -38,6 +38,57 @@ const router = new Router({
       ]
     },
     {
+      path: '/user',
+      name: 'User',
+      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
+      children: [
+        {
+          path: 'index',
+          name: '用户管理',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/user/index.vue')
+        },
+        {
+          path: 'open-list',
+          name: '开通列表',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/user/openList.vue')
+        },
+        {
+          path: 'current-strategy',
+          name: '当前策略',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/user/currentStrategy.vue')
+        }
+      ]
+    },
+    {
+      path: '/system',
+      name: 'System',
+      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
+      children: [
+        {
+          path: 'index',
+          name: '用户设置',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/system/index.vue')
+        },
+        {
+          path: 'role-index',
+          name: '角色管理',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/system/roleIndex.vue')
+        }
+      ]
+    },
+    {
+      path: '/chart',
+      name: 'Chart',
+      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
+      children: [
+        {
+          path: 'line',
+          name: '折线图',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/chart/line.vue')
+        }
+      ]
+    },
+    {
       path: '/',
       redirect: '/login'
     },

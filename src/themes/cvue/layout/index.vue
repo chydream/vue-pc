@@ -5,7 +5,7 @@
       <el-container>
         <el-header style="height:auto;">
           <right-top></right-top>
-          <!-- <right-tags></right-tags> -->
+          <right-tags></right-tags>
         </el-header>
         <el-main class="main">
           <transition name="fade" mode="out-in">
@@ -22,13 +22,13 @@
 import {mapState, mapGetters} from 'vuex'
 import left from './left'
 import rightTop from './rightTop'
-// import rightTags from './rightTags'
+import rightTags from './rightTags'
 export default {
   name: 'index',
   components: {
     left,
-    rightTop
-    // rightTags
+    rightTop,
+    rightTags
   },
   data () {
     return {
@@ -46,7 +46,7 @@ export default {
       const toDepth = to.path.split('/').length
       const fromDepth = from.path.split('/').length
       this.transitionName = toDepth < fromDepth ? 'slide-right' : 'slide-left'
-      this.handleLoading(1000)
+      // this.handleLoading(1000)
     }
   },
   computed: {
@@ -96,10 +96,10 @@ export default {
     margin: 10px;
     border-radius: 4px !important;
     padding: 10px;
-    background: #fff;
+    // background: #fff;
     height:calc(100% - 20px);
-    -webkit-box-shadow: 1px 1px 1px 1px #ccc !important;
-    box-shadow: 1px 1px 1px 1px #ccc!important;
+    // -webkit-box-shadow: 1px 1px 1px 1px #ccc !important;
+    // box-shadow: 1px 1px 1px 1px #ccc!important;
     box-sizing: border-box;
   }
   .fade-enter{
