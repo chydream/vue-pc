@@ -2,7 +2,7 @@
     <div>
         <!-- 编辑弹窗 -->
         <cvue-dialog :dialogVisible="dialogVisible"
-                    :title="title"
+                    title="新增网吧"
                     dialogWidth="500px"
                     @handleOpen="getDetail"
                     @closeDialog="closeDialog"
@@ -11,21 +11,23 @@
             <div class="dialog-body" slot="dialogBody">
                 <el-form :model="ruleForm" :rules="rules" ref="ruleForm" label-width="100px" class="demo-ruleForm">
                     <el-row :gutter="20">
-                        <el-col :span="24">
+                        <!-- <el-col :span="24">
                             <el-form-item label="网吧ID" prop="id">
-                                <el-input v-model.trim="ruleForm.id" :disabled="disabled"></el-input>
+                                <el-input v-model="ruleForm.id" :disabled="disabled"></el-input>
                             </el-form-item>
-                        </el-col>
+                        </el-col> -->
                         <el-col :span="24">
                             <el-form-item label="网吧名称" prop="name">
                                 <el-input v-model.trim="ruleForm.name"></el-input>
                             </el-form-item>
                         </el-col>
+                        <!-- 网吧地址旧版 -->
                         <!-- <el-col :span="24">
                             <el-form-item label="网吧地址" prop="address">
                                 <el-input v-model.trim="ruleForm.address"></el-input>
                             </el-form-item>
                         </el-col> -->
+
                         <!-- 网吧详情 -->
                         <el-col :span="24">
                             <el-form-item label="网吧地址" required>
@@ -33,15 +35,16 @@
                                 <div class="city-box">
                                     <el-form-item prop="province">
                                         <!-- 省份选择器 -->
+                                        <el-select v-model.trim="provinces" disabled placeholder="请选择省份" style="width:170px;">
                                         <!-- <el-select v-model.trim="provinces" placeholder="请选择省份" @change="provinceChanged" style="width:170px;"> -->
-                                        <el-select v-model.trim="provinces" placeholder="请选择省份" disabled style="width:170px;">
                                             <!-- <el-option :key="''" :label="provinces" :value="provinces"></el-option> -->
                                             <!-- <el-option :label="provinces" :value="provinces"></el-option> -->
                                         </el-select>
                                     </el-form-item>           
                                     <el-form-item prop="city">
                                         <!-- 城市选择器 -->
-                                        <el-select v-model.trim="cityBind" @change="cityChanged" placeholder="请选择城市" style="width:170px;" value-key="code">
+                                        <el-select v-model.trim="ruleForm.city" placeholder="请选择城市" style="width:170px;" value-key="code">
+                                        <!-- <el-select v-model.trim="ruleForm.city" @change="cityChanged" placeholder="请选择城市" style="width:170px;" value-key="code"> -->
                                             <!-- <el-option :key="''" :label="'请选择城市'" :value="''"></el-option> -->
                                             <el-option v-for="item in citys" :key="item.code" :label="item.name" :value="item"></el-option>
                                         </el-select>
@@ -49,11 +52,13 @@
                                 </div>
                             </el-form-item>            
                         </el-col>
+
                         <el-col :span="24">
                             <el-form-item label="" prop="address">
                                 <el-input placeholder="请输入详细地址" v-model.trim="ruleForm.address"></el-input>
                             </el-form-item>
                         </el-col>
+
                         <el-col :span="24">
                             <el-form-item label="联系人" prop="contacts">
                                 <el-input v-model.trim="ruleForm.contacts"></el-input>
@@ -105,19 +110,22 @@ export default {
                 email: '',
                 ownDNS: '',
                 thirdDNS: '',
-                province: '', // 省份
-                city: '' // 城市
+                province: '', // 省份编码
+                city: '' // 城市选择器的绑定值
             },
             rules: {
                 name: [
                     { required: true, message: '请输入网吧名称', trigger: 'blur' },
                     { min: 1, max: 8, message: '长度在 1 到 8 个字符', trigger: 'blur' }
                 ],
-                // city: [
-                //     { required: true, message: '请选择城市', trigger: 'change' }
+                // province: [
+                //     { required: true, message: '请选择省份', trigger: 'change' }
                 // ],
+                city: [
+                    { required: true, message: '请选择城市', trigger: 'change' }
+                ],
                 address: [
-                    { required: true, message: '请输入网吧地址', trigger: 'blur' },
+                    { required: true, message: '请输入网吧详细地址', trigger: 'blur' },
                     { min: 1, max: 25, message: '长度在 1 到 25 个字符', trigger: 'blur' }
                 ],
                 contacts: [
@@ -140,14 +148,9 @@ export default {
             },
             disabled: true,
             dialogLoading: false,
-            provinces: '', // 省份
-            citys: [], // 城市数组
-            cityBind: '', // 绑定在select的city值
-            cityCode: ''// 城市编码
+            provinces: '',
+            citys: []
         }
-    },
-    mounted () {
-        this.getCitys() // 获取城市列表
     },
     props: {
         dialogVisible: {
@@ -155,10 +158,8 @@ export default {
             default: false
         }
     },
-    computed: {
-        title () {
-            return this.$parent.rowTitle + ' 网吧信息编辑'
-        }
+    mounted () {
+        this.getCitys() // 获取城市列表
     },
     methods: {
         getCitys () {
@@ -174,6 +175,7 @@ export default {
                             this.citys.push(res.data[i])  
                         }
                     }
+                    // this.city=res.data.filter(function (item) {return res.da});
                     // this.provinces = res.data
                 }
             })
@@ -193,10 +195,7 @@ export default {
             this.$refs.ruleForm.validate((valid) => {
                 if (valid) {
                     // var params = this.ruleForm
-                    // console.log(this.ruleForm)
-                    // console.log(this.cityBind)
                     var params = {
-                        id: this.$parent.rowId,
                         name: this.ruleForm.name,
                         address: this.ruleForm.address,
                         contacts: this.ruleForm.contacts,
@@ -204,13 +203,12 @@ export default {
                         email: this.ruleForm.email,
                         ownDNS: this.ruleForm.ownDNS,
                         thirdDNS: this.ruleForm.thirdDNS,
-                        city: this.cityBind.code, // 城市  
-                        province: 360000 
+                        province: 360000, // 省份
+                        city: this.ruleForm.city.code // 城市
                     }
                     // console.log(params)
-                    // console.log(params)
                     this.dialogLoading = true
-                    this.$store.dispatch('home/EditCybercafesDetail', params).then(res => {
+                    this.$store.dispatch('home/AddCybercafesDetail', params).then(res => {
                         // console.log(res)
                         if (res.code == 1) {
                             this.$message({
@@ -234,53 +232,29 @@ export default {
                 }
             })
         },
-        // 获取网吧详情
+        // 初始化弹窗
         getDetail () {
-            var params = this.$parent.rowId
-            // console.log(params)
-            this.dialogLoading = true
-            this.$store.dispatch('home/GetCybercafesDetail', params).then(res => {
-                if (res.code == 1) {
-                    // console.log(res)
-                    this.ruleForm = res.data
-                    this.ruleForm.id = params
-                    this.cityBind = {
-                        name: res.data.cityName,
-                        code: res.data.city
-                    }
- 
-                    // // 返回的地址进行省市区正则提取   
-                    // var reg = /.+?(省|市|自治区|自治州|县|区)/g
-                    // var provinceArr = res.data.address.match(reg)
-                    // // console.log(provinceArr)
-                    // // 判断是否是excel导入，导入的有可能没有写完整地址
-                    // if (provinceArr != null) {
-                    //     // 提取出来的省市区数组进行分配
-                    //     this.provinces = provinceArr[0]
-                    //     this.cityBind = provinceArr[1]
-                    //     // 传回来的地址进行分割，获取详细地址
-                    //     var arr = res.data.address.split(provinceArr[1])
-                    //     this.ruleForm.address = arr[1]
-                    // }
-                    // console.log(this.ruleForm)
-                } else {
-                    this.$message({
-                        message: res.msg,
-                        duration: 2000,
-                        type: 'error'
-                    })
-                }
-                this.dialogLoading = false
-            })
-        },
+            this.ruleForm = {
+                name: '',
+                address: '',
+                contacts: '',
+                tel: '',
+                email: '',
+                ownDNS: '',
+                thirdDNS: ''
+            }
+        }
+        // ,
         // provinceChanged (value) {
         //     console.log(value)
         // },
-        cityChanged (value) {
-            // console.log(value)
-            // this.cityBind = value.name
-            // this.cityCode = value.code
-        }
+        // cityChanged (value) {
+        //     console.log(value)
+        // }
+        // 省市选择器组件的返回值
+        // selectChange (data) {
+        //     console.log(data)
+        // }
     }
 }
 </script>
