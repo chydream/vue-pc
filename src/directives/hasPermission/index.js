@@ -13,6 +13,8 @@ const hasPermission = {
                 }
                 if (!permissionList.includes(binding.value)) {
                     el.parentNode.removeChild(el)
+                    // el.setAttribute('disabled', 'true')
+                    // el.setAttribute('style', 'color: #C0C4CC;cursor: not-allowed;')
                 }
             },
             update (el, binding) { 
