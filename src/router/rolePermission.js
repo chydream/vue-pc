@@ -28,7 +28,7 @@ function initRoute (routerParams) {
 router.beforeEach((to, from, next) => {
   // console.log(to)
   NProgress.start()
-  if (store.getters.token) {
+  if (store.getters.token && sessionStorage.getItem('token')) {
     if (to.path == '/login') {
       next({path: '/index/home', replace: true})
     } else if (to.path.indexOf('error') >= 0) {
@@ -78,6 +78,7 @@ router.beforeEach((to, from, next) => {
     if (whiteList.indexOf(to.path) >= 0) {
       next()
     } else {
+      NProgress.done()
       next({
         path: '/login',
         replace: true
