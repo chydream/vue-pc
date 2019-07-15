@@ -38,7 +38,7 @@
                             :isShowPage="true">
                     <!-- <el-button type="text" size="small" @click="handleClick(scope.row)" slot="cloumnSlot">编辑</el-button> -->
                     <!-- 本网质量 -->
-                    <el-table-column label="本网质量" slot="multipleCloumn" align="center">
+                    <!-- <el-table-column label="本网质量" slot="multipleCloumn" align="center">
                         <el-table-column :prop="cloumn.prop"
                             :label="cloumn.label"
                             :width="cloumn.width"
@@ -58,9 +58,9 @@
                                 </div>
                             </template>
                         </el-table-column>
-                    </el-table-column>
+                    </el-table-column> -->
                     <!-- 出口质量 -->
-                    <el-table-column label="出口质量" slot="multipleCloumn" align="center">
+                    <!-- <el-table-column label="出口质量" slot="multipleCloumn" align="center">
                         <el-table-column :prop="cloumn.prop"
                             :label="cloumn.label"
                             :width="cloumn.width"
@@ -80,7 +80,7 @@
                                 </div>
                             </template>
                         </el-table-column>
-                    </el-table-column>
+                    </el-table-column> -->
                     <!-- 操作按钮 -->
                     <el-table-column fixed="right" slot="actionMenu" label="操作" align="center"
                         header-align="center"  width="160">
