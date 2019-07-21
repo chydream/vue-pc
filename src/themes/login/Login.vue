@@ -61,16 +61,33 @@ export default {
         username: this.username,
         password: this.password
       }
+      if (params.username == '' || params.password == '') {
+        this.$message({
+          message: '请输入登录信息',
+          type: 'warning',
+          center: true
+        })
+        return false
+      }
       this.$store.dispatch('user/Login', params).then(res => {
         if (res.success) {
           this.$store.dispatch('user/GetUserInfo', res.data.token).then(res => {
             if (res.success) {
+              if (this.checked) {
+                this.setCookie(params.username, params.password, 7)
+              } else {
+                this.clearCookie()
+              }
+              document.onkeydown = undefined
               this.$router.push('/index/home')
             }
           })
         } else {
           this.tip(res.message, 'error')
         }
+      }).catch(err => {
+        this.tip('服务器出错', 'error')
+        console.log(err)
       })
     },
     bgAnimation () {
@@ -83,10 +100,45 @@ export default {
           this.activeIndex = 0
         }
       }, interval)
+    },
+    getCookie () {
+      if (document.cookie.length > 0) {
+        var arr = document.cookie.split('; ')
+        for (var i = 0; i < arr.length; i++) {
+          var arr2 = arr[i].split('=')
+          if (arr2[0] == 'username') {
+            this.username = arr2[1]
+            this.checked = true
+          }
+        }
+      }
+    },
+    clearCookie () {
+        this.setCookie('', '', -1)
+    },
+    setCookie (user, pwd, saveDays) {
+        var exdate = new Date()
+        exdate.setTime(exdate.getTime() + 24 * 60 * 60 * 1000 * saveDays)
+        window.document.cookie = 'username' + '=' + user + ';path=/;expires=' + exdate.toGMTString()
     }
   },
   created () {
+    this.getCookie()
     this.bgAnimation()
+    // 按键监听
+    var _self = this
+    var key = ''
+    document.onkeydown = function (e) {
+      if (window.event == undefined) {
+        key = e.keyCode
+      } else {
+        key = window.event.keyCode
+      }
+      if (key == 13) {
+        _self.getLogin()
+        // _self.getLoginss()
+      }
+    }
   }
 }
 </script>
