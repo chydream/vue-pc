@@ -147,7 +147,7 @@ export default {
         }
     },
     mounted () {
-        this.getCitys() // 获取城市列表
+        // this.getCitys() // 获取城市列表
     },
     props: {
         dialogVisible: {
@@ -236,42 +236,6 @@ export default {
         },
         // 获取网吧详情
         getDetail () {
-            var params = this.$parent.rowId
-            // console.log(params)
-            this.dialogLoading = true
-            this.$store.dispatch('home/GetCybercafesDetail', params).then(res => {
-                if (res.code == 1) {
-                    // console.log(res)
-                    this.ruleForm = res.data
-                    this.ruleForm.id = params
-                    this.cityBind = {
-                        name: res.data.cityName,
-                        code: res.data.city
-                    }
- 
-                    // // 返回的地址进行省市区正则提取   
-                    // var reg = /.+?(省|市|自治区|自治州|县|区)/g
-                    // var provinceArr = res.data.address.match(reg)
-                    // // console.log(provinceArr)
-                    // // 判断是否是excel导入，导入的有可能没有写完整地址
-                    // if (provinceArr != null) {
-                    //     // 提取出来的省市区数组进行分配
-                    //     this.provinces = provinceArr[0]
-                    //     this.cityBind = provinceArr[1]
-                    //     // 传回来的地址进行分割，获取详细地址
-                    //     var arr = res.data.address.split(provinceArr[1])
-                    //     this.ruleForm.address = arr[1]
-                    // }
-                    // console.log(this.ruleForm)
-                } else {
-                    this.$message({
-                        message: res.msg,
-                        duration: 2000,
-                        type: 'error'
-                    })
-                }
-                this.dialogLoading = false
-            })
         },
         // provinceChanged (value) {
         //     console.log(value)

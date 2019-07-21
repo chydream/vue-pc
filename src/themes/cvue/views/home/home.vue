@@ -1,31 +1,33 @@
 <template>
     <div class="home">
+        <!-- 表单 -->
+        <el-card class="box-card mt-15">
+            <div class="home-form">
+                <el-form ref="ruleForm" label-width="60px" @submit.native.prevent>
+                    <el-row :gutter="10">
+                        <el-col :span="5">
+                            <el-form-item label="关键字" prop="keyword">
+                                <el-input  placeholder="请输入网吧ID/名称/地址" size="mini" v-model.trim="keyword" clearable></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="8">
+                            <el-button type="primary" icon="el-icon-search" size="mini" @click="handleSearch" class="search-btn">搜索</el-button>
+                            <!-- <el-button type="primary" icon="el-icon-menu" @click="getAll">全部：{{cybercafeCount.sum}}</el-button>
+                            <el-button type="info" icon="el-icon-tickets" @click="getOffLine">离线：{{cybercafeCount.offline}}</el-button> -->
+                        </el-col>
+                    </el-row>
+                </el-form>
+            </div>
+        </el-card>
         <el-card class="box-card">
             <!-- 头部 -->
             <div slot="header" class="clearfix fix-lh">
                 <span>网吧详情</span>
                 <div class="btn-list">
-                    <el-button type="primary" icon="el-icon-menu" @click="getAll">全部：{{cybercafeCount.sum}}</el-button>
-                    <el-button type="info" icon="el-icon-tickets" @click="getOffLine">离线：{{cybercafeCount.offline}}</el-button>
+                    <el-button size="mini" @click="handleRefresh">刷新</el-button>
+                    <el-button size="mini" @click="handleAdd" v-hasPermission="permission.add">新增</el-button>
+                    <el-button size="mini" @click="batchImportSHow" v-hasPermission="permission.add">批量导入</el-button>
                 </div>
-            </div>
-            <!-- 表单 -->
-            <div class="home-form">
-                <el-form ref="ruleForm" label-width="0px" @submit.native.prevent>
-                    <el-row :gutter="10">
-                        <el-col :span="4">
-                            <el-input  placeholder="请输入网吧ID/名称/地址" size="mini" v-model.trim="keyword" clearable></el-input>
-                        </el-col>
-                        <el-col :span="3">
-                            <el-button type="danger" icon="el-icon-search" size="mini" @click="handleSearch">搜索</el-button>
-                        </el-col>
-                        <el-col :span="17" class="text-right">
-                            <el-button size="mini" @click="handleRefresh">刷新</el-button>
-                            <el-button size="mini" @click="handleAdd" v-hasPermission="permission.add">新增</el-button>
-                            <el-button size="mini" @click="batchImportSHow" v-hasPermission="permission.add">批量导入</el-button>
-                        </el-col>
-                    </el-row>
-                </el-form>
             </div>
             <div class="home-body">
                 <cvue-table :option="tableOption" :data="tableData" ref="tbl1"
@@ -38,14 +40,14 @@
                             :isShowPage="true">
                     <!-- <el-button type="text" size="small" @click="handleClick(scope.row)" slot="cloumnSlot">编辑</el-button> -->
                     <!-- 本网质量 -->
-                    <!-- <el-table-column label="本网质量" slot="multipleCloumn" align="center">
+                    <el-table-column label="本网质量" slot="multipleCloumn" align="center">
                         <el-table-column :prop="cloumn.prop"
                             :label="cloumn.label"
                             :width="cloumn.width"
                             :align="cloumn.align"
                             :headerAlign="cloumn.headerAlign"
                             :key="cloumn.prop"
-                            v-for="(cloumn) in ownNetworkQuality">
+                            v-for="cloumn in ownNetworkQuality">
                             <template slot-scope="scope">
                                 <div class="cell-wrap" @click="handleCellClick(scope.row,scope.$index,cloumn.prop)">
                                     <span v-if="cloumn.prop=='delayed'">
@@ -58,16 +60,16 @@
                                 </div>
                             </template>
                         </el-table-column>
-                    </el-table-column> -->
+                    </el-table-column>
                     <!-- 出口质量 -->
-                    <!-- <el-table-column label="出口质量" slot="multipleCloumn" align="center">
+                    <el-table-column label="出口质量" slot="multipleCloumn" align="center">
                         <el-table-column :prop="cloumn.prop"
                             :label="cloumn.label"
                             :width="cloumn.width"
                             :align="cloumn.align"
                             :headerAlign="cloumn.headerAlign"
                             :key="cloumn.prop"
-                            v-for="(cloumn) in thirdNetworkQuality">
+                            v-for="cloumn in thirdNetworkQuality">
                             <template slot-scope="scope">
                                 <div class="cell-wrap" @click="handleCellClick(scope.row,scope.$index,cloumn.prop)">
                                     <span v-if="cloumn.prop=='thirdDelayed'">
@@ -80,7 +82,7 @@
                                 </div>
                             </template>
                         </el-table-column>
-                    </el-table-column> -->
+                    </el-table-column>
                     <!-- 操作按钮 -->
                     <el-table-column fixed="right" slot="actionMenu" label="操作" align="center"
                         header-align="center"  width="160">
@@ -345,58 +347,16 @@ export default {
                 keyword: keyword,
                 status: status
             }
-            this.$store.dispatch('home/GetCybercafes', params).then(res => {
+            this.$store.dispatch('demo/GetDemoList', params).then(res => {
                 // console.log(res)
-                if (res.code == 1) {
+                if (res.success) {
                     // var data = res.data[0]
                     var data = res.data
-                    this.tableData = data.list.map(item => {
-                        // console.log(item.ownNetworkQuality.packetLossRate * 100)
-                        if (item.status == 0) {
-                             return {
-                                id: item.id,
-                                name: item.name,
-                                region: item.cityName,
-                                status: item.status,
-                                DNS: item.ownDNS,
-                                packetLossRate: '-',
-                                shake: item.ownNetworkQuality.shake == 0 ? '-' : '-',
-                                delayed: '-',
-                                thirdDNS: item.thirdDNS,
-                                thirdPacketLossRate: '-',
-                                thirdShake: item.thirdNetworkQuality.shake == 0 ? '-' : '-',
-                                thirdDelayed: '-'
-                            }
-                        } else {
-                             return {
-                                id: item.id,
-                                name: item.name,
-                                region: item.cityName,
-                                status: item.status,
-                                DNS: item.ownDNS,
-                                packetLossRate: (parseFloat(item.ownNetworkQuality.packetLossRate).toFixed(2) * 100).toFixed(0) + '%',
-                                shake: item.ownNetworkQuality.packetLossRate * 100 == 100 ? '-' : item.ownNetworkQuality.shake,
-                                delayed: item.ownNetworkQuality.packetLossRate * 100 == 100 ? '-' : parseFloat(item.ownNetworkQuality.delayed).toFixed(2),
-                                thirdDNS: item.thirdDNS,
-                                thirdPacketLossRate: (parseFloat(item.thirdNetworkQuality.packetLossRate).toFixed(2) * 100).toFixed(0) + '%',
-                                thirdShake: item.thirdNetworkQuality.packetLossRate * 100 == 100 ? '-' : item.thirdNetworkQuality.shake,
-                                thirdDelayed: item.thirdNetworkQuality.packetLossRate * 100 == 100 ? '-' : parseFloat(item.thirdNetworkQuality.delayed).toFixed(2)
-                            }
-                        }
-                    })
+                    this.tableData = data
                     // console.log(this.tableData)
                     this.page.total = data.total
                     this.page.currentPage = this.tablePage
-                    this.getCybercafeNum() // 获取网吧数量
-                } else if (res.code == -2) {
-                    this.$message.error('登录状态已过期，请重新登录')
-                    this.$store.dispatch('user/Logout').then(res => {
-                        if (res.success) {
-                            this.$router.push('/login')
-                        } else {
-                            // this.tip(res.message, 'error')
-                        }
-                    })
+                    // this.getCybercafeNum() // 获取网吧数量
                 } else {
                     this.$message({
                         message: res.msg,
@@ -627,8 +587,8 @@ export default {
             text-align: right;
         }
         .home-form{
-            margin-bottom: 7px;
-            margin-top: -17px;
+            // margin-bottom: 7px;
+            // margin-top: -17px;
         }
         .el-card__header,.el-card__body{
             padding: 15px;

@@ -1,23 +1,14 @@
 import axios from './axios'
 import qs from 'qs'
 import {baseUrl} from '@/config/config'
-import '../mock/userMock'
-import menu from '../mock/menuMock'
-export const login = (params) => {
+export const getDemoList = (params) => {
     return new Promise((resolve, reject) => {
         axios({
-            url: baseUrl + '/user/login',
-            method: 'post',
+            url: baseUrl + 'https://www.easy-mock.com/mock/5cd7d319d0d16128bd72b17a/demo/getDemoList',
+            method: 'get',
             data: qs.stringify(params)
         }).then(res => {
-            var data = res.data
-            if (params.username == data.account[0].username && params.password == data.account[0].password) {
-                resolve({data: {token: '123456789'}, message: '登录成功', success: true})
-            } else if (params.username == data.account[1].username && params.password == data.account[1].password) {
-                resolve({data: {token: '987654321'}, message: '登录成功', success: true})
-            } else {
-                resolve({data: {}, message: '登录失败', success: false})
-            }
+          resolve(res.data)
         })
     })
 }

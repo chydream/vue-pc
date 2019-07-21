@@ -49,4 +49,7 @@ body .el-table th.gutter {
   border-top-color: rgba(50, 50, 50, 0.7) !important;
   opacity: 0 !important;
 }
+.el-card__body .home-body {
+    margin-top: -15px;
+}
 </style>

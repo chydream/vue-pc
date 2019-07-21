@@ -159,7 +159,7 @@ export default {
         }
     },
     mounted () {
-        this.getCitys() // 获取城市列表
+        // this.getCitys() // 获取城市列表
     },
     methods: {
         getCitys () {
