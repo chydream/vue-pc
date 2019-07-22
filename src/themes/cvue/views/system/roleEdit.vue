@@ -255,43 +255,43 @@ export default {
         // 初始化弹窗
         getDetail () {
             // 获取权限列表
-            this.$store.dispatch('user/GetAuthority').then((res) => {
-                if (res.code == 1) {
-                    this.option.data = res.data
-                    // 获取当前角色详情
-                    this.$store.dispatch('system/GetSysrolesDetail', {roleId: this.$parent.roleId}).then(res => {
-                        if (res.code == 1) {
-                            // console.log(res)
-                            this.ruleForm = res.data
-                            this.roleName = res.data.roleName
-                            // 数据递归处理
-                            this.option.data.forEach((item, index) => {
-                                if (item.children && item.children.length > 0) {
-                                    item.children.forEach((child, j) => {
-                                        res.data.authority.forEach((auth, i) => {
-                                            if (child.code == auth.code) {
-                                                this.$set(this.option.data[index].children[j], 'permissions', auth.permissions)
-                                                this.$set(this.option.data[index].children[j], 'edit', auth.permissions.indexOf('edit') >= 0)
-                                                this.$set(this.option.data[index].children[j], 'view', auth.permissions.indexOf('view') >= 0)
-                                            }
-                                        })
-                                    })                
-                                } else {
-                                    res.data.authority.forEach((auth, i) => {
-                                        if (item.code == auth.code) {
-                                            this.$set(this.option.data[index], 'permissions', auth.permissions)
-                                            this.$set(this.option.data[index], 'edit', auth.permissions.indexOf('edit') >= 0)
-                                            this.$set(this.option.data[index], 'view', auth.permissions.indexOf('view') >= 0)
-                                        }
-                                    })
-                                }
-                            })
-                        } else {
-                            console.log(res.msg)
-                        }
-                    })
-                }
-            })
+            // this.$store.dispatch('user/GetAuthority').then((res) => {
+            //     if (res.code == 1) {
+            //         this.option.data = res.data
+            //         // 获取当前角色详情
+            //         this.$store.dispatch('system/GetSysrolesDetail', {roleId: this.$parent.roleId}).then(res => {
+            //             if (res.code == 1) {
+            //                 // console.log(res)
+            //                 this.ruleForm = res.data
+            //                 this.roleName = res.data.roleName
+            //                 // 数据递归处理
+            //                 this.option.data.forEach((item, index) => {
+            //                     if (item.children && item.children.length > 0) {
+            //                         item.children.forEach((child, j) => {
+            //                             res.data.authority.forEach((auth, i) => {
+            //                                 if (child.code == auth.code) {
+            //                                     this.$set(this.option.data[index].children[j], 'permissions', auth.permissions)
+            //                                     this.$set(this.option.data[index].children[j], 'edit', auth.permissions.indexOf('edit') >= 0)
+            //                                     this.$set(this.option.data[index].children[j], 'view', auth.permissions.indexOf('view') >= 0)
+            //                                 }
+            //                             })
+            //                         })                
+            //                     } else {
+            //                         res.data.authority.forEach((auth, i) => {
+            //                             if (item.code == auth.code) {
+            //                                 this.$set(this.option.data[index], 'permissions', auth.permissions)
+            //                                 this.$set(this.option.data[index], 'edit', auth.permissions.indexOf('edit') >= 0)
+            //                                 this.$set(this.option.data[index], 'view', auth.permissions.indexOf('view') >= 0)
+            //                             }
+            //                         })
+            //                     }
+            //                 })
+            //             } else {
+            //                 console.log(res.msg)
+            //             }
+            //         })
+            //     }
+            // })
         }
     }
 }

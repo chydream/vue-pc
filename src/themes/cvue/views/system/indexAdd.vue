@@ -342,23 +342,23 @@ export default {
                 state: 1
             }
             // 获取角色列表
-            this.$store.dispatch('system/GetSysroles').then(res => {
-                // console.log(res)
-                if (res.code == 1) {
-                    this.roleType = res.data
-                    this.$store.dispatch('user/GetAuthority').then((res) => {
-                        // console.log(res)
-                        if (res.code == 1) {
-                            this.option.data = res.data
-                        }
-                    })
-                    // console.log(this.option.data)
-                    // this.ruleForm.roleId = 27
-                    // this.selectRole(27)
-                } else {
-                    console.log(res.msg)
-                }
-            })
+            // this.$store.dispatch('system/GetSysroles').then(res => {
+            //     // console.log(res)
+            //     if (res.code == 1) {
+            //         this.roleType = res.data
+            //         this.$store.dispatch('user/GetAuthority').then((res) => {
+            //             // console.log(res)
+            //             if (res.code == 1) {
+            //                 this.option.data = res.data
+            //             }
+            //         })
+            //         // console.log(this.option.data)
+            //         // this.ruleForm.roleId = 27
+            //         // this.selectRole(27)
+            //     } else {
+            //         console.log(res.msg)
+            //     }
+            // })
         },
         // 角色选择
         selectRole (roleId) {

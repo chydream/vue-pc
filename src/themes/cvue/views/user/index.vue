@@ -146,8 +146,8 @@ export default {
         },
         // 单元格单击
         handleOpenList (row) {
-            console.log(row)
-            this.goUrl('open-list', {userId: row.userId, userName: row.userName})
+            // console.log(row)
+            // this.goUrl('open-list', {userId: row.userId, userName: row.userName})
         },
         // 关闭弹窗
         closeDialog (params) {

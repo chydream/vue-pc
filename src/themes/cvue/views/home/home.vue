@@ -88,7 +88,7 @@
                         header-align="center"  width="160">
                         <template slot-scope="scope">
                             <el-button type="text" size="small" @click="handleEdit(scope.row)" v-hasPermission="permission.edit">编辑</el-button>
-                            <el-button type="text" size="small" @click="handleFaultAnalysis(scope.row)">故障分析</el-button>
+                            <!-- <el-button type="text" size="small" @click="handleFaultAnalysis(scope.row)">故障分析</el-button> -->
                             <el-button type="text" size="small" @click="handleDelete(scope.row)" v-hasPermission="permission.delete">删除</el-button>
                         </template>
                     </el-table-column>
@@ -375,18 +375,18 @@ export default {
             this.rowId = row.id
             this.rowTitle = row.name
             // console.log(prop)
-            if (prop == 'id') {
-                this.dialogVisible = true
-            }
-            if (prop == 'DNS' || prop == 'packetLossRate' || prop == 'shake' || prop == 'delayed') {
-                this.dialogVisibleNet = true
-            }
-            if (prop == 'thirdDNS' || prop == 'thirdPacketLossRate' || prop == 'thirdShake' || prop == 'thirdDelayed') {
-                this.dialogVisibleExit = true
-            }
-            if (prop == 'status') {
-                this.dialogVisibleCondition = true
-            }
+            // if (prop == 'id') {
+            //     this.dialogVisible = true
+            // }
+            // if (prop == 'DNS' || prop == 'packetLossRate' || prop == 'shake' || prop == 'delayed') {
+            //     this.dialogVisibleNet = true
+            // }
+            // if (prop == 'thirdDNS' || prop == 'thirdPacketLossRate' || prop == 'thirdShake' || prop == 'thirdDelayed') {
+            //     this.dialogVisibleExit = true
+            // }
+            // if (prop == 'status') {
+            //     this.dialogVisibleCondition = true
+            // }
         },
         // 关闭弹窗
         closeDialog (params) {

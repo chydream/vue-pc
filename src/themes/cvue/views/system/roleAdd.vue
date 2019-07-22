@@ -256,23 +256,23 @@ export default {
                 describe: ''
             }
             // 获取权限列表
-            this.$store.dispatch('user/GetAuthority').then((res) => {
-                // console.log(res)
-                if (res.code == 1) {
-                    this.option.data = res.data
-                    this.option.data.forEach((item, index) => {
-                        if (item.children && item.children.length > 0) {
-                            item.children.forEach((child, i) => {
-                                this.$set(item.children[i], 'edit', false)
-                                this.$set(item.children[i], 'view', false)
-                            })
-                        } else {
-                            this.$set(item, 'edit', false)
-                            this.$set(item, 'view', false)
-                        }
-                    })
-                }
-            })
+            // this.$store.dispatch('user/GetAuthority').then((res) => {
+            //     // console.log(res)
+            //     if (res.code == 1) {
+            //         this.option.data = res.data
+            //         this.option.data.forEach((item, index) => {
+            //             if (item.children && item.children.length > 0) {
+            //                 item.children.forEach((child, i) => {
+            //                     this.$set(item.children[i], 'edit', false)
+            //                     this.$set(item.children[i], 'view', false)
+            //                 })
+            //             } else {
+            //                 this.$set(item, 'edit', false)
+            //                 this.$set(item, 'view', false)
+            //             }
+            //         })
+            //     }
+            // })
         }
     }
 }
