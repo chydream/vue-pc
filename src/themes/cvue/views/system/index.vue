@@ -195,11 +195,11 @@ export default {
                 pageSize: this.page.pageSize,
                 keywords: keyword
             }
-            this.$store.dispatch('system/GetSysuser', params).then(res => {
+            this.$store.dispatch('demo/GetSystemList', params).then(res => {
                 // console.log(res)
-                if (res.code == 1) {
+                if (res.success) {
                     var data = res.data
-                    this.tableData = res.data.list
+                    this.tableData = data
                     this.page.total = data.total
                     this.page.currentPage = this.tablePage
                 } else {

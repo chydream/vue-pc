@@ -124,11 +124,11 @@ export default {
                 pageSize: this.page.pageSize,
                 keyword: keyword
             }
-            this.$store.dispatch('commonUser/GetUserInfo', params).then(res => {
+            this.$store.dispatch('demo/GetUserList', params).then(res => {
                 // console.log(res)
-                if (res.code == 1) {
+                if (res.success) {
                     var data = res.data
-                    this.tableData = data.list
+                    this.tableData = data
                     this.page.total = data.total
                     this.page.currentPage = this.tablePage
                 } else {

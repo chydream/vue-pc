@@ -102,9 +102,9 @@ export default {
         // 列表接口
         handleList (keyword) {
             this.tableLoading = true
-            this.$store.dispatch('system/GetSysroles').then(res => {
+            this.$store.dispatch('demo/GetRoleList').then(res => {
                 // console.log(res)
-                if (res.code == 1) {
+                if (res.success) {
                     var data = res.data
                     this.tableData = data
                     this.tableData.forEach((item, index) => {
