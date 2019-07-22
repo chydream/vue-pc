@@ -14,7 +14,7 @@ let menu = {
           id: 1,
           label: '权限配置',
           href: '/auth/auth',
-          icon: 'fa fa-home',
+          icon: 'fa fa-sliders',
           permission: ['view', 'add', 'delete', 'edit'],
           show: true,
           children: []
@@ -32,7 +32,7 @@ let menu = {
           id: 7,
           label: '系统设置',
           href: '',
-          icon: 'fa fa-sliders',
+          icon: 'fa fa-cog',
           permission: ['view', 'add', 'delete', 'edit'],
           show: true,
           children: [
@@ -40,7 +40,7 @@ let menu = {
               id: 12,
               label: '用户设置',
               href: '/system/index',
-              icon: 'fa fa-comments',
+              icon: 'fa fa-file-text',
               permission: ['view', 'add', 'delete', 'edit'],
               show: true,
               children: []
@@ -49,7 +49,7 @@ let menu = {
               id: 13,
               label: '角色管理',
               href: '/system/role-index',
-              icon: 'fa fa-comments',
+              icon: 'fa fa-file-text',
               permission: ['view', 'add', 'delete', 'edit'],
               show: true,
               children: []
@@ -60,7 +60,7 @@ let menu = {
           id: 7,
           label: '图表',
           href: '',
-          icon: 'fa fa-sliders',
+          icon: 'fa fa-bar-chart-o',
           permission: ['view', 'add', 'delete', 'edit'],
           show: true,
           children: [
@@ -68,7 +68,7 @@ let menu = {
               id: 12,
               label: '图表',
               href: '/chart/line',
-              icon: 'fa fa-comments',
+              icon: 'fa fa-file-text',
               permission: ['view', 'add', 'delete', 'edit'],
               show: true,
               children: []
