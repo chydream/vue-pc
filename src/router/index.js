@@ -89,6 +89,18 @@ const router = new Router({
       ]
     },
     {
+      path: '/auth',
+      name: 'Auth',
+      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
+      children: [
+        {
+          path: 'auth',
+          name: '权限配置',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/auth/auth.vue')
+        }
+      ]
+    },
+    {
       path: '/',
       redirect: '/login'
     },
