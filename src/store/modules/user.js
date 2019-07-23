@@ -40,15 +40,18 @@ const user = {
         Login ({state, commit, dispatch}, params) {
             return new Promise((resolve, reject) => {
                 login(params).then(res => {
+                  console.log(res)
+                  if (res.success) {
                     commit('SET_TOKEN', res.data.token)
-                    // if (res.code == 1) {
-                    //   commit('SET_TOKEN', res.data.accessToken)
-                    //   commit('SET_REFRESH_TOKEN', res.data.refreshToken)
-                    //   commit('SET_ROLE', res.data.permission)
-                    //   commit('SET_PERMISSION', res.data.userAuthority)
-                    //   commit('SET_USER_INFO', res.data)
-                    // }
-                    resolve(res)
+                  }
+                  // if (res.code == 1) {
+                  //   commit('SET_TOKEN', res.data.accessToken)
+                  //   commit('SET_REFRESH_TOKEN', res.data.refreshToken)
+                  //   commit('SET_ROLE', res.data.permission)
+                  //   commit('SET_PERMISSION', res.data.userAuthority)
+                  //   commit('SET_USER_INFO', res.data)
+                  // }
+                  resolve(res)
                 }).catch(error => {
                   reject(error)
                 })

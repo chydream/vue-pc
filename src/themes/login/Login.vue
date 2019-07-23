@@ -70,6 +70,7 @@ export default {
         return false
       }
       this.$store.dispatch('user/Login', params).then(res => {
+        console.log(res)
         if (res.success) {
           this.$store.dispatch('user/GetUserInfo', res.data.token).then(res => {
             if (res.success) {
