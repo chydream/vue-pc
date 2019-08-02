@@ -49,7 +49,7 @@ export default {
     mounted () {
         var self = this
         document.onclick = function (event) {
-           event.preventDefault()
+          //  event.preventDefault()
            event.cancelBubble = true
            self.show = false
         }

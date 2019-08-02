@@ -60,7 +60,7 @@ const mixinsFun = {
       }
     },
     encryptStr (word, keyStr) {
-      keyStr = keyStr == null ? keyStr : 'abcdefgabcdefg12'
+      keyStr = keyStr == null ? 'abcdefgabcdefg12' : keyStr 
       var srcs = CryptoJS.enc.Utf8.parse(word)
       var encrypted = CryptoJS.AES.encrypt(srcs, keyStr)
       return encrypted.toString()
