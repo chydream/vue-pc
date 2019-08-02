@@ -4,7 +4,7 @@ const user = {
     state: {
         userInfo: JSON.parse(sessionStorage.getItem('userInfo')) || {},
         role: JSON.parse(sessionStorage.getItem('role')) || [],
-        token: sessionStorage.getItem('token') || '',
+        token: sessionStorage.getItem('token') || '123456789',
         refreshToken: sessionStorage.getItem('refreshToken') || '',
         menu: JSON.parse(sessionStorage.getItem('menu')) || [],
         permission: {}
@@ -101,7 +101,7 @@ const user = {
         },
         GetMenu ({state, commit, dispatch}, params) {
             return new Promise((resolve, reject) => {
-                var role = state.role.length > 0 ? state.role[0] : ''
+                var role = state.role.length > 0 ? state.role[0] : 'admin'
                 getMenu(role).then(res => {
                     commit('SET_MENU', res.data)
                     resolve(res)
