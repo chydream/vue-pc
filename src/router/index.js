@@ -101,6 +101,28 @@ const router = new Router({
       ]
     },
     {
+      path: '/tree',
+      name: 'Tres',
+      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
+      children: [
+        {
+          path: 'index',
+          name: '树',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/tree/tree.vue')
+        },
+        {
+          path: 'index1',
+          name: '树1',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/tree/tree1.vue')
+        },
+        {
+          path: 'index2',
+          name: '树2',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/tree/tree2.vue')
+        }
+      ]
+    },
+    {
       path: '/',
       redirect: '/login'
     },
