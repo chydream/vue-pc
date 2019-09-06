@@ -76,9 +76,9 @@ const mixinsFun = {
         query: queryParams
       })
     },
-    closeTag (path, status, query) {
-      const item = this.tagCurrent[0]
-      this.$store.commit('DEL_TAG', item)
+    closeTagTo (path, status, query) {
+      const item = this.tagCurrent
+      this.$store.commit('common/CLOSE_TAG', item)
       if (status) {
         this.goUrl(path, query)
       } else {

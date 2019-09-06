@@ -7,7 +7,6 @@
           :expand-on-click-node="false"
           :render-content="renderContent"
           :props="defaultProps"></el-tree>
-      
   </div>
 </template>
 <script>

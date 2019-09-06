@@ -137,3 +137,21 @@ export function getClientHeight () {
 export function getScrollHeight () {
     return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)
 }
+export function getTree () {
+  var treeData = res.data
+  for (var i = 0; i < treeData.length; i++) {
+    treeData[i].children = []
+    for (var j = 0; j < treeData.length; j++) {
+      if (treeData[i].agentId == treeData[j].parentAgentId) {
+        treeData[i].children.push(treeData[j])
+      }
+    }
+  }
+  var treeDataFix = []
+  for (var z = 0; z < treeData.length; z++) {
+    if (treeData[z].parentAgentId == '') {
+      treeDataFix.push(treeData[z])
+    }
+  }
+  this.treeData = treeData
+}
