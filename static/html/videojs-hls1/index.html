@@ -10,7 +10,7 @@
   <meta name="wap-font-scale" content="no">
 	<title>videojs支持hls直播实例</title>
 	<link href="./video.css?v=bcd2ce1385" rel="stylesheet">
-
+  <script src="./jquery.min.js"></script>
 	<style type="text/css">
 	    video{
 	            display: block;
@@ -32,9 +32,10 @@
 	</style>
 </head>
 <body>
-
-	<video style="width:500px;height:500px;"id="roomVideo" class="video-js vjs-default-skin vjs-big-play-centered" x-webkit-airplay="allow" poster="" webkit-playsinline playsinline x5-video-player-type="h5" x5-video-player-fullscreen="true" preload="auto">
-	    <source src="https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8"  type="application/x-mpegURL">
+    <!-- https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8 -->
+  <!-- http://139.9.75.14:83/openUrl/Etska1q/live.m3u8 -->
+	<video style="width:500px;height:500px;" id="roomVideo" class="video-js vjs-default-skin vjs-big-play-centered" x-webkit-airplay="allow" poster="" webkit-playsinline playsinline x5-video-player-type="h5" x5-video-player-fullscreen="true" preload="auto">
+	    <source src="http://139.9.75.14:83/openUrl/Etska1q/live.m3u8"  type="application/x-mpegURL" id="sourceSrc">
 	</video>
 
 	<button id="btn">play</button>
@@ -90,9 +91,29 @@
 
 	    });
 	    
+      var story_sources = [
+        {
+           type:"application/x-mpegURL",
+           src:'https://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8'
+        }
+       ]
+
+
+
+      // myPlayer.ready(function(){
+      //   var obj  = this;
+      //   document.getElementById('btn').addEventListener('click', function(){
+      //     obj.src(story_sources);
+      //     myPlayer.autoplay();
+      //     // obj.load();
+      //     // obj.play();
+      //   })
+      // })  
+
 	    document.getElementById('btn').addEventListener('click', function(){
-                myPlayer.play();
-        })
+        myPlayer.src(story_sources);
+        myPlayer.play();
+      })
 
 
 	    var isVideoBreak;

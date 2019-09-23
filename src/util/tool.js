@@ -137,7 +137,7 @@ export function getClientHeight () {
 export function getScrollHeight () {
     return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)
 }
-export function getTree () {
+export function getTree (res) {
   var treeData = res.data
   for (var i = 0; i < treeData.length; i++) {
     treeData[i].children = []

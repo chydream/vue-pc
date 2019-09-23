@@ -1,4 +1,5 @@
 import CryptoJS from 'crypto-js'
+import { mapGetters } from 'vuex'
 const mixinsFun = {
   data () {
     return {
@@ -10,6 +11,9 @@ const mixinsFun = {
         delete: 'delete'
       }
     }
+  },
+  computed: {
+    ...mapGetters(['tagList', 'tagCurrent'])
   },
   created () {
   },
