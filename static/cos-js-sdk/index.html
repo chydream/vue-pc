@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./dist/cos-js-sdk-v5.min.js"></script>
+</head>
+<body>
+<input id="file-selector" type="file">
+<script type="text/javascript">
+    var Bucket = 'yiyu-1300304002';
+    var Region = 'ap-chengdu';
+    var cos = new COS({
+        SecretId: 'AKIDZv1rjMXBj26uQisa97sMagZDbjfLf2EA',
+        SecretKey: 'nKabcO0UifPuWw60jMkslRq57xYtxmLh'
+    })
+    cos.getBucket({
+        Bucket:Bucket,
+        Region:Region,
+        Prefix: '',
+    },function (err,data) {
+        console.log(err || data.Contents);
+    })
+</script>
+</body>
+</html>
