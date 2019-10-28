@@ -124,6 +124,11 @@ const router = new Router({
           path: 'index3',
           name: '树3',
           component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/tree/tree3.vue')
+        },
+        {
+          path: 'index4',
+          name: '树4',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/tree/tree4.vue')
         }
       ]
     },

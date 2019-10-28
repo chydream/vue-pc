@@ -1,4 +1,4 @@
-import {getDemoList, getUserList, getSystemList, getRoleList} from '@/api/demoApi'
+import {getDemoList, getUserList, getSystemList, getRoleList, getTeachDept} from '@/api/demoApi'
 const demo = {
     namespaced: true,
     state: {
@@ -34,6 +34,13 @@ const demo = {
           getRoleList(params).then(res => {
                 resolve(res)
             })
+        })
+      },
+      GetTeachDept ({ state, commit, dispatch }, params) {
+        return new Promise((resolve, reject) => {
+          getTeachDept(params).then(res => {
+            resolve(res)
+          })
         })
       }
     }

@@ -45,3 +45,18 @@ export const getRoleList = (params) => {
       })
   })
 }
+
+export const getTeachDept = params => {
+  return new Promise((resolve, reject) => {
+    axios({
+      url:
+        'http://api-oa-salary.xueerqin.net' +
+        '/api/TeachSalary/GetTeachDept?data=' +
+        JSON.stringify(params),
+      method: 'get',
+      data: qs.stringify(params)
+    }).then(res => {
+      resolve(res.data)
+    })
+  })
+}
