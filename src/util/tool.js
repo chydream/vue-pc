@@ -155,3 +155,31 @@ export function getTree (res) {
   }
   this.treeData = treeData
 }
+// 递归
+export function setDeptData (arr) { 
+  arr.forEach((item, index) => {
+    if (item.children && item.children.length > 0) {
+      // item.disabled = true
+      // item.authorityList.forEach((item, i) => {
+      //   item.authorityList[i].checked = false
+      // })
+      this.setDeptData(item.children)
+    } else {
+      // arr[index].disabled = true
+      // arr[index].authorityList.forEach((item, i) => {
+      //   arr[index].authorityList[i].checked = false
+      // })
+    }
+  })
+  return arr
+}
+// 扁平化
+export function flatNavList (arr) {
+  for (let v of arr) {
+    if (v.children && v.children.length) {
+      this.flatNavList(v.children)
+    } else {
+      this.permissionList.push(v)
+    }
+  }
+}

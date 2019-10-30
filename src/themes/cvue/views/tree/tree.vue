@@ -11,6 +11,7 @@
     </el-tree>
     <el-tree :props="props" :load="loadNode" lazy show-checkbox @check-change="handleCheckChange"></el-tree>
     <el-tree :props="props1" :load="loadNode1" lazy show-checkbox></el-tree> -->
+<<<<<<< HEAD
     <el-tree :data="data2" 
       show-checkbox 
       default-expand-all 
@@ -21,6 +22,9 @@
       :props="defaultProps" 
       accordion>
     </el-tree>
+=======
+    <el-tree :data="data2" show-checkbox default-expand-all node-key="id" ref="tree" highlight-current :props="defaultProps" accordion :default-checked-keys='[5]'></el-tree>
+>>>>>>> 86a524168013cec09fa93b371d98960f662066b2
     <div class="buttons">
       <el-button @click="getCheckedNodes">通过 node 获取</el-button>
       <el-button @click="getCheckedKeys">通过 key 获取</el-button>
@@ -47,10 +51,7 @@ export default {
               label: '二级 1-1',
               disabled: true,
               children: [
-                {
-                  label: '三级 1-1-1',
-                  defaultCheckedKeys: true
-                }
+                {label: '三级 1-1-1', checked: true}
               ]
             }
           ]

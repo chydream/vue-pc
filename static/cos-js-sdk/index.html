@@ -7,6 +7,7 @@
 </head>
 <body>
 <input id="file-selector" type="file">
+<img src="" id="indexImg"/>
 <script type="text/javascript">
     var Bucket = 'yiyu-1300304002';
     var Region = 'ap-chengdu';
@@ -14,13 +15,49 @@
         SecretId: 'AKIDZv1rjMXBj26uQisa97sMagZDbjfLf2EA',
         SecretKey: 'nKabcO0UifPuWw60jMkslRq57xYtxmLh'
     })
-    cos.getBucket({
-        Bucket:Bucket,
-        Region:Region,
-        Prefix: '',
-    },function (err,data) {
-        console.log(err || data.Contents);
-    })
+    // cos.getBucket({
+    //     Bucket:Bucket,
+    //     Region:Region,
+    //     Prefix: 'train/',
+    // },function (err,data) {
+    //     console.log(err || data.Contents);
+    // })
+    // cos.putObject({
+    //   Bucket:Bucket,
+    //     Region:Region,
+    //     Key: 'picture.jpg',
+    //     StorageClass: 'dtandard',
+    //     Body: file,
+    //     onProgress: function(progressData){
+    //       console.log(JSON.stringify(progressData));
+    //     }
+    // }, function(err,data){
+    //   console.log(err || data);
+    // })
+    document.getElementById('file-selector').onchange = function () {
+      var file = this.files[0];
+      if (!file) return;
+      cos.putObject({
+          Bucket: Bucket,
+          Region: Region,
+          Key: 'train/' + file.name,
+          Body: file,
+      }, function (err, data) {
+          console.log(err || data);
+      });
+    };
+    
+    var url = cos.getObjectUrl({
+      Bucket: Bucket,
+      Region: Region,
+      Key: 'train/yqjz.png',
+      Sign: true
+    }, function (err, data) {
+      // if (!err) return console.log(err);
+      // var downloadUrl = data.Url + (data.Url.indexOf('?') > -1 ? '&' : '?') + 'response-content-disposition=attachment'; // 补充强制下载的参数
+      // window.open(downloadUrl); // 这里是新窗口打开 url，如果需要在当前窗口打开，可以使用隐藏的 iframe 下载，或使用 a 标签 download 属性协助下载
+    });
+    console.log(url)
 </script>
 </body>
 </html>

@@ -118,6 +118,15 @@ let menu = {
               permission: ['view', 'add', 'delete', 'edit'],
               show: true,
               children: []
+            },
+            {
+              id: 12,
+              label: '树5',
+              href: '/tree/index4',
+              icon: 'fa fa-file-text',
+              permission: ['view', 'add', 'delete', 'edit'],
+              show: true,
+              children: []
             }
           ]
         }
