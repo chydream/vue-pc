@@ -4,7 +4,7 @@
     <el-tree class="filter-tree" 
             :data="data2" 
             :props="defaultProps" 
-            default-expand-all 
+            :default-expand-all="false"
             :filter-node-method="filterNode" 
             ref="tree2">
     </el-tree>
