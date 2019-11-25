@@ -11,7 +11,20 @@
     </el-tree>
     <el-tree :props="props" :load="loadNode" lazy show-checkbox @check-change="handleCheckChange"></el-tree>
     <el-tree :props="props1" :load="loadNode1" lazy show-checkbox></el-tree> -->
+<<<<<<< HEAD
+    <el-tree :data="data2" 
+      show-checkbox 
+      default-expand-all 
+      node-key="id" 
+      ref="tree" 
+      highlight-current 
+      @check="handleCheckChange"
+      :props="defaultProps" 
+      accordion>
+    </el-tree>
+=======
     <el-tree :data="data2" show-checkbox default-expand-all node-key="id" ref="tree" highlight-current :props="defaultProps" accordion :default-checked-keys='[5]'></el-tree>
+>>>>>>> 86a524168013cec09fa93b371d98960f662066b2
     <div class="buttons">
       <el-button @click="getCheckedNodes">通过 node 获取</el-button>
       <el-button @click="getCheckedKeys">通过 key 获取</el-button>
@@ -66,11 +79,13 @@ export default {
               children: [
                 {
                   id: 9,
-                  label: '三级 1-1-1'
+                  label: '三级 1-1-1',
+                  checked: true
                 },
                 {
                   id: 10,
-                  label: '三级 1-1-2'
+                  label: '三级 1-1-2',
+                  checked: true
                 }
               ]
             }
@@ -132,7 +147,21 @@ export default {
       console.log(data)
     },
     handleCheckChange (data, checked, indeterminate) {
-      console.log(data, checked, indeterminate)
+      console.log(this.data2)
+      // console.log(data, checked, indeterminate)
+    },
+    // 递归
+    setDeptData (arr) { 
+      arr.forEach((item, index) => {
+        if (item.children && item.children.length > 0) {
+          item.disabled = true
+          // item.leaf = false
+          this.setDeptData(item.children)
+        } else {
+          arr[index].disabled = true
+          // arr[index].leaf = false
+        }
+      })
     },
     loadNode (node, resolve) {
       console.log(node)
