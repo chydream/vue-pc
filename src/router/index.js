@@ -133,6 +133,18 @@ const router = new Router({
       ]
     },
     {
+      path: '/jsPlumb',
+      name: 'jsPlumb',
+      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
+      children: [
+        {
+          path: 'index',
+          name: '树',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/jsPlumb/index.vue')
+        }
+      ]
+    },
+    {
       path: '/',
       redirect: '/login'
     },
