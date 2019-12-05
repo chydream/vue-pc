@@ -64,7 +64,7 @@ export default {
   },
   mounted () {
     // this.getMenuData()
-    console.log(this.menu)
+    // console.log(this.menu)
   },
   methods: {
     goUrl (path) {
