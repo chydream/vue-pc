@@ -145,6 +145,18 @@ const router = new Router({
       ]
     },
     {
+      path: '/video-new',
+      name: 'videoNew',
+      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
+      children: [
+        {
+          path: 'index',
+          name: '树',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoNew/index.vue')
+        }
+      ]
+    },
+    {
       path: '/',
       redirect: '/login'
     },
