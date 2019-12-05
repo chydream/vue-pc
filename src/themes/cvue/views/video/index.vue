@@ -4,7 +4,7 @@
                  ref="videoPlayer"
                  :options="playerOptions"
                  :playsinline="true"
-                 customEventName="customstatechangedeventname"
+                 customEventName="seeked"
                  @play="onPlayerPlay($event)"
                  @pause="onPlayerPause($event)"
                  @ended="onPlayerEnded($event)"
@@ -15,6 +15,7 @@
                  @canplay="onPlayerCanplay($event)"
                  @canplaythrough="onPlayerCanplaythrough($event)"
                  @statechanged="playerStateChanged($event)"
+                 @seeked="playerSeeking($event)"
                  @ready="playerReadied">
     </video-player>
   </div>
@@ -29,6 +30,8 @@
       return {
         playerOptions: {
           // videojs options
+          controlBar: true,
+          autoplay: false,
           muted: true,
           language: 'en',
           playbackRates: [0.7, 1.0, 1.5, 2.0],
@@ -86,7 +89,15 @@
         // seek to 10s
         console.log('example player 1 readied', player)
         player.currentTime(10)
+        // player.disableProgress({
+        //   autoDisable: true
+        // })
+        player.controlBar.progressControl.disable()
+        player.controlBar.progressControl.enable()
         // console.log('example 01: the player is readied', player)
+      },
+      playerSeeking(player){
+        console.log(123)
       }
     }
   }
