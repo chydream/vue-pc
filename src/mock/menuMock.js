@@ -165,6 +165,15 @@ let menu = {
               permission: ['view', 'add', 'delete', 'edit'],
               show: true,
               children: []
+            },
+            {
+              id: 12,
+              label: '视频',
+              href: '/video-new/index',
+              icon: 'fa fa-file-text',
+              permission: ['view', 'add', 'delete', 'edit'],
+              show: true,
+              children: []
             }
           ]
         }
