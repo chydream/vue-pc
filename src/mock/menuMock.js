@@ -148,6 +148,25 @@ let menu = {
               children: []
             }
           ]
+        },
+        {
+          id: 8,
+          label: '视频',
+          href: '',
+          icon: 'fa fa-bar-chart-o',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: [
+            {
+              id: 12,
+              label: '视频',
+              href: '/video/index',
+              icon: 'fa fa-file-text',
+              permission: ['view', 'add', 'delete', 'edit'],
+              show: true,
+              children: []
+            }
+          ]
         }
     ],
     user: [
