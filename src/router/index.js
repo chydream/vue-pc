@@ -153,6 +153,11 @@ const router = new Router({
           path: 'index',
           name: 'video',
           component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/video/index')
+        },
+        {
+          path: 'video',
+          name: 'videos',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/video/video')
         }
       ]
     },

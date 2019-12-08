@@ -160,6 +160,15 @@ let menu = {
             {
               id: 12,
               label: '视频',
+              href: '/video/video',
+              icon: 'fa fa-file-text',
+              permission: ['view', 'add', 'delete', 'edit'],
+              show: true,
+              children: []
+            },
+            {
+              id: 12,
+              label: '视频',
               href: '/video/index',
               icon: 'fa fa-file-text',
               permission: ['view', 'add', 'delete', 'edit'],
