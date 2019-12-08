@@ -183,6 +183,15 @@ let menu = {
               permission: ['view', 'add', 'delete', 'edit'],
               show: true,
               children: []
+            },
+            {
+              id: 12,
+              label: '视频js',
+              href: '/video/videojs',
+              icon: 'fa fa-file-text',
+              permission: ['view', 'add', 'delete', 'edit'],
+              show: true,
+              children: []
             }
           ]
         }
