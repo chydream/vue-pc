@@ -139,7 +139,7 @@ const router = new Router({
       children: [
         {
           path: 'index',
-          name: '树',
+          name: '工作流',
           component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/jsPlumb/index.vue')
         }
       ]
@@ -151,7 +151,7 @@ const router = new Router({
       children: [
         {
           path: 'index',
-          name: 'video',
+          name: 'video流',
           component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/video/index')
         },
         {
@@ -168,7 +168,7 @@ const router = new Router({
     },
     {
       path: '/video-new',
-      name: 'videoNew',
+      name: 'videoNew流',
       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
       children: [
         {
