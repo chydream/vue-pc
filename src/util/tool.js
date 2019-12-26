@@ -183,3 +183,39 @@ export function flatNavList (arr) {
     }
   }
 }
+// 扁平化生成树
+function getTree (treeData) {
+  for (var i = 0; i < treeData.length; i++) {
+    treeData[i].children = []
+    for (var j = 0; j < treeData.length; j++) {
+      if (treeData[i].Id == treeData[j].RecordNodeParentId) {
+        treeData[i].children.push(treeData[j])
+      }
+    }
+  }
+  for (i = 0; i < treeData.length; i++) {
+    if (treeData[i].RecordNodeParentId == '') {
+      var arr = []
+      arr.push(treeData[i])
+      this.option.data = arr
+    }
+  }
+}
+
+
+function openurl(url) {
+  //创建A标签
+  var a = document.createElement('a')
+  //给创建好的a标签赋值
+  a.setAttribute('href', url)
+  //设置css 隐藏属性
+  a.setAttribute('style', 'display:none'); 
+  //设置 a标签为新窗口打开
+  a.setAttribute('target', '_blank')
+  //将设置好的a标签，添加到 body 内
+  document.body.appendChild(a)
+  //模拟点击
+  a.click()
+  //移除a标签
+  a.parentNode.removeChild(a)
+}
