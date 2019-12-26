@@ -184,7 +184,7 @@ export function flatNavList (arr) {
   }
 }
 // 扁平化生成树
-function getTree (treeData) {
+function getTree1 (treeData) {
   for (var i = 0; i < treeData.length; i++) {
     treeData[i].children = []
     for (var j = 0; j < treeData.length; j++) {
@@ -202,7 +202,7 @@ function getTree (treeData) {
   }
 }
 
-
+/* eslint-disable */
 function openurl(url) {
   //创建A标签
   var a = document.createElement('a')
