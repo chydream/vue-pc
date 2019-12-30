@@ -202,8 +202,9 @@ function getTree1 (treeData) {
   }
 }
 
-function openurl (url) {
-  // 创建A标签
+/* eslint-disable */
+function openurl(url) {
+  //创建A标签
   var a = document.createElement('a')
   // 给创建好的a标签赋值
   a.setAttribute('href', url)

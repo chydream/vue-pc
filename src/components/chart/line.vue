@@ -1,12 +1,12 @@
 <template>
   <div class="line">
-    <cvue-chart :width="width" :height="height" :option="option" :chartId="chartId" title="折线图"></cvue-chart>
+    <cvue-chart :width="width" :height="height" :option="option" :chartId="chartId" title="折线图ddd"></cvue-chart>
   </div>
 </template>
 <script>
 import cvueChart from '@/components/chart/cvue-chart'
 export default {
-  name: 'Line',
+  name: 'LineChart',
   components: {
     cvueChart
   },
@@ -47,6 +47,9 @@ export default {
         }
       }
     }
+  },
+  mounted () {
+    // console.log(this.option)
   }
 }
 </script>

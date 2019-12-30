@@ -22,7 +22,24 @@ export default {
   name: 'CvueChart',
   data () {
     return {
-      msg: 'hello'
+      msg: 'hello',
+      myChart: '' 
+    }
+  },
+  watch: {
+    option: {
+      handler (newVal, oldVal) {
+        if (this.myChart) {
+          if (newVal) {
+            this.myChart.setOption(newVal, true)
+          } else {
+            this.myChart.setOption(oldVal, true)
+          }
+        } else {
+          this.init()
+        }
+      },
+      deep: true
     }
   },
   props: {
@@ -73,9 +90,20 @@ export default {
     }
   },
   mounted () {
-    var myChart = echarts.init(document.getElementById(this.chartId), 'macarons')
-    var option = this.option
-    myChart.setOption(option)
+    this.initChart()
+  },
+  methods: {
+    initChart () {
+      let self = this
+      self.myChart = echarts.init(document.getElementById(self.chartId), 'macarons')
+      self.myChart.setOption(self.option)
+      // this.$nextTick(() => {
+      //   this.myChart.setOption(this.option)
+      // })
+      window.addEventListener('resize', function () {
+        self.myChart.resize()
+      })
+    }
   }
 }
 </script>
