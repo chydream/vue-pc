@@ -184,7 +184,7 @@ export function flatNavList (arr) {
   }
 }
 // 扁平化生成树
-function getTree (treeData) {
+function getTree1 (treeData) {
   for (var i = 0; i < treeData.length; i++) {
     treeData[i].children = []
     for (var j = 0; j < treeData.length; j++) {
@@ -202,20 +202,30 @@ function getTree (treeData) {
   }
 }
 
-
-function openurl(url) {
-  //创建A标签
+function openurl (url) {
+  // 创建A标签
   var a = document.createElement('a')
-  //给创建好的a标签赋值
+  // 给创建好的a标签赋值
   a.setAttribute('href', url)
-  //设置css 隐藏属性
-  a.setAttribute('style', 'display:none'); 
-  //设置 a标签为新窗口打开
+  // 设置css 隐藏属性
+  a.setAttribute('style', 'display:none')
+  // 设置 a标签为新窗口打开
   a.setAttribute('target', '_blank')
-  //将设置好的a标签，添加到 body 内
+  // 将设置好的a标签，添加到 body 内
   document.body.appendChild(a)
-  //模拟点击
+  // 模拟点击
   a.click()
-  //移除a标签
+  // 移除a标签
   a.parentNode.removeChild(a)
+}
+
+// 附件下载方法 responseType:'blob'
+export function exportExcel (res) {
+  var fileName = res.headers['content-disposition'].split(';')[1].split('=')[1].split('.')[0]
+  var el = document.createElement('a')
+  document.body.appendChild(el)
+  el.style.display = 'display:none'
+  el.download = fileName + '.xls'
+  el.href = URL.createObjectURL(res.data)
+  el.click()
 }
