@@ -7,7 +7,8 @@ export const saveAuthorityDetails = params => {
         'Content-Type': 'application/json; charset=utf-8' 
         // application/x-www-form-urlencoded
       },
-      data: params
+      // headers: { 'Content-Type': 'multipart/form-data' },
+      data: params   // JSON.stringify(params)  qs.stringify(updateSeatModel)
     }).then(res => {
       resolve(res.data)
     })

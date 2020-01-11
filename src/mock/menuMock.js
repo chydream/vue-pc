@@ -194,6 +194,25 @@ let menu = {
               children: []
             }
           ]
+        },
+        {
+          id: 8,
+          label: '表格',
+          href: '',
+          icon: 'fa fa-bar-chart-o',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: [
+            {
+              id: 12,
+              label: '表格',
+              href: '/table-new/index',
+              icon: 'fa fa-file-text',
+              permission: ['view', 'add', 'delete', 'edit'],
+              show: true,
+              children: []
+            }
+          ]
         }
     ],
     user: [

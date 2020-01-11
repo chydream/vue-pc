@@ -179,6 +179,18 @@ const router = new Router({
       ]
     },
     {
+      path: '/table-new',
+      name: 'videoNew流',
+      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
+      children: [
+        {
+          path: 'index',
+          name: 'videoNew',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/table/table')
+        }
+      ]
+    },
+    {
       path: '/',
       redirect: '/login'
     },
