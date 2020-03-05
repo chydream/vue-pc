@@ -192,6 +192,15 @@ let menu = {
               permission: ['view', 'add', 'delete', 'edit'],
               show: true,
               children: []
+            },
+            {
+              id: 12,
+              label: 'test',
+              href: '/video/test',
+              icon: 'fa fa-file-text',
+              permission: ['view', 'add', 'delete', 'edit'],
+              show: true,
+              children: []
             }
           ]
         },

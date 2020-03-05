@@ -1,5 +1,24 @@
 <template>
     <div class="home">
+         <!-- <el-time-picker
+            value-format='HH:mm'
+            v-model="value1"
+            @change = "getDate"
+            :picker-options="{
+              format: 'HH:mm'
+            }"
+            placeholder="任意时间点">
+          </el-time-picker> -->
+          <el-time-select
+            v-model="value1"
+            :editable="true"
+            :picker-options="{
+              start: '08:30',
+              step: '00:15',
+              end: '18:30'
+            }"
+            placeholder="选择时间">
+          </el-time-select>
         <!-- 表单 -->
         <el-card class="box-card mt-15">
             <div class="home-form">
@@ -204,6 +223,9 @@ export default {
     },
     data () {
         return {
+            value1: '19:42',
+            endTime: '',
+            startTime: '09:30',
             uploadLoading: false,
             uploadHeader: {
               'Authorization': this.$store.getters.token
@@ -299,6 +321,9 @@ export default {
         // this.getCybercafeNum() // 获取网吧数量
     },
     methods: {
+        getDate (value) {
+          console.log(value)
+        },
         handleRefresh () {
             this.tablePage = 1
             this.handleList('', '') // 刷新列表

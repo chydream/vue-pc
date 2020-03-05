@@ -23,7 +23,7 @@
             <p class="help-block help-block-error"></p>
           </div>
         </div>
-        <div>
+        <!-- <div>
           <label>完成验证:</label>
           <div id="captcha">
               <div id="text">
@@ -38,7 +38,7 @@
                   </div>
               </div>
           </div>
-        </div>
+        </div> -->
         <div class="form-actions">
           <el-checkbox v-model="checked" style="margin-top:10px;">记住我</el-checkbox>
           <button type="button" class="btn green pull-right" @click="getLogin">登录</button>
@@ -60,10 +60,10 @@ export default {
   data () {
     return {
       imgs: [
-        'http://www.qinimai.com/backend/web/statics/metronic/imgs/7.jpg',
-        'http://www.qinimai.com/backend/web/statics/metronic/imgs/2.jpg',
-        'http://www.qinimai.com/backend/web/statics/metronic/imgs/3.jpg',
-        'http://www.qinimai.com/backend/web/statics/metronic/imgs/4.jpg'
+        require('../../../static/img/7.jpg'),
+        require('../../../static/img/2.jpg'),
+        require('../../../static/img/3.jpg'),
+        require('../../../static/img/4.jpg')
       ],
       username: '',
       password: '',
