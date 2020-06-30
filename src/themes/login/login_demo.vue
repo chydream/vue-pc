@@ -2,7 +2,7 @@
   <div class="login">
     <div class="content">
       <h3 class="form-title">登录</h3>
-      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="demo-ruleForm">
+      <el-form :model="ruleForm" :rules="rules" ref="ruleForm" class="demo-ruleForm" @submit.native.prevent @keyup.enter.native="submitForm">
         <el-row>
           <el-col :span="24">
             <el-form-item prop="username">
@@ -40,6 +40,7 @@
   </div>
 </template>
 <script>
+import {setCookie, getCookie} from '@/util/tool'
 export default {
   name: 'login',
   data () {
@@ -71,8 +72,21 @@ export default {
   },
   created () {
     this.bgAnimation()
+    this.setUserName()
   },
   methods: {
+    // 设置用户名
+    setUserName () {
+      var username = getCookie('username')
+      if (username) {
+        this.ruleForm.username = username
+        this.checked = true
+      } else {
+        this.ruleForm.username = ''
+        this.checked = false
+      }
+    },
+    // 图片轮播
     bgAnimation () {
       var timer = null
       var interval = 5000
@@ -84,6 +98,7 @@ export default {
         }
       }, interval)
     },
+    // 修改密码框
     changeType () {
       if (this.passType == 'password') {
         this.passType = 'text'
@@ -91,6 +106,7 @@ export default {
         this.passType = 'password'
       }
     },
+    // 登录
     getLogin () {
       this.$refs.ruleForm.validate((valid) => {
         if (valid) {
@@ -98,17 +114,16 @@ export default {
             username: this.ruleForm.username,
             password: this.ruleForm.password
           }
-          console.log(params)
           this.$store.dispatch('user/Login', params).then(res => {
             if (res.success) {
               this.$store.dispatch('user/GetUserInfo', res.data.token).then(res => {
                 if (res.success) {
                   if (this.checked) {
-                    // this.setCookie(params.username, params.password, 7)
-                    this.$router.push('/index/home')
+                    setCookie('username', params.username, 24)
                   } else {
-                    // this.clearCookie()
+                    setCookie('username', '', -1)
                   }
+                  this.$router.push('/index/home')
                 }
               })
             } else {
@@ -123,6 +138,10 @@ export default {
           return false
         }
       })
+    },
+    // 表单enter提交
+    submitForm (event) {
+      this.getLogin()
     }
   }
 }
