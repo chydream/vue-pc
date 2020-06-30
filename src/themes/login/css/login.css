@@ -18,7 +18,8 @@
     -moz-border-radius: 7px;
     -ms-border-radius: 7px;
     -o-border-radius: 7px;
-    border-radius: 7px
+    border-radius: 7px;
+    box-sizing: border-box;
 }
 
 .login .content h3, .login .content h4 {
@@ -49,7 +50,9 @@
 
 .login .content .form-title {
     font-weight: 300;
-    margin-bottom: 25px
+    margin-bottom: 25px;
+    font-size: 24px;
+    margin-top: 15px;
 }
 
 .login .content .form-actions {

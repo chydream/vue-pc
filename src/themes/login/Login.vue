@@ -96,6 +96,7 @@ export default {
         username: this.username,
         password: this.password
       }
+      console.log(params)
       if (params.username == '' || params.password == '') {
         this.$message({
           message: '请输入登录信息',
@@ -109,19 +110,19 @@ export default {
         .then(res => {
           console.log(res)
           if (res.success) {
-            this.$store
-              .dispatch('user/GetUserInfo', res.data.token)
-              .then(res => {
-                if (res.success) {
-                  if (this.checked) {
-                    this.setCookie(params.username, params.password, 7)
-                  } else {
-                    this.clearCookie()
-                  }
-                  document.onkeydown = undefined
-                  this.$router.push('/index/home')
-                }
-              })
+            // document.onkeydown = undefined
+            // this.$router.push('/index/home')
+            // this.$store
+            //   .dispatch('user/GetUserInfo', res.data.token)
+            //   .then(res => {
+            //     if (res.success) {
+            //       if (this.checked) {
+            //         this.setCookie(params.username, params.password, 7)
+            //       } else {
+            //         this.clearCookie()
+            //       }
+            //     }
+            //   })
           } else {
             this.tip(res.message, 'error')
           }
@@ -185,10 +186,10 @@ export default {
   mounted () {
     /* eslint-disable */
     var handler = function (captchaObj) {
-      captchaObj.appendTo('#captcha')
-      captchaObj.onReady(function () {
-        // $("#wait").hide();
-      })
+      // captchaObj.appendTo('#captcha')
+      // captchaObj.onReady(function () {
+      //   $("#wait").hide();
+      // })
       // $('#btn').click(function () {
       //     var result = captchaObj.getValidate();
       //     if (!result) {
@@ -217,9 +218,7 @@ export default {
       // })
       // 更多前端接口说明请参见：http://docs.geetest.com/install/client/web-front/
     }
-
-    initGeetest(
-      {
+    initGeetest({
         // 以下 4 个配置参数为必须，不能缺少
         gt: '6216680937717fdab947ed9e71a3aaa1',
         challenge: '796862f2365da57106702a55ed3bc134',
