@@ -11,7 +11,16 @@
           <label class="control-label visible-ie8 visible-ie9" for="loginform-username">用户名</label>
           <div class="input-icon">
             <i class="fa fa-user"></i>
-            <input type="text" id="loginform-username" class="form-control placeholder-no-fix"  name="LoginForm[username]" autocomplete="off" placeholder="用户名" aria-required="true" v-model="username">
+            <input
+              type="text"
+              id="loginform-username"
+              class="form-control placeholder-no-fix"
+              name="LoginForm[username]"
+              autocomplete="off"
+              placeholder="用户名"
+              aria-required="true"
+              v-model="username"
+            />
             <p class="help-block help-block-error"></p>
           </div>
         </div>
@@ -19,7 +28,16 @@
           <label class="control-label visible-ie8 visible-ie9" for="loginform-password">密码</label>
           <div class="input-icon">
             <i class="fa fa-lock"></i>
-            <input type="password" id="loginform-password" class="form-control placeholder-no-fix" name="LoginForm[password]" autocomplete="off" placeholder="密码" aria-required="true" v-model="password">
+            <input
+              type="password"
+              id="loginform-password"
+              class="form-control placeholder-no-fix"
+              name="LoginForm[password]"
+              autocomplete="off"
+              placeholder="密码"
+              aria-required="true"
+              v-model="password"
+            />
             <p class="help-block help-block-error"></p>
           </div>
         </div>
@@ -38,7 +56,7 @@
                   </div>
               </div>
           </div>
-        </div> -->
+        </div>-->
         <div class="form-actions">
           <el-checkbox v-model="checked" style="margin-top:10px;">记住我</el-checkbox>
           <button type="button" class="btn green pull-right" @click="getLogin">登录</button>
@@ -48,13 +66,14 @@
     <div class="copyright">2016 © copyright</div>
     <div class="bg">
       <ul>
-        <li v-for="(item, index) in imgs" :key="index" :class="{activeItem:activeIndex == index}"><img :src="item"></li>
+        <li v-for="(item, index) in imgs" :key="index" :class="{activeItem:activeIndex == index}">
+          <img :src="item" />
+        </li>
       </ul>
     </div>
   </div>
 </template>
 <script>
-
 export default {
   name: 'login',
   data () {
@@ -85,27 +104,32 @@ export default {
         })
         return false
       }
-      this.$store.dispatch('user/Login', params).then(res => {
-        console.log(res)
-        if (res.success) {
-          this.$store.dispatch('user/GetUserInfo', res.data.token).then(res => {
-            if (res.success) {
-              if (this.checked) {
-                this.setCookie(params.username, params.password, 7)
-              } else {
-                this.clearCookie()
-              }
-              document.onkeydown = undefined
-              this.$router.push('/index/home')
-            }
-          })
-        } else {
-          this.tip(res.message, 'error')
-        }
-      }).catch(err => {
-        this.tip('服务器出错', 'error')
-        console.log(err)
-      })
+      this.$store
+        .dispatch('user/Login', params)
+        .then(res => {
+          console.log(res)
+          if (res.success) {
+            this.$store
+              .dispatch('user/GetUserInfo', res.data.token)
+              .then(res => {
+                if (res.success) {
+                  if (this.checked) {
+                    this.setCookie(params.username, params.password, 7)
+                  } else {
+                    this.clearCookie()
+                  }
+                  document.onkeydown = undefined
+                  this.$router.push('/index/home')
+                }
+              })
+          } else {
+            this.tip(res.message, 'error')
+          }
+        })
+        .catch(err => {
+          this.tip('服务器出错', 'error')
+          console.log(err)
+        })
     },
     bgAnimation () {
       var timer = null
@@ -131,12 +155,13 @@ export default {
       }
     },
     clearCookie () {
-        this.setCookie('', '', -1)
+      this.setCookie('', '', -1)
     },
     setCookie (user, pwd, saveDays) {
-        var exdate = new Date()
-        exdate.setTime(exdate.getTime() + 24 * 60 * 60 * 1000 * saveDays)
-        window.document.cookie = 'username' + '=' + user + ';path=/;expires=' + exdate.toGMTString()
+      var exdate = new Date()
+      exdate.setTime(exdate.getTime() + 24 * 60 * 60 * 1000 * saveDays)
+      window.document.cookie =
+        'username' + '=' + user + ';path=/;expires=' + exdate.toGMTString()
     }
   },
   created () {
@@ -160,63 +185,66 @@ export default {
   mounted () {
     /* eslint-disable */
     var handler = function (captchaObj) {
-        captchaObj.appendTo('#captcha');
-        captchaObj.onReady(function () {
-            // $("#wait").hide();
-        });
-        // $('#btn').click(function () {
-        //     var result = captchaObj.getValidate();
-        //     if (!result) {
-        //         return alert('请完成验证');
-        //     }
-        //     $.ajax({
-        //         url: 'gt/validate-click',
-        //         type: 'POST',
-        //         dataType: 'json',
-        //         data: {
-        //             username: $('#username2').val(),
-        //             password: $('#password2').val(),
-        //             geetest_challenge: result.geetest_challenge,
-        //             geetest_validate: result.geetest_validate,
-        //             geetest_seccode: result.geetest_seccode
-        //         },
-        //         success: function (data) {
-        //             if (data.status === 'success') {
-        //                 alert('登录成功');
-        //             } else if (data.status === 'fail') {
-        //                 alert('登录失败，请完成验证');
-        //                 captchaObj.reset();
-        //             }
-        //         }
-        //     });
-        // })
-        // 更多前端接口说明请参见：http://docs.geetest.com/install/client/web-front/
-    };
-    
-     initGeetest({
-                // 以下 4 个配置参数为必须，不能缺少
-                gt: '6216680937717fdab947ed9e71a3aaa1',
-                challenge: '796862f2365da57106702a55ed3bc134',
-                offline: true, // 表示用户后台检测极验服务器是否宕机
-                new_captcha: true, // 用于宕机时表示是新验证码的宕机
+      captchaObj.appendTo('#captcha')
+      captchaObj.onReady(function () {
+        // $("#wait").hide();
+      })
+      // $('#btn').click(function () {
+      //     var result = captchaObj.getValidate();
+      //     if (!result) {
+      //         return alert('请完成验证');
+      //     }
+      //     $.ajax({
+      //         url: 'gt/validate-click',
+      //         type: 'POST',
+      //         dataType: 'json',
+      //         data: {
+      //             username: $('#username2').val(),
+      //             password: $('#password2').val(),
+      //             geetest_challenge: result.geetest_challenge,
+      //             geetest_validate: result.geetest_validate,
+      //             geetest_seccode: result.geetest_seccode
+      //         },
+      //         success: function (data) {
+      //             if (data.status === 'success') {
+      //                 alert('登录成功');
+      //             } else if (data.status === 'fail') {
+      //                 alert('登录失败，请完成验证');
+      //                 captchaObj.reset();
+      //             }
+      //         }
+      //     });
+      // })
+      // 更多前端接口说明请参见：http://docs.geetest.com/install/client/web-front/
+    }
 
-                product: "popup", // 产品形式，包括：float，popup
-                width: "300px",
-                https: false
+    initGeetest(
+      {
+        // 以下 4 个配置参数为必须，不能缺少
+        gt: '6216680937717fdab947ed9e71a3aaa1',
+        challenge: '796862f2365da57106702a55ed3bc134',
+        offline: true, // 表示用户后台检测极验服务器是否宕机
+        new_captcha: true, // 用于宕机时表示是新验证码的宕机
 
-                // 更多前端配置参数说明请参见：http://docs.geetest.com/install/client/web-front/
-            },handler);
-  },
+        product: 'popup', // 产品形式，包括：float，popup
+        width: '300px',
+        https: false
+
+        // 更多前端配置参数说明请参见：http://docs.geetest.com/install/client/web-front/
+      },
+      handler
+    )
+  }
 }
 </script>
 <style scoped lang="scss">
-@import url("./css/bootstrap.min.css");
-@import url("./css/login.css");
-.login{
-  .bg{
+@import url('./css/bootstrap.min.css');
+@import url('./css/login.css');
+.login {
+  .bg {
     position: relative;
   }
-  .bg ul li{
+  .bg ul li {
     position: fixed;
     left: 0;
     top: 0;
@@ -226,20 +254,21 @@ export default {
     opacity: 0;
     transition: all 2s ease;
   }
-  .activeItem{
-    opacity: 1!important;
+  .activeItem {
+    opacity: 1 !important;
   }
-  .bg ul li img{
+  .bg ul li img {
     width: 100%;
     height: 100%;
   }
-  .display-hide, .control-label{
+  .display-hide,
+  .control-label {
     display: none;
   }
-  .input-icon{
-    position:relative;
+  .input-icon {
+    position: relative;
   }
-  .input-icon i{
+  .input-icon i {
     color: #ccc;
     position: absolute;
     margin: 9px 2px 4px 10px;
@@ -249,38 +278,41 @@ export default {
     text-align: center;
     left: 0;
   }
-  .input-icon input{
+  .input-icon input {
     padding-left: 33px;
   }
-  .mt-checkbox, .mt-radio {
+  .mt-checkbox,
+  .mt-radio {
     display: inline-block;
     position: relative;
     padding-left: 30px;
     margin-bottom: 15px;
     cursor: pointer;
     font-size: 14px;
-    -webkit-transition: all .3s;
-    -moz-transition: all .3s;
-    -ms-transition: all .3s;
-    -o-transition: all .3s;
-    transition: all .3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    transition: all 0.3s;
   }
-  .mt-checkbox>span, .mt-radio>span {
-      position: absolute;
-      top: 0;
-      left: 0;
-      height: 19px;
-      width: 19px;
-      border: 1px solid #d9d9d9;
-      background: 0 0;
+  .mt-checkbox > span,
+  .mt-radio > span {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 19px;
+    width: 19px;
+    border: 1px solid #d9d9d9;
+    background: 0 0;
   }
-  .mt-checkbox>input, .mt-radio>input {
+  .mt-checkbox > input,
+  .mt-radio > input {
     position: absolute;
     z-index: -1;
     opacity: 0;
     filter: alpha(opacity=0);
   }
-  .mt-checkbox>span:after {
+  .mt-checkbox > span:after {
     left: 6px;
     top: 3px;
     width: 5px;
@@ -313,7 +345,7 @@ export default {
   // }
 
   .btn:hover {
-    background: white linear-gradient(0deg, #ffffff 0%, #f3f3f3 100%)
+    background: white linear-gradient(0deg, #ffffff 0%, #f3f3f3 100%);
   }
 
   #captcha {
@@ -333,8 +365,8 @@ export default {
     width: 298px;
     text-align: center;
     border-radius: 2px;
-    background-color: #F3F3F3;
-    color: #BBBBBB;
+    background-color: #f3f3f3;
+    color: #bbbbbb;
     font-size: 14px;
     letter-spacing: 0.1px;
     line-height: 42px;
@@ -346,7 +378,7 @@ export default {
     width: 298px;
     text-align: center;
     border-radius: 2px;
-    background-color: #F3F3F3;
+    background-color: #f3f3f3;
   }
 
   .loading {
@@ -404,21 +436,39 @@ export default {
   }
 
   @-webkit-keyframes loadingFade {
-    0% { opacity: 0; }
-    50% { opacity: 0.8; }
-    100% { opacity: 0; }
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 
   @-moz-keyframes loadingFade {
-    0% { opacity: 0; }
-    50% { opacity: 0.8; }
-    100% { opacity: 0; }
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 
   @keyframes loadingFade {
-    0% { opacity: 0; }
-    50% { opacity: 0.8; }
-    100% { opacity: 0; }
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0;
+    }
   }
 }
 </style>

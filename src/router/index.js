@@ -184,6 +184,18 @@ const router = new Router({
       ]
     },
     {
+      path: '/video-demo',
+      name: 'videoDemo',
+      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
+      children: [
+        {
+          path: 'index',
+          name: 'video_index',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/index')
+        }
+      ]
+    },
+    {
       path: '/table-new',
       name: 'videoNew流',
       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),

@@ -9,7 +9,7 @@
             }"
             placeholder="任意时间点">
           </el-time-picker> -->
-          <el-time-select
+          <!-- <el-time-select
             v-model="value1"
             :editable="true"
             :picker-options="{
@@ -18,7 +18,7 @@
               end: '18:30'
             }"
             placeholder="选择时间">
-          </el-time-select>
+          </el-time-select> -->
         <!-- 表单 -->
         <el-card class="box-card mt-15">
             <div class="home-form">

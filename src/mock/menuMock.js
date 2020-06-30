@@ -205,6 +205,25 @@ let menu = {
           ]
         },
         {
+          id: 9,
+          label: '视频Demo',
+          href: '',
+          icon: 'fa fa-bar-chart-o',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: [
+            {
+              id: 12,
+              label: '视频',
+              href: '/video-demo/index',
+              icon: 'fa fa-file-text',
+              permission: ['view', 'add', 'delete', 'edit'],
+              show: true,
+              children: []
+            }
+          ]
+        },
+        {
           id: 8,
           label: '表格',
           href: '',
