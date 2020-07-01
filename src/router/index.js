@@ -214,7 +214,7 @@ const router = new Router({
     {
       path: '/login',
       name: 'Login',
-      component: () => import(/* webpackChunkName: "group-foo" */'../themes/login/login_demo')
+      component: () => import(/* webpackChunkName: "group-foo" */'../themes/login/login')
     },
     {
       path: '*',
