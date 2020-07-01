@@ -197,12 +197,12 @@ const router = new Router({
     },
     {
       path: '/table-new',
-      name: 'videoNew流',
+      name: '新表格',
       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
       children: [
         {
           path: 'index',
-          name: 'videoNew',
+          name: 'table_new',
           component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/table/table')
         }
       ]
