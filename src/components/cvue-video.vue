@@ -6,11 +6,12 @@
                 <video 
                     width="100%" 
                     height="100%" 
-                    :src="shareVideoLink" 
+                    :src="videoSrc" 
                     @canplay="canPlay"
                     @timeupdate="timeUpdate"
                     @ended="ended"
-                    ref="videoPlayer"></video>
+                    ref="videoPlayer">
+                </video>
                 <div class="controls">
                     <!-- 播放/暂停 -->
                     <a href="javascript:;" class="switch fa " @click="togglePlay" :class="playStatus"></a>
@@ -52,7 +53,7 @@ export default {
             type: String,
             default: '360px'
         },
-        shareVideoLink: {
+        videoSrc: {
             type: String,
             default: '/static/movie.mp4'
         },
@@ -89,7 +90,14 @@ export default {
         },
         // 全屏
         expand () {
-            this.video.webkitRequestFullScreen()
+            // this.video.webkitRequestFullScreen()
+            if (document.documentElement.requestFullScreen) {
+                this.video.requestFullScreen()
+            } else if (document.documentElement.webkitRequestFullScreen) {
+                this.video.webkitRequestFullScreen()
+            } else if (document.documentElement.mozRequestFullScreen) {
+               this.video.mozRequestFullScreen()
+            }
         },
         // 文件准备就绪
         canPlay () {
@@ -104,7 +112,7 @@ export default {
             this.loadWidth = pre
             this.currPlayTime = this.getFormatTime(currTime)
         },
-        // 改成进度条
+        // 改变进度条
         changeProgress (e) {
             if (!this.forbidProgress) {
                 var event = window.event || e
