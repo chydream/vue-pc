@@ -80,6 +80,7 @@ export default {
   .el-aside{
     background: #00142a;
     color: rgba(255, 255, 255, 0.65);
+    float: left\0;
   }
   .el-header{
     background: #fff;
