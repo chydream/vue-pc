@@ -213,8 +213,17 @@ let menu = {
           children: [
             {
               id: 12,
-              label: '视频',
+              label: '视频1',
               href: '/video-demo/index',
+              icon: 'fa fa-file-text',
+              permission: ['view', 'add', 'delete', 'edit'],
+              show: true,
+              children: []
+            },
+            {
+              id: 13,
+              label: '视频2',
+              href: '/video-demo/video',
               icon: 'fa fa-file-text',
               permission: ['view', 'add', 'delete', 'edit'],
               show: true,

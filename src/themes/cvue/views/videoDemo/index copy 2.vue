@@ -1,9 +1,14 @@
 <template>
   <div class="video">
-    <video id="example-video" width="500" height="400" class="video-js vjs-default-skin" controls>
-      <source src="http://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8" type="application/x-mpegURL" />
-    </video>
-    <el-button @click="changeSource" type="default">加载</el-button>
+    <!-- <cvue-video :forbidProgress="true" :currTime="5"></cvue-video> -->
+    <ul>
+      <li v-for="(item,index) in videoObj" :key="index">
+        <video :id="'video' + index" width="500" height="400" class="video-js vjs-default-skin" controls>
+          <source :src="item.url" type="application/x-mpegURL" />
+        </video>
+        <button id="btn" @click="changeSource(index)">play</button>
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -13,10 +18,11 @@ import videojs from 'video.js/dist/video.min'
 import 'video.js/dist/video-js.min.css'
 import 'videojs-contrib-hls'
 var player = null
+var playerArr = []
 export default {
   name: 'video',
   components: {
-    cvueVideo
+      cvueVideo
   },
   props: {
   },
@@ -42,7 +48,7 @@ export default {
     }
   },
   mounted () {
-    this.initPlayer()
+    this.initPlayerArr()
   },
   methods: {
     initPlayer () {
@@ -52,15 +58,24 @@ export default {
       }
       player = videojs('example-video', this.options)
     },
-    changeSource () {
+    initPlayerArr () {
+      for (var i = 0; i < this.videoObj.length; i++) {
+        if (playerArr[i]) {
+          playerArr[i].dispose()
+          playerArr[i] = null
+        }
+        playerArr[i] = videojs('video' + i, this.options)
+      }
+    },
+    changeSource (i) {
       var storySources = [
         {
           type: 'application/x-mpegURL',
           src: 'http://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8'
         }
       ]
-      player.src(storySources)
-      player.play()    
+      playerArr[i].src(storySources)
+      playerArr[i].play()       
     }
   }
 }

@@ -317,7 +317,7 @@ export default {
     mounted () {
         this.uploadUrl = baseUrl + 'api/file/bars/upload'
         this.downloadUrl = baseUrl + 'api/file/templatefile/download'
-        this.handleList(this.keyword, this.status) // 获取列表详情
+        // this.handleList(this.keyword, this.status) // 获取列表详情
         // this.getCybercafeNum() // 获取网吧数量
     },
     methods: {
