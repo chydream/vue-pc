@@ -58,7 +58,7 @@ export default {
         textTrackDisplay: false,
         posterImage: false,
         errorDisplay: false,
-        controlBar: false,
+        controlBar: true,
         flash: {
           hls: {
             withCredentials: false
@@ -106,6 +106,10 @@ export default {
       type: Boolean,
       default: false
     }
+    // timeUp: {
+    //   type: Function,
+    //   default () {}
+    // }
   },
   computed: {
     video () {
@@ -155,7 +159,7 @@ export default {
       var pre = currTime / duration * 100 + '%'
       this.loadWidth = pre
       this.currPlayTime = this.getFormatTime(currTime)
-      console.log(this.video.currentTime)
+      // console.log(this.video.currentTime)
     },
     // 改变进度条
     changeProgress (e) {
@@ -182,11 +186,25 @@ export default {
     },
     // 初始化videojs
     initPlayer () {
+      var self = this
       if (player) {
         player.dispose()
         player = null
       }
-      player = videojs(this.videoId, this.options)
+      player = videojs(self.videoId, self.options, function () {
+        this.on('play', function () {
+          self.$emit('play', this)
+        })
+        this.on('timeupdate', function () {
+          self.$emit('timeUp', self.video)
+        })
+      })
+    },
+    disableBar () {
+      player.controlBar.progressControl.disable()
+    },
+    enableBar () {
+      player.controlBar.progressControl.enable()
     }
   }
 }

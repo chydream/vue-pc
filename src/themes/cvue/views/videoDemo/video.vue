@@ -4,7 +4,9 @@
       :forbidProgress="true" 
       :currTime="0"
       :isControls="true"
-      videoSrc="http://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8"
+      @timeUp = "timeUp"
+      @play="onPlay"
+      videoSrc='http://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8'
       :isVideojs="true"></cvue-video>
   </div>
 </template>
@@ -22,12 +24,19 @@ export default {
   },
   data () {
     return {
+      videoSrc: 'http://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8'
     }
   },
   mounted () {
     
   },
   methods: {
+    onPlay (player) {
+      console.log(player)
+    },
+    timeUp (player) {
+      console.log(player.currentTime)
+    }
   }
 }
 </script>
