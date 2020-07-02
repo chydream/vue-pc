@@ -1,4 +1,3 @@
-// import Mock from 'mockjs'
 let menu = {
     admin: [
         {
@@ -255,5 +254,4 @@ let menu = {
       }
     ]
 }
-// Mock.mock(/\/user\/menu/, 'post', menu)
 export default menu
