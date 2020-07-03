@@ -26,14 +26,14 @@ const router = new Router({
   },
   routes: [
     {
-      path: '/index',
-      name: 'Index',
+      path: '/home',
+      name: 'Home',
       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
       children: [
         {
-          path: 'home',
+          path: 'index',
           name: '首页',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/home/home')
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/home/index')
         }
       ]
     },

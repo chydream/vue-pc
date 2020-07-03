@@ -3,7 +3,7 @@ let menu = {
         {
           id: 1,
           label: '首页',
-          href: '/index/home',
+          href: '/home/index',
           icon: 'fa fa-home',
           permission: ['view', 'add', 'delete', 'edit'],
           show: true,
@@ -218,7 +218,7 @@ let menu = {
       {
           id: 1,
           label: '首页',
-          href: '/index/home',
+          href: '/home/index',
           icon: 'fa fa-home',
           permission: ['view', 'add', 'delete', 'edit'],
           show: true,

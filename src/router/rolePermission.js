@@ -30,7 +30,7 @@ router.beforeEach((to, from, next) => {
   NProgress.start()
   if (store.getters.token && sessionStorage.getItem('token')) {
     if (to.path == '/login') {
-      next({path: '/index/home', replace: true})
+      next({path: '/home/index', replace: true})
     } else if (to.path.indexOf('error') >= 0) {
       next()
     } else {

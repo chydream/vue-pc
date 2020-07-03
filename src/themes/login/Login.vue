@@ -123,7 +123,7 @@ export default {
                   } else {
                     setCookie('username', '', -1)
                   }
-                  this.$router.push('/index/home')
+                  this.$router.push('/home/index')
                 }
               })
             } else {
