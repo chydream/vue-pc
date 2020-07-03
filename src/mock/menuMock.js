@@ -149,61 +149,6 @@ let menu = {
           ]
         },
         {
-          id: 8,
-          label: '视频',
-          href: '',
-          icon: 'fa fa-bar-chart-o',
-          permission: ['view', 'add', 'delete', 'edit'],
-          show: true,
-          children: [
-            {
-              id: 12,
-              label: '视频',
-              href: '/video/video',
-              icon: 'fa fa-file-text',
-              permission: ['view', 'add', 'delete', 'edit'],
-              show: true,
-              children: []
-            },
-            {
-              id: 12,
-              label: '视频',
-              href: '/video/index',
-              icon: 'fa fa-file-text',
-              permission: ['view', 'add', 'delete', 'edit'],
-              show: true,
-              children: []
-            },
-            {
-              id: 12,
-              label: '视频',
-              href: '/video-new/index',
-              icon: 'fa fa-file-text',
-              permission: ['view', 'add', 'delete', 'edit'],
-              show: true,
-              children: []
-            },
-            {
-              id: 12,
-              label: '视频js',
-              href: '/video/videojs',
-              icon: 'fa fa-file-text',
-              permission: ['view', 'add', 'delete', 'edit'],
-              show: true,
-              children: []
-            },
-            {
-              id: 12,
-              label: 'test',
-              href: '/video/test',
-              icon: 'fa fa-file-text',
-              permission: ['view', 'add', 'delete', 'edit'],
-              show: true,
-              children: []
-            }
-          ]
-        },
-        {
           id: 9,
           label: '视频Demo',
           href: '',
@@ -224,6 +169,24 @@ let menu = {
               id: 13,
               label: '视频2',
               href: '/video-demo/video',
+              icon: 'fa fa-file-text',
+              permission: ['view', 'add', 'delete', 'edit'],
+              show: true,
+              children: []
+            },
+            {
+              id: 14,
+              label: '视频3',
+              href: '/video-demo/test',
+              icon: 'fa fa-file-text',
+              permission: ['view', 'add', 'delete', 'edit'],
+              show: true,
+              children: []
+            },
+            {
+              id: 14,
+              label: '视频3',
+              href: '/video-demo/video_test',
               icon: 'fa fa-file-text',
               permission: ['view', 'add', 'delete', 'edit'],
               show: true,

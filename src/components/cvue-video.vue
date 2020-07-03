@@ -34,7 +34,14 @@
             <span class="current">{{ currPlayTime }}</span> /
             <span class="total">{{ totalTime }}</span>
           </div>
-          <!-- 声音 -->
+          <!--音量控制-->
+          <!-- <div class="video-audio">
+            <a class="audio-button" title="Mute/Unmute" :class="{'audio-mute':!audioStatus}"  @click="audioSet"></a>
+            <div class="audio-box">
+              <div class="audio-con"></div>
+              <div class="audio-slider"></div>
+            </div>
+          </div> -->
         </div>
       </div>
     </figure>
@@ -69,8 +76,12 @@ export default {
             withCredentials: false
           }
         },
-        playbackRates: [0.5, 1, 1.5, 2]
-      }
+        playbackRates: [0.5, 1, 1.5, 2],
+        source: [
+          { src: 'http://vjs.zencdn.net/v/oceans.mp4', type: 'video/mp4' }
+        ]
+      },
+      audioStatus: true
     }
   },
   props: {
@@ -205,6 +216,17 @@ export default {
     },
     enableBar () {
       player.controlBar.progressControl.enable()
+    },
+    audioSet () {
+      if (this.audioStatus) {
+        this.audioStatus = false
+        this.player.volume = 0
+        this.option.volume = 0
+      } else {
+        this.audioStatus = true
+        this.player.volume = 0.5
+        this.option.volume = 0.5
+      }
     }
   }
 }
@@ -313,5 +335,62 @@ video {
 .video-js {
   width: 100%;
   height: 100%;
+}
+.video-audio {
+  display: block;
+  width: 120px;
+  position: absolute;
+  top: 30px;
+  right: calc(3% + 100px);
+}
+.video-audio .audio-button {
+  width: 30px;
+  height: 20px;
+  position: relative;
+  float: left;
+  cursor: pointer;
+  /* background: url(img/audio.png); */
+  background-size: 30px 20px;
+}
+.video-audio .audio-mute::before {
+  content: '×';
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  right: 5px;
+  color: #ffffff;
+  font-size: 20px;
+}
+.video-audio .audio-box {
+  width: 80px;
+  height: 4px;
+  position: relative;
+  float: left;
+  margin: 8px 0 0 10px;
+  border-radius: 2px;
+  background-color: #999;
+}
+.video-audio .audio-box .audio-con {
+  width: 0;
+  height: 4px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 2px;
+}
+.video-audio .audio-box .audio-slider {
+  width: 12px;
+  height: 12px;
+  position: absolute;
+  top: -4px;
+  left: 0;
+  cursor: pointer;
+  border-radius: 12px;
+}
+.video-audio .audio-box .audio-con {
+  background-color: #00b4ed;
+}
+.video-audio .audio-box .audio-slider {
+  background-color: #00b4ed;
 }
 </style>

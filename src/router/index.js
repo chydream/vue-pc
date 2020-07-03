@@ -145,45 +145,6 @@ const router = new Router({
       ]
     },
     {
-      path: '/video',
-      name: 'video',
-      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
-      children: [
-        {
-          path: 'index',
-          name: 'video流',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/video/index')
-        },
-        {
-          path: 'video',
-          name: 'videos',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/video/video')
-        },
-        {
-          path: 'videojs',
-          name: 'videojs',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/video/videojs')
-        },
-        {
-          path: 'test',
-          name: 'test',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/video/test')
-        }
-      ]
-    },
-    {
-      path: '/video-new',
-      name: 'videoNew流',
-      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
-      children: [
-        {
-          path: 'index',
-          name: 'videoNew',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoNew/index')
-        }
-      ]
-    },
-    {
       path: '/video-demo',
       name: 'videoDemo',
       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
@@ -197,6 +158,16 @@ const router = new Router({
           path: 'video',
           name: 'video_index2',
           component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/video')
+        },
+        {
+          path: 'test',
+          name: 'test',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/test')
+        },
+        {
+          path: 'video_test',
+          name: 'videos',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/videoTest')
         }
       ]
     },
