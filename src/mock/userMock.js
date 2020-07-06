@@ -11,6 +11,6 @@ export var userInfo = {
         userAccount: 'chydream',
         userName: '驰兮',
         userId: '1826',
-        pic: './static/img/main/photo.jpg'
+        pic: './static/img/main/photo.png'
     }
 }
