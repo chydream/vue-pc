@@ -21,6 +21,7 @@
                             :align="cloumn.align"
                             :headerAlign="cloumn.headerAlign"
                             :key="cloumn.prop"
+                            :sortable="cloumn.sortable"
                             v-for="cloumn in option.cloumn">
                             <template slot-scope="scope">
                                 <slot v-if="cloumn.slotStatus" :name="cloumn.prop" :row="scope.row"></slot>
