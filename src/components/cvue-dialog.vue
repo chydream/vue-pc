@@ -1,7 +1,7 @@
 <template>
     <div class="cvue-dialog">
         <el-dialog :title="title" 
-                    :width="dialogWidth"
+                   :width="dialogWidth"
                    :before-close="handleClose"
                    :close-on-click-modal = "false"
                    @open="handleOpen"
@@ -9,12 +9,12 @@
                    :top="top"
                    :fullscreen = "isFullscreen"
                    :visible.sync="dialogVisible">
-            <div class="dialog-body">
+            <div class="dialog-body" v-loading="dialogLoading">
                 <slot name="dialogBody"></slot>
             </div>
             <div slot="footer" class="dialog-footer" v-if="isShowFoot">
                 <el-button @click="closeDialog">取消</el-button>
-                <el-button @click="confirmDialog" type="primary">确定</el-button>
+                <el-button @click="confirmDialog" type="primary" :disabled="btnDisabled">确定</el-button>
             </div>
         </el-dialog>
     </div>
@@ -51,6 +51,14 @@ export default {
         top: {
             type: String,
             default: '10vh'
+        },
+        btnDisabled: {
+          type: Boolean,
+          default: false
+        },
+        dialogLoading: {
+          type: Boolean,
+          default: false
         }
     },
     methods: {

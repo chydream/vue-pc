@@ -4,6 +4,7 @@
         <cvue-dialog :dialogVisible="dialogVisible"
                     :title="title"
                     dialogWidth="500px"
+                    :dialogLoading="dialogLoading"
                     @handleOpen="getDetail"
                     @closeDialog="closeDialog"
                     @confirmDialog="confirmDialog"
