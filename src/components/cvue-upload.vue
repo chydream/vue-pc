@@ -105,6 +105,20 @@ export default {
     },
     // 预览
     handlePreview (file) {
+    },
+    // 自定义文件上传
+    uploadFile (param) { 
+      // :http-request="uploadFile"
+      var fileObj = param.file
+      var formData = new FormData()
+      var params = {
+        filename: ''
+      }
+      formData.append('MS_HttpContext', fileObj)
+      formData.append('data', JSON.stringify(params))
+      this.$store.dispatch('payroll/ExcelFilePreview', formData).then(res => {
+        console.log(res)
+      })
     }
   }
 }
