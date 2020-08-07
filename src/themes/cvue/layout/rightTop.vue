@@ -104,7 +104,7 @@ export default {
     }
   },
   mounted () {
-    console.log(this.userInfo)
+    // console.log(this.userInfo)
   },
   computed: {
     ...mapGetters(['isFullScreen', 'userInfo']),

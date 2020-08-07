@@ -10,7 +10,15 @@ module.exports = {
     // Paths
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
-    proxyTable: {},
+    proxyTable: {
+      '/files-anon': {
+        target: 'http://192.168.3.123:5000/files-anon',
+        changeOrigin: true,
+        pathRewrite: {
+            '^/files-anon': '/'
+        }
+      },
+    },
 
     // Various Dev Server settings
     host: '127.0.0.1', // can be overwritten by process.env.HOST

@@ -8,8 +8,8 @@ const common = {
         isFullScreen: false,
         // 页面缓存配置
         keepAlive: [],
-        keepAlivePage: ['Page', 'Auth'],
-        keepAlivePath: ['/item/page', '/item/auth']
+        keepAlivePage: ['Auth', 'user'],
+        keepAlivePath: ['/auth/auth', '/user/index']
     },
     getters: {
         
