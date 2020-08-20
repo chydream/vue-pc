@@ -6,7 +6,7 @@
       :isControls="true"
       @timeUp = "timeUp"
       @play="onPlay"
-      videoSrc='http://d2zihajmogu5jn.cloudfront.net/bipbop-advanced/bipbop_16x9_variant.m3u8'
+      videoSrc='https://file-center-bucket.oss-cn-shenzhen.aliyuncs.com/m3u8test.m3u8'
       :isVideojs="true"></cvue-video>
   </div>
 </template>

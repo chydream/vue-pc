@@ -144,33 +144,33 @@ const router = new Router({
     //     }
     //   ]
     // },
-    // {
-    //   path: '/video-demo',
-    //   name: 'videoDemo',
-    //   component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
-    //   children: [
-    //     {
-    //       path: 'index',
-    //       name: 'video_index',
-    //       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/index')
-    //     },
-    //     {
-    //       path: 'video',
-    //       name: 'video_index2',
-    //       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/video')
-    //     },
-    //     {
-    //       path: 'test',
-    //       name: 'test',
-    //       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/test')
-    //     },
-    //     {
-    //       path: 'video_test',
-    //       name: 'videos',
-    //       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/videoTest')
-    //     }
-    //   ]
-    // },
+    {
+      path: '/video-demo',
+      name: 'videoDemo',
+      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
+      children: [
+        {
+          path: 'index',
+          name: 'video_index',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/index')
+        },
+        {
+          path: 'video',
+          name: 'video_index2',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/video')
+        },
+        {
+          path: 'test',
+          name: 'test',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/test')
+        },
+        {
+          path: 'video_test',
+          name: 'videos',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/videoTest')
+        }
+      ]
+    },
     // {
     //   path: '/table-new',
     //   name: '新表格',

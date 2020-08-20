@@ -60,11 +60,11 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next((vm) => {
-      console.log(vm.keepAlive)
-      // console.log(vm.keepAlivePage)
+      // console.log(vm.keepAlive)
+      console.log(vm.keepAlivePage)
       // 页面缓存配置
-      // vm.$store.commit('common/KEEP_ALIVE', vm.keepAlivePage)
-      //  console.log(vm.keepAlive)
+      vm.$store.commit('common/KEEP_ALIVE', vm.keepAlivePage)
+      // console.log(vm.keepAlive)
     })
   },
   beforeRouteLeave (to, from, next) {

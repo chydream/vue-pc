@@ -70,8 +70,8 @@ router.beforeEach((to, from, next) => {
           // 页面标签配置
           store.commit('common/ADD_TAG', params)
           // 页面缓存配置
-          console.log(store.getters.keepAlive)
-          store.commit('common/KEEP_ALIVE', store.getters.keepAlivePage)
+          // console.log(store.getters.keepAlive)
+          // store.commit('common/KEEP_ALIVE', store.getters.keepAlivePage)
           // console.log(store.getters.keepAlive)
         }
       })

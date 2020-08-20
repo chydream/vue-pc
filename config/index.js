@@ -11,13 +11,20 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/files-anon': {
-        target: 'http://192.168.3.123:5000/files-anon',
+      '/': {
+        target: 'http://39.108.8.149:30001',
         changeOrigin: true,
         pathRewrite: {
-            '^/files-anon': '/'
+            '^/': '/'
         }
       },
+      // '/files-anon': {
+      //   target: 'http://192.168.3.123:5000/files-anon',
+      //   changeOrigin: true,
+      //   pathRewrite: {
+      //       '^/files-anon': '/'
+      //   }
+      // },
     },
 
     // Various Dev Server settings

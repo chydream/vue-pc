@@ -26,7 +26,7 @@ let menu = {
           permission: ['view', 'add', 'delete', 'edit'],
           show: true,
           children: []
-        }
+        },
         // {
         //   id: 7,
         //   label: '系统设置',
@@ -148,52 +148,52 @@ let menu = {
         //     }
         //   ]
         // },
-        // {
-        //   id: 9,
-        //   label: '视频Demo',
-        //   href: '',
-        //   icon: 'fa fa-bar-chart-o',
-        //   permission: ['view', 'add', 'delete', 'edit'],
-        //   show: true,
-        //   children: [
-        //     {
-        //       id: 12,
-        //       label: '视频1',
-        //       href: '/video-demo/index',
-        //       icon: 'fa fa-file-text',
-        //       permission: ['view', 'add', 'delete', 'edit'],
-        //       show: true,
-        //       children: []
-        //     },
-        //     {
-        //       id: 13,
-        //       label: '视频2',
-        //       href: '/video-demo/video',
-        //       icon: 'fa fa-file-text',
-        //       permission: ['view', 'add', 'delete', 'edit'],
-        //       show: true,
-        //       children: []
-        //     },
-        //     {
-        //       id: 14,
-        //       label: '视频3',
-        //       href: '/video-demo/test',
-        //       icon: 'fa fa-file-text',
-        //       permission: ['view', 'add', 'delete', 'edit'],
-        //       show: true,
-        //       children: []
-        //     },
-        //     {
-        //       id: 14,
-        //       label: '视频3',
-        //       href: '/video-demo/video_test',
-        //       icon: 'fa fa-file-text',
-        //       permission: ['view', 'add', 'delete', 'edit'],
-        //       show: true,
-        //       children: []
-        //     }
-        //   ]
-        // },
+        {
+          id: 9,
+          label: '视频Demo',
+          href: '',
+          icon: 'fa fa-bar-chart-o',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: [
+            {
+              id: 12,
+              label: '视频1',
+              href: '/video-demo/index',
+              icon: 'fa fa-file-text',
+              permission: ['view', 'add', 'delete', 'edit'],
+              show: true,
+              children: []
+            },
+            {
+              id: 13,
+              label: '视频2',
+              href: '/video-demo/video',
+              icon: 'fa fa-file-text',
+              permission: ['view', 'add', 'delete', 'edit'],
+              show: true,
+              children: []
+            },
+            {
+              id: 14,
+              label: '视频3',
+              href: '/video-demo/test',
+              icon: 'fa fa-file-text',
+              permission: ['view', 'add', 'delete', 'edit'],
+              show: true,
+              children: []
+            },
+            {
+              id: 14,
+              label: '视频3',
+              href: '/video-demo/video_test',
+              icon: 'fa fa-file-text',
+              permission: ['view', 'add', 'delete', 'edit'],
+              show: true,
+              children: []
+            }
+          ]
+        }
         // {
         //   id: 8,
         //   label: '表格',
