@@ -9,7 +9,7 @@ const common = {
         // 页面缓存配置
         keepAlive: [],
         keepAlivePage: ['Page', 'Auth'],
-        keepAlivePath: ['/item/page', '/item/auth']
+        keepAlivePath: ['/item/page', '/auth/auth']
     },
     getters: {
         

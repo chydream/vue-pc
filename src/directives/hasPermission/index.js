@@ -11,6 +11,8 @@ const hasPermission = {
                 if (permissionList.length == 0) {
                     return
                 }
+                console.log(binding.value)
+                console.log(permissionList.includes(binding.value))
                 if (!permissionList.includes(binding.value)) {
                     el.parentNode.removeChild(el)
                     // el.setAttribute('disabled', 'true')

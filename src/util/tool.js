@@ -219,3 +219,8 @@ function openurl(url) {
   //移除a标签
   a.parentNode.removeChild(a)
 }
+
+// 原生js判断isNumber()
+function isNumber(obj) {  
+  return typeof obj === 'number' && !isNaN(obj)  
+}

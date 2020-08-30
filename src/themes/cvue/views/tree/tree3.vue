@@ -8,6 +8,7 @@
         lazy
         :render-content="renderContent">
       </el-tree>
+      <!-- <el-button type="default" v-hasPermission="permission.view">添加</el-button> -->
     </div>
   </div>
 </template>
@@ -23,7 +24,9 @@
         }
       }
     },
-
+    mounted () {
+      // console.log(this.$route)
+    },
     methods: {
       append (node, data, store) {
         const newChild = { id: id++, name: 'testtest', children: [] }
@@ -46,13 +49,13 @@
           <span class="custom-tree-node">
             <span>{node.data.name}</span>
             <span>
-              <el-button size="mini" type="text" on-click={ () => this.append(node, data, store) }>Append</el-button>
+              <el-button size="mini" type="text" on-click={ () => this.append(node, data, store) } v-hasPermission={this.permission.view} >Append</el-button>
               <el-button size="mini" type="text" on-click={ () => this.remove(node, data) }>Delete</el-button>
             </span>
           </span>)
       },
       loadNode1 (node, resolve) {
-        console.log(node)
+        // console.log(node)
         if (node.level === 0) {
           return resolve([{ name: 'region' }])
         } else if (node.level === 1) {
