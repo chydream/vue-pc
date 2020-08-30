@@ -98,7 +98,7 @@ export default {
         }
     },
     mounted () {
-        this.handleList(this.keyword) // 获取列表详情
+        // this.handleList(this.keyword) // 获取列表详情
     },
     methods: {
         // 改变pagesize

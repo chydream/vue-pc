@@ -26,14 +26,14 @@ const router = new Router({
   },
   routes: [
     {
-      path: '/index',
-      name: 'Index',
+      path: '/home',
+      name: 'Home',
       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
       children: [
         {
-          path: 'home',
+          path: 'index',
           name: '首页',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/home/home')
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/home/index')
         }
       ]
     },
@@ -46,48 +46,48 @@ const router = new Router({
           path: 'index',
           name: '用户管理',
           component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/user/index.vue')
-        },
-        {
-          path: 'open-list',
-          name: '开通列表',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/user/openList.vue')
-        },
-        {
-          path: 'current-strategy',
-          name: '当前策略',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/user/currentStrategy.vue')
         }
+        // {
+        //   path: 'open-list',
+        //   name: '开通列表',
+        //   component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/user/openList.vue')
+        // },
+        // {
+        //   path: 'current-strategy',
+        //   name: '当前策略',
+        //   component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/user/currentStrategy.vue')
+        // }
       ]
     },
-    {
-      path: '/system',
-      name: 'System',
-      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
-      children: [
-        {
-          path: 'index',
-          name: '用户设置',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/system/index.vue')
-        },
-        {
-          path: 'role-index',
-          name: '角色管理',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/system/roleIndex.vue')
-        }
-      ]
-    },
-    {
-      path: '/chart',
-      name: 'Chart',
-      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
-      children: [
-        {
-          path: 'line',
-          name: '折线图',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/chart/line.vue')
-        }
-      ]
-    },
+    // {
+    //   path: '/system',
+    //   name: 'System',
+    //   component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
+    //   children: [
+    //     {
+    //       path: 'index',
+    //       name: '用户设置',
+    //       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/system/index.vue')
+    //     },
+    //     {
+    //       path: 'role-index',
+    //       name: '角色管理',
+    //       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/system/roleIndex.vue')
+    //     }
+    //   ]
+    // },
+    // {
+    //   path: '/chart',
+    //   name: 'Chart',
+    //   component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
+    //   children: [
+    //     {
+    //       path: 'line',
+    //       name: '折线图',
+    //       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/chart/line.vue')
+    //     }
+    //   ]
+    // },
     {
       path: '/auth',
       name: 'Auth',
@@ -100,84 +100,89 @@ const router = new Router({
         }
       ]
     },
+    // {
+    //   path: '/tree',
+    //   name: 'Tres',
+    //   component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
+    //   children: [
+    //     {
+    //       path: 'index',
+    //       name: '树',
+    //       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/tree/tree.vue')
+    //     },
+    //     {
+    //       path: 'index1',
+    //       name: '树1',
+    //       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/tree/tree1.vue')
+    //     },
+    //     {
+    //       path: 'index2',
+    //       name: '树2',
+    //       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/tree/tree2.vue')
+    //     },
+    //     {
+    //       path: 'index3',
+    //       name: '树3',
+    //       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/tree/tree3.vue')
+    //     },
+    //     {
+    //       path: 'index4',
+    //       name: '树4',
+    //       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/tree/tree4.vue')
+    //     }
+    //   ]
+    // },
+    // {
+    //   path: '/jsPlumb',
+    //   name: 'jsPlumb',
+    //   component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
+    //   children: [
+    //     {
+    //       path: 'index',
+    //       name: '工作流',
+    //       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/jsPlumb/index.vue')
+    //     }
+    //   ]
+    // },
     {
-      path: '/tree',
-      name: 'Tres',
+      path: '/video-demo',
+      name: 'videoDemo',
       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
       children: [
         {
           path: 'index',
-          name: '树',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/tree/tree.vue')
-        },
-        {
-          path: 'index1',
-          name: '树1',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/tree/tree1.vue')
-        },
-        {
-          path: 'index2',
-          name: '树2',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/tree/tree2.vue')
-        },
-        {
-          path: 'index3',
-          name: '树3',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/tree/tree3.vue')
-        },
-        {
-          path: 'index4',
-          name: '树4',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/tree/tree4.vue')
-        }
-      ]
-    },
-    {
-      path: '/jsPlumb',
-      name: 'jsPlumb',
-      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
-      children: [
-        {
-          path: 'index',
-          name: '工作流',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/jsPlumb/index.vue')
-        }
-      ]
-    },
-    {
-      path: '/video',
-      name: 'video',
-      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
-      children: [
-        {
-          path: 'index',
-          name: 'video流',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/video/index')
+          name: 'video_index',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/index')
         },
         {
           path: 'video',
-          name: 'videos',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/video/video')
+          name: 'video_index2',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/video')
         },
         {
-          path: 'videojs',
-          name: 'videojs',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/video/videojs')
-        }
-      ]
-    },
-    {
-      path: '/video-new',
-      name: 'videoNew流',
-      component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
-      children: [
+          path: 'test',
+          name: 'test',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/test')
+        },
         {
-          path: 'index',
-          name: 'videoNew',
-          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoNew/index')
+          path: 'video_test',
+          name: 'videos',
+          component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/videoDemo/videoTest')
         }
       ]
     },
+    // {
+    //   path: '/table-new',
+    //   name: '新表格',
+    //   component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/layout/index'),
+    //   children: [
+    //     {
+    //       path: 'index',
+    //       name: 'table_new',
+    //       component: () => import(/* webpackChunkName: "group-foo" */'../themes/cvue/views/table/table')
+    //     }
+    //   ]
+    // },
     {
       path: '/',
       redirect: '/login'
@@ -185,7 +190,7 @@ const router = new Router({
     {
       path: '/login',
       name: 'Login',
-      component: () => import(/* webpackChunkName: "group-foo" */'../themes/login/Login')
+      component: () => import(/* webpackChunkName: "group-foo" */'../themes/login/login')
     },
     {
       path: '*',

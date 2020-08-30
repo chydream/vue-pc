@@ -32,7 +32,7 @@
         <el-button type="warning" v-hasPermission="permission.add">新增</el-button>
         <el-button type="warning" v-hasPermission="permission.edit">编辑</el-button>
         <el-button type="warning" v-hasPermission="permission.other">其他</el-button>
-        <!-- <el-input v-model="msg" type="input"></el-input> -->
+        <el-input v-model="msg" type="input"></el-input>
         <!-- <template>
           <el-transfer
             v-model="value3"

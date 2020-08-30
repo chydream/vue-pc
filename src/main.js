@@ -1,4 +1,4 @@
-// The Vue build version to load with the `import` command
+//  The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import Vue from 'vue'
 import App from './App'
@@ -23,14 +23,6 @@ import './mixins/install'
 import './filters/install'
 // 引入font-awesome字体图标
 import 'font-awesome/css/font-awesome.min.css'
-
-import VueVideoPlayer from 'vue-video-player'
-
-// require videojs style
-import 'video.js/dist/video-js.css'
-
-// import 'vue-video-player/src/custom-theme.css'
-Vue.use(VueVideoPlayer)
 
 Vue.use(ElementUI, {size: 'small', zIndex: 3000, locale})
 

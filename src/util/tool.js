@@ -206,21 +206,61 @@ function getTree1 (treeData) {
 function openurl(url) {
   //创建A标签
   var a = document.createElement('a')
-  //给创建好的a标签赋值
+  // 给创建好的a标签赋值
   a.setAttribute('href', url)
-  //设置css 隐藏属性
-  a.setAttribute('style', 'display:none'); 
-  //设置 a标签为新窗口打开
+  // 设置css 隐藏属性
+  a.setAttribute('style', 'display:none')
+  // 设置 a标签为新窗口打开
   a.setAttribute('target', '_blank')
-  //将设置好的a标签，添加到 body 内
+  // 将设置好的a标签，添加到 body 内
   document.body.appendChild(a)
-  //模拟点击
+  // 模拟点击
   a.click()
-  //移除a标签
+  // 移除a标签
   a.parentNode.removeChild(a)
 }
 
-// 原生js判断isNumber()
-function isNumber(obj) {  
-  return typeof obj === 'number' && !isNaN(obj)  
+// 附件下载方法 responseType:'blob'
+export function exportExcel (res) {
+  var fileName = res.headers['content-disposition'].split(';')[1].split('=')[1].split('.')[0]
+  var el = document.createElement('a')
+  document.body.appendChild(el)
+  el.style.display = 'display:none'
+  el.download = fileName + '.xls'
+  el.href = URL.createObjectURL(res.data)
+  el.click()
+}
+
+export function getCookiesObj (cookies) {
+  var arr = cookies.split(';')
+  var obj = {}
+  for (var i = 0; i < arr.length; i++) {
+      var newArr = arr[i].split('=')
+      if (newArr[0].trim() != '') {
+        obj[newArr[0].trim()] = newArr[1]
+      }
+  }
+  return obj
+} 
+export function setCookie (name, value, expiresHours) {
+  var cookieString = name + '=' + encodeURI(value)
+  if (expiresHours > 0) {
+    var date = new Date()
+    var ms = expiresHours * 3600 * 1000
+    date.setTime(date.getTime() + ms)
+    cookieString = cookieString + ';expires=' + date.toGMTString()
+  }
+  document.cookie = cookieString
+} 
+
+export function getCookie (name) {
+  var strCookie = document.cookie
+  var arrCookie = strCookie.split('; ')
+  for (var i = 0; i < arrCookie.length; i++) {
+      var arr = arrCookie[i].split('=')
+      if (arr[0] == name) {
+          return arr[1]
+      }
+  }
+  return null
 }

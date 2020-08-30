@@ -30,7 +30,7 @@ router.beforeEach((to, from, next) => {
   NProgress.start()
   if (store.getters.token && sessionStorage.getItem('token')) {
     if (to.path == '/login') {
-      next({path: '/index/home', replace: true})
+      next({path: '/home/index', replace: true})
     } else if (to.path.indexOf('error') >= 0) {
       next()
     } else {
@@ -70,7 +70,9 @@ router.beforeEach((to, from, next) => {
           // 页面标签配置
           store.commit('common/ADD_TAG', params)
           // 页面缓存配置
-          store.commit('common/KEEP_ALIVE', store.getters.keepAlivePage)
+          // console.log(store.getters.keepAlive)
+          // store.commit('common/KEEP_ALIVE', store.getters.keepAlivePage)
+          // console.log(store.getters.keepAlive)
         }
       })
     }

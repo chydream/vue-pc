@@ -25,6 +25,9 @@ html,body{
   width: 100%;
   height: 100%;
 }
+:root #app{
+  overflow: hidden;
+}
 body .el-table th.gutter {
   display: table-cell !important;
 }

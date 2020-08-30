@@ -50,7 +50,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['token', 'keepAlive', 'role', 'userInfo'])
+    ...mapGetters(['token', 'keepAlive', 'role', 'userInfo', 'keepAlivePage'])
   },
   methods: {
 
@@ -60,8 +60,11 @@ export default {
   },
   beforeRouteEnter (to, from, next) {
     next((vm) => {
+      // console.log(vm.keepAlive)
+      console.log(vm.keepAlivePage)
       // 页面缓存配置
-      // vm.$store.commit('common/KEEP_ALIVE', vm.keepAlivePage)
+      vm.$store.commit('common/KEEP_ALIVE', vm.keepAlivePage)
+      // console.log(vm.keepAlive)
     })
   },
   beforeRouteLeave (to, from, next) {
@@ -80,6 +83,7 @@ export default {
   .el-aside{
     background: #00142a;
     color: rgba(255, 255, 255, 0.65);
+    float: left\0;
   }
   .el-header{
     background: #fff;
