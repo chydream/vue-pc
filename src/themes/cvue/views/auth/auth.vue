@@ -1,5 +1,24 @@
 <template>
     <div class="auth">
+      <!-- 表单 -->
+        <el-card class="box-card mt-15">
+            <div class="home-form">
+                <el-form ref="ruleForm" label-width="60px" @submit.native.prevent>
+                    <el-row :gutter="10">
+                        <el-col :span="5">
+                            <el-form-item label="关键字" prop="keyword">
+                                <el-input  placeholder="请输入网吧ID/名称/地址" size="mini" v-model.trim="keyword" clearable></el-input>
+                            </el-form-item>
+                        </el-col>
+                        <el-col :span="8">
+                            <el-button type="primary" icon="el-icon-search" size="mini" @click="handleSearch" class="search-btn">搜索</el-button>
+                            <!-- <el-button type="primary" icon="el-icon-menu" @click="getAll">全部：{{cybercafeCount.sum}}</el-button>
+                            <el-button type="info" icon="el-icon-tickets" @click="getOffLine">离线：{{cybercafeCount.offline}}</el-button> -->
+                        </el-col>
+                    </el-row>
+                </el-form>
+            </div>
+        </el-card>
         <p>查看当前路由权限：{{$route.meta}}</p>
         <p>配置前：</p>
         <el-button type="warning">查看</el-button>
