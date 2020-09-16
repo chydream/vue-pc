@@ -62,7 +62,7 @@ const router = new Router({
         {
           path: 'faculty',
           name: '例子2',
-          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/demo/faculty')
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/demo/grade')
         },
         {
           path: 'subject',
