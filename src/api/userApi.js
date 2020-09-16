@@ -1,24 +1,56 @@
 import axios from './axios'
 import qs from 'qs'
-import {baseUrl} from '@/config/config'
-import {user, userInfo} from '@/mock/userMock'
+import { baseUrl, authUrl } from '@/config/config'
+import { user, userInfo } from '@/mock/userMock'
 import menu from '@/mock/menuMock'
+import { param } from 'jquery'
 export const login = (params) => {
-    return new Promise((resolve, reject) => {
-        var data = user
-        if (params.username == data.account[0].username && params.password == data.account[0].password) {
-            resolve({data: {token: '123456789'}, message: '登录成功', success: true})
-        } else if (params.username == data.account[1].username && params.password == data.account[1].password) {
-            resolve({data: {token: '987654321'}, message: '登录成功', success: true})
-        } else {
-            resolve({data: {}, message: '登录失败', success: false})
-        }
+  return new Promise((resolve, reject) => {
+    axios({
+      url: authUrl + '/oauth/user/token',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8',
+        'clientId': 'webApp',
+        'clientSecret': 'webApp',
+        'Authorization': ''
+      },
+      data: JSON.stringify(params)
+    }).then(res => {
+      resolve(res.data)
+    }).catch(error => {
+      reject(error.data)
     })
+  })
 }
-export const logout = (params) => {
-    return new Promise((resolve, reject) => {
-        resolve({message: '登出成功', success: true})
+
+export const getUserInfo = (params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      url: authUrl + '/oauth/userinfo',
+      method: 'GET',
+      params
+    }).then(res => {
+      resolve(res.data)
+    }).catch(error => {
+      reject(error.data)
     })
+  })
+}
+
+export const logout = (params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      url: authUrl + '/oauth/remove/token',
+      method: 'POST',
+      params
+    }).then(res => {
+      resolve(res.data)
+    }).catch(error => {
+      reject(error.data)
+    })
+    // resolve({ message: '登出成功', success: true })
+  })
 }
 /**
  * 刷新token
@@ -26,203 +58,109 @@ export const logout = (params) => {
  */
 export const refreshToken = (params) => {
   return new Promise((resolve, reject) => {
-      axios({
-          url: baseUrl + '/api/sysuser/refresh',
-          method: 'get',
-          headers: {
-              'refresh_token': params.refreshToken
-          }
-      }).then(res => {
-          resolve(res.data)
-      }).catch(error => {
-          reject(error)
-      })
+    axios({
+      url: authUrl + '/oauth/tokens/' + params.refreshToken + '/actions/refresh?tokenChanged=' + params.tokenChanged,
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8' 
+      },
+      data: JSON.stringify(params)
+    }).then(res => {
+      resolve(res.data)
+    }).catch(error => {
+      reject(error.data)
+    })
   })
 }
 export const chanPwd = (params) => {
-    return new Promise((resolve, reject) => {
-        axios({
-            url: baseUrl + '/user/chanPwd',
-            method: 'post',
-            data: qs.stringify(params)
-        }).then(res => {
-            var data = res.data
-            console.log(res)
-            if (data.pwd.password == params.oldPwd) {
-                resolve({message: '成功', success: true})
-            } else {
-                resolve({message: '失败', success: false})
-            }
-        })
-    })
-}
-
-export const getUserInfo = (params) => {
-    return new Promise((resolve, reject) => {
-        if (params == '123456789') {
-            resolve({data: userInfo.userInfo, message: '获取用户信息成功', success: true})
-        } else {
-            userInfo.userInfo.role = ['user']
-            resolve({data: userInfo.userInfo, message: '获取用户信息成功', success: true})
-        }
-    })
-}
-
-export const getMenu = (params) => {
-    return new Promise((resolve, reject) => {
-        resolve({data: menu[params], message: '获取成功', success: true})
-    })
-}
-
-/**
- * 获取系统权限集合
- * @param {} params
- */
-export const getAuthority = (params) => {
   return new Promise((resolve, reject) => {
-      axios({
-          url: baseUrl + '/api/authority',
-          method: 'get'
-      }).then(res => {
-          resolve(res.data)
-      })
+    axios({
+      url: baseUrl + '/users/password',
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8' 
+      },
+      data: JSON.stringify(params)
+    }).then(res => {
+      resolve(res.data)
+    }).catch(error => {
+      reject(error.data)
+    })
   })
 }
-/**
-* 获取系统权限集合生成菜单列表
-* @param {} params
-*/
-export const getMenuAuthority = (params) => {
+export const getMenu = (params) => {
   return new Promise((resolve, reject) => {
-      axios({
-          url: baseUrl + '/api/authority',
-          method: 'get'
-      }).then(res => {
-          var permissionList = res.data.data
-          var permissionData = params
-          var userBool = false
-          var logBool = false
-          var systemBool = false
-          permissionList.forEach((item, index) => {
-              permissionList[index].label = item.describe
-              if (item.children && item.children.length > 0) {
-                  item.children.forEach((child, j) => {
-                      permissionList[index].children[j].label = child.describe
-                      permissionList[index].children[j].permission = []
-                      permissionList[index].children[j].show = false
-                      permissionList[index].children[j].href = ''
-                      params.forEach((auth, i) => {
-                          if (child.code == auth.code) {
-                              // console.log(child)
-                              permissionList[index].children[j].label = child.describe
-                              permissionList[index].children[j].permission = auth.permissions.indexOf('edit') >= 0 ? ['view', 'add', 'delete', 'edit'] : auth.permissions.split(',')
-                              if (child.describe == '意见反馈') {
-                                  permissionList[index].children[j].href = '/feedback/feedback'
-                                  permissionList[index].children[j].icon = 'fa fa-file-text'
-                                  permissionList[index].children[j].show = permissionList[index].children[j].permission[0] != ''
-                              }
-                              if (child.describe == '管控异常反馈') {
-                                  permissionList[index].children[j].href = '/feedback/app-feedback'
-                                  permissionList[index].children[j].icon = 'fa fa-file-text'
-                                  permissionList[index].children[j].show = permissionList[index].children[j].permission[0] != ''
-                              }
-                              if (child.describe == '操作日志') { 
-                                  permissionList[index].children[j].href = '/log/log'
-                                  permissionList[index].children[j].icon = 'fa fa-file-text'
-                                  permissionList[index].children[j].show = permissionList[index].children[j].permission[0] != ''
-                              }
-                              if (child.describe == '系统日志') {
-                                  permissionList[index].children[j].href = '/log/system-log'
-                                  permissionList[index].children[j].icon = 'fa fa-file-text'
-                                  permissionList[index].children[j].show = permissionList[index].children[j].permission[0] != ''
-                              }
-                              if (child.describe == '系统用户管理') {
-                                  permissionList[index].children[j].href = '/system/index'
-                                  permissionList[index].children[j].icon = 'fa fa-file-text'
-                                  permissionList[index].children[j].show = permissionList[index].children[j].permission[0] != ''
-                              }
-                              if (child.describe == '角色管理') {
-                                  permissionList[index].children[j].href = '/system/role-index'
-                                  permissionList[index].children[j].icon = 'fa fa-file-text'
-                                  permissionList[index].children[j].show = permissionList[index].children[j].permission[0] != ''
-                              }
-                          }
-                      })
-                  })   
-                  if (item.describe == '用户反馈') {
-                      permissionList[index].href = ''
-                      permissionList[index].icon = 'fa fa-comments'
-                      permissionList[index].show = true
-                      permissionList[index].permission = ['view', 'add', 'delete', 'edit']
-                      permissionList[index].label = item.describe
-                      item.children.forEach((child, j) => {
-                          if (child.show) {
-                              userBool = true
-                          }
-                      })
-                      permissionList[index].showBool = userBool
-                  }
-                  if (item.describe == '日志管理') {
-                      permissionList[index].href = ''
-                      permissionList[index].icon = 'fa fa-book'
-                      permissionList[index].show = true
-                      permissionList[index].showBool = false
-                      permissionList[index].permission = ['view', 'add', 'delete', 'edit']
-                      item.children.forEach((child, j) => {
-                          if (child.show) {
-                              logBool = true
-                          }
-                      })
-                      permissionList[index].showBool = logBool
-                  }
-                  if (item.describe == '系统设置') {
-                      permissionList[index].href = ''
-                      permissionList[index].icon = 'fa fa-gear'
-                      permissionList[index].show = true
-                      permissionList[index].showBool = false
-                      permissionList[index].permission = ['view', 'add', 'delete', 'edit']
-                      item.children.forEach((child, j) => {
-                          if (child.show) {
-                              systemBool = true
-                          }
-                      })
-                      permissionList[index].showBool = systemBool
-                  }             
-              } else {
-                  permissionList[index].label = item.describe
-                  permissionList[index].permission = []
-                  permissionList[index].show = false
-                  permissionList[index].href = ''
-                  params.forEach((auth, i) => {
-                      if (item.code == auth.code) {
-                          permissionList[index].permission = auth.permissions.indexOf('edit') >= 0 ? ['view', 'add', 'delete', 'edit'] : auth.permissions.split(',')
-                          if (item.describe == '运营报表') {
-                              permissionList[index].href = '/index/home'
-                              permissionList[index].icon = 'fa fa-home'
-                              permissionList[index].show = permissionList[index].permission[0] != ''
-                          }
-                          if (item.describe == '用户管理') {
-                              permissionList[index].href = '/user/index'
-                              permissionList[index].icon = 'fa fa-user'
-                              permissionList[index].show = permissionList[index].permission[0] != ''
-                          }
-                          if (item.describe == '订单管理') {
-                              permissionList[index].href = '/order/index'
-                              permissionList[index].icon = 'fa fa-bus'
-                              permissionList[index].show = permissionList[index].permission[0] != ''
-                          }
-                          if (item.describe == '套餐管理') {
-                              permissionList[index].href = '/package/index'
-                              permissionList[index].icon = 'fa fa-first-order'
-                              permissionList[index].show = permissionList[index].permission[0] != ''
-                          }
-                      }
-                  })
-              }
-          })
-          // console.log(params)
-          // console.log(permissionList)
-          resolve({data: permissionList, message: '获取成功', success: true})
-      })
+    resolve({ data: menu[params], message: '获取成功', success: true })
+  })
+}
+// 获取当前用户菜单
+export const getApiMenus = (params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      url: baseUrl + '/menus/userCenterMenu/' + params.userId,
+      method: 'GET',
+      params
+    }).then(res => {
+      // console.log(res.data)
+      function setDeptData (arr) { 
+        arr.forEach((item, index) => {
+          if (item.children && item.children.length > 0) {
+            setDeptData(item.children)
+            item.href = ''
+            item.icon = item.css
+            item.label = item.name
+            item.show = true
+            item.permission = ['view', 'add', 'delete', 'edit']
+          } else {
+            item.children = []
+            item.href = item.path
+            item.icon = item.css
+            item.label = item.name
+            item.show = true
+            item.permission = ['view', 'add', 'delete', 'edit']
+          }
+        })
+        return arr
+      }
+      var indexArr = [
+        {
+          id: 'home',
+          label: '首页',
+          href: '/home/index',
+          icon: 'fa fa-home',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        }
+      ]
+      var arr = res.data
+      if (arr) {
+        var data = setDeptData(arr)
+        var permissionList = indexArr.concat(data)
+        resolve(permissionList)
+      } else {
+        resolve(indexArr)
+      }
+    }).catch(error => {
+      reject(error.data)
+    })
+  })
+}
+
+// 修改个人信息
+export const updateMe = (params) => {
+  return new Promise((resolve, reject) => {
+    axios({
+      url: baseUrl + '/users/me',
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8' 
+      },
+      data: JSON.stringify(params)
+    }).then(res => {
+      resolve(res.data)
+    }).catch(error => {
+      reject(error.data)
+    })
   })
 }

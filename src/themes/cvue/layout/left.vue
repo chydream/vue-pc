@@ -5,7 +5,7 @@
         <div class="" v-show="isCollapse">B</div>
       </transition>
       <transition name="fade">
-        <div class="" v-show="!isCollapse">后台管理系统</div>
+        <div class="" v-show="!isCollapse">统一数据管理</div>
       </transition>
     </div>
     <div class="menu">
@@ -58,13 +58,10 @@ export default {
   name: 'Left',
   data () {
     return {
-      // menu: [],
       menuList: []
     }
   },
   mounted () {
-    // this.getMenuData()
-    // console.log(this.menu)
   },
   methods: {
     goUrl (path) {

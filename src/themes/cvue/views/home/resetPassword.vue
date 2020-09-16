@@ -44,7 +44,7 @@ import {mapGetters} from 'vuex'
 import cvueDialog from '@/components/cvue-dialog'
 import { validPhone, validIp } from '@/util/validator.js'
 export default {
-  name: 'internetCafe',
+  name: 'resetPassword',
   components: {
     cvueDialog
   },
@@ -80,9 +80,11 @@ export default {
           { min: 1, max: 20, message: '长度在 1 到 20 个字符', trigger: 'blur' }
         ],
         newPassword: [
+          { required: true, message: '请输入新密码', trigger: 'blur' },
           { validator: validatePass, trigger: 'blur' }
         ],
         checkPassword: [
+          { required: true, message: '请输入新密码', trigger: 'blur' },
           { validator: validatePass2, trigger: 'blur' }
         ]
       },
@@ -126,15 +128,15 @@ export default {
           this.dialogLoading = true
           this.$store.dispatch('user/ChanPwd', params).then(res => {
             // console.log(res)
-            if (res.resp_code === 0) {
+            if (res.code === 'SUCCESS') {
               this.$message({
-                message: res.resp_msg,
+                message: res.msg,
                 duration: 2000,
                 type: 'success'
               })
               this.$emit('confirmDialog')
             } else {
-              this.$message({ message: res.resp_msg, duration: 2000, type: 'error' })
+              this.$message({ message: res.msg, duration: 2000, type: 'error' })
             }
             this.dialogLoading = false
           }).catch(err => {

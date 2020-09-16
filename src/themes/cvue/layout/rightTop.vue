@@ -9,7 +9,7 @@
       </el-tooltip>
       <el-dropdown trigger="click">
         <span class="el-dropdown-link">
-          {{userInfo.userName}}
+          {{userInfo.nickname}}
           <i class="el-icon-arrow-down el-icon--right"></i>
         </span>
         <el-dropdown-menu slot="dropdown">
@@ -52,7 +52,8 @@ export default {
       checkNewPwd: '',
       checked: false,
       dialogInfo: false,
-      dialogReset: false
+      dialogReset: false,
+      assetsPhoto: './static/img/main/photo.png'
     }
   },
   components: {
@@ -87,7 +88,7 @@ export default {
       }
     },
     loadError () {
-      this.userInfo.headImgUrl = '/static/img/main/photo.png'
+      this.userInfo.headImgUrl = this.assetsPhoto
     },
     toggleCollapse () {
       this.$store.commit('common/SET_COLLAPSE')
@@ -109,7 +110,7 @@ export default {
   computed: {
     ...mapGetters(['isFullScreen', 'userInfo']),
     headImgUrl () {
-      var headImgUrl = this.userInfo.headImgUrl ? this.userInfo.headImgUrl : '/static/img/main/photo.png'
+      var headImgUrl = this.userInfo.headImgUrl ? this.userInfo.headImgUrl : this.assetsPhoto
       return headImgUrl
     }
   }

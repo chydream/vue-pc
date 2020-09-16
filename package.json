@@ -14,6 +14,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "browser-md5-file": "^1.1.1",
     "echarts": "^4.2.1",
     "element-ui": "^2.4.11",
     "jquery": "^3.4.1",
@@ -27,7 +28,8 @@
     "vue-hot-reload-api": "^2.3.3",
     "vue-router": "^3.0.1",
     "vue-video-player": "^5.0.2",
-    "vux-loader": "^1.2.9"
+    "vux-loader": "^1.2.9",
+    "wangeditor": "^3.1.1"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
@@ -53,7 +55,7 @@
     "cross-spawn": "^5.0.1",
     "crypto-js": "^3.1.9-1",
     "css-loader": "^0.28.11",
-    "es6-promise": "^4.2.6",
+    "es6-promise": "^4.2.8",
     "eslint": "^4.15.0",
     "eslint-config-standard": "^10.2.1",
     "eslint-friendly-formatter": "^3.0.0",
@@ -78,7 +80,7 @@
     "mockjs": "^1.0.1-beta3",
     "nightwatch": "^0.9.12",
     "node-notifier": "^5.1.2",
-    "node-sass": "^4.12.0",
+    "node-sass": "^4.14.1",
     "optimize-css-assets-webpack-plugin": "^3.2.0",
     "ora": "^1.2.0",
     "path-exists": "^3.0.0",

@@ -11,6 +11,7 @@ NProgress.configure({
 var permissionList = []
 function initRoute (routerParams) {
   return new Promise((resolve) => {
+    // NProgress.done()
     store.dispatch('user/GetPermissionList').then((res) => {
       permissionList = res
       res.forEach(function (v) {
@@ -37,6 +38,7 @@ router.beforeEach((to, from, next) => {
       initRoute(router).then(res => {
         let isPermission = false
         let flag = true
+        
         permissionList.forEach((v) => {
           if (v.href == to.path) {
             isPermission = true
@@ -69,10 +71,9 @@ router.beforeEach((to, from, next) => {
           }
           // 页面标签配置
           store.commit('common/ADD_TAG', params)
+          // console.log(store.getters.keepAlivePage)
           // 页面缓存配置
-          // console.log(store.getters.keepAlive)
           // store.commit('common/KEEP_ALIVE', store.getters.keepAlivePage)
-          // console.log(store.getters.keepAlive)
         }
       })
     }

@@ -8,8 +8,32 @@ const common = {
         isFullScreen: false,
         // 页面缓存配置
         keepAlive: [],
-        keepAlivePage: ['Auth', 'user'],
-        keepAlivePath: ['/auth/auth', '/user/index']
+        keepAlivePage: [
+          'userIndex', 
+          'tenant', 
+          'role', 
+          'menu', 
+          'Permissions', 
+          'appSystem', 
+          'eduBureauStaffEdit'
+          // 'schoolDataEdit', 
+          // 'facultyEdit', 
+          // 'studentEdit'
+        ],
+        keepAlivePath: [
+          '/user/user', 
+          '/user/tenant', 
+          '/user/role', 
+          '/user/menu', 
+          '/user/permissions', 
+          '/user/app-system',
+          '/public-data/edu-bureau-staff-edit'
+          // '/school-data/school-edit', 
+          // '/school-data/faculty-edit', 
+          // '/school-data/student-edit'
+        ]
+        // keepAlivePage: [],
+        // keepAlivePath: []
     },
     getters: {
         
@@ -47,6 +71,12 @@ const common = {
             sessionStorage.setItem('tagList', JSON.stringify(state.tagList))
             state.tag = {}
             sessionStorage.setItem('tag', JSON.stringify(state.tag))
+        },
+        CLOSE_OTHER_TAG (state, params) {
+          state.tagList = params
+          sessionStorage.setItem('tagList', JSON.stringify(state.tagList))
+          state.tag = params[0]
+          sessionStorage.setItem('tag', JSON.stringify(state.tag))
         },
         KEEP_ALIVE (state, params) {
             state.keepAlive = params

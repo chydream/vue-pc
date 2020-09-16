@@ -23,6 +23,7 @@ import {mapState, mapGetters} from 'vuex'
 import left from './left'
 import rightTop from './rightTop'
 import rightTags from './rightTags'
+var timer = null
 export default {
   name: 'index',
   components: {
@@ -38,8 +39,7 @@ export default {
   created () {
   },
   mounted () {
-    // console.log(this.role)
-    // console.log(this.userInfo)
+    // this.refreshToken()
   },
   watch: {
     '$route' (to, from) {
@@ -53,18 +53,32 @@ export default {
     ...mapGetters(['token', 'keepAlive', 'role', 'userInfo', 'keepAlivePage'])
   },
   methods: {
-
+    autoSetToken () {
+      if (timer) {
+        clearInterval(timer)
+        timer = null
+      }
+      timer = setInterval(() => {
+        if (this.token == '') {
+          clearInterval(timer)
+        } else {
+          this.refreshToken()
+        }
+      }, 60000 * 60 * 6)
+    },
+    refreshToken () {
+      this.$store.dispatch('user/RefreshToken')
+    }
   },
   beforeRouteUpdate (to, from, next) {
     next()
   },
   beforeRouteEnter (to, from, next) {
     next((vm) => {
-      // console.log(vm.keepAlive)
-      console.log(vm.keepAlivePage)
       // 页面缓存配置
-      vm.$store.commit('common/KEEP_ALIVE', vm.keepAlivePage)
-      // console.log(vm.keepAlive)
+      // console.log(vm.keepAlivePage)
+      // vm.$store.commit('common/KEEP_ALIVE', vm.keepAlivePage)
+      // console.log(vm.keepAlivePage)
     })
   },
   beforeRouteLeave (to, from, next) {
@@ -76,8 +90,10 @@ export default {
 <style lang="scss" scoped>
 .index{
   height: 100%;
+  width: 100%;
   .el-container{
     height: 100%;
+    width: 100%;
     background: #f0f2f5;
   }
   .el-aside{
@@ -105,6 +121,7 @@ export default {
     // -webkit-box-shadow: 1px 1px 1px 1px #ccc !important;
     // box-shadow: 1px 1px 1px 1px #ccc!important;
     box-sizing: border-box;
+    min-width: 1330px;
   }
   .fade-enter{
     opacity: 0;

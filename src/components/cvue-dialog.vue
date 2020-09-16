@@ -3,13 +3,13 @@
         <el-dialog :title="title" 
                    :width="dialogWidth"
                    :before-close="handleClose"
-                   :close-on-click-modal = "false"
+                   :close-on-click-modal="false"
                    @open="handleOpen"
                    lock-scroll
                    :top="top"
-                   :fullscreen = "isFullscreen"
+                   :fullscreen="isFullscreen"
                    :visible.sync="dialogVisible">
-            <div class="dialog-body" v-loading="dialogLoading">
+            <div class="dialog-body" v-loading="dialogLoading"  :element-loading-text="loadingText">
                 <slot name="dialogBody"></slot>
             </div>
             <div slot="footer" class="dialog-footer" v-if="isShowFoot">
@@ -39,6 +39,10 @@ export default {
         title: {
             type: String,
             default: '提示'
+        },
+        loadingText: {
+            type: String,
+            default: ''
         },
         isShowFoot: {
             type: Boolean,
@@ -94,6 +98,8 @@ export default {
     }
     .dialog-footer{
         text-align: center;
+        position: relative;
+        z-index: 10;
     }
     .dialog-body .dialog-body{
         padding: 30px 20px;

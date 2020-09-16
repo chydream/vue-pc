@@ -17,7 +17,7 @@
               </el-input>
             </el-form-item>
           </el-col>
-          <el-col :span="24" v-if="false">
+          <el-col :span="24" v-if="!isAdmin">
             <el-form-item prop="tenantId">
                 <el-select v-model="ruleForm.tenantId" placeholder="请选择租户" style="width:100%" clearable @change="changeSelect">
                   <el-option
@@ -169,7 +169,7 @@ export default {
           var params = {
             username: this.ruleForm.username,
             password: this.ruleForm.password,
-            tenantId: 'b8fa57834b4c5b4294fb930ba8ba191e'
+            tenantId: this.ruleForm.tenantId
             // validCode: this.ruleForm.captcha,
             // deviceId: this.deviceId,
             // grant_type: 'password',

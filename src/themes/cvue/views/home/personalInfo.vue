@@ -18,13 +18,13 @@
           label-width="100px"
           class="demo-ruleForm">
           <el-row :gutter="20">
-            <el-col :span="24">
+            <el-col :span="24" v-if="false">
               <el-form-item label="账号" prop="username">
                 <el-input v-model.trim="ruleForm.username" :disabled="disabled"></el-input>
               </el-form-item>
             </el-col>
             <el-col :span="24">
-              <el-form-item label="用户名" prop="nickname">
+              <el-form-item label="昵称" prop="nickname">
                 <el-input v-model.trim="ruleForm.nickname"></el-input>
               </el-form-item>
             </el-col>
@@ -41,7 +41,7 @@
                 </el-radio-group>
               </el-form-item>
             </el-col>
-            <el-col :span="24">
+            <!-- <el-col :span="24">
               <el-form-item label="头像" prop="avatar">
                 <cvue-upload 
                   cssClass="avatar-uploader"
@@ -55,7 +55,7 @@
                   </template>
                 </cvue-upload>
               </el-form-item>
-            </el-col>
+            </el-col> -->
           </el-row>
         </el-form>
       </div>
@@ -68,7 +68,7 @@ import cvueDialog from '@/components/cvue-dialog'
 import cvueUpload from '@/components/cvue-upload'
 import { validPhone, validIp } from '@/util/validator.js'
 export default {
-  name: 'internetCafe',
+  name: 'personalInfo',
   components: {
     cvueDialog,
     cvueUpload
@@ -85,7 +85,7 @@ export default {
       rules: {
         username: [
           { required: true, message: '请输入账号', trigger: 'blur' },
-          { min: 1, max: 20, message: '长度在 1 到 20 个字符', trigger: 'blur' }
+          { min: 1, max: 50, message: '长度在 1 到 50 个字符', trigger: 'blur' }
         ],
         nickname: [
           { required: true, message: '请输入用户名', trigger: 'blur' },
@@ -93,7 +93,7 @@ export default {
         ],
         phone: [
           { required: true, message: '请输入手机号码', trigger: 'blur' },
-          { min: 1, max: 20, message: '长度在 1 到 20 个字符', trigger: 'blur' }
+          { validator: validPhone, trigger: 'blur' }
         ]
       },
       disabled: true,
@@ -139,7 +139,7 @@ export default {
             nickname: this.ruleForm.nickname,
             phone: this.ruleForm.phone,
             sex: this.ruleForm.sex,
-            username: this.ruleForm.username,
+            // username: this.ruleForm.username,
             file: '',
             headImgUrl: ''
           }
@@ -147,20 +147,12 @@ export default {
           this.dialogLoading = true
           this.$store.dispatch('user/UpdateMe', params).then(res => {
             // console.log(res)
-            if (res.resp_code === 0) {
-              this.$message({
-                message: res.resp_msg,
-                duration: 2000,
-                type: 'success'
-              })
-              this.$emit('confirmDialog')
-            } else {
-              this.$message({
-                message: res.resp_msg,
-                duration: 2000,
-                type: 'error'
-              })
-            }
+            this.$message({
+              message: '修改成功',
+              duration: 2000,
+              type: 'success'
+            })
+            this.$emit('confirmDialog')
             this.dialogLoading = false
           })
         } else {

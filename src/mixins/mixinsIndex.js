@@ -1,5 +1,7 @@
 import CryptoJS from 'crypto-js'
 import { mapGetters } from 'vuex'
+import { userPermission, tenantPermission, rolesPermission, permissionsPermission, menuPermission, appsystemsPermission, servicesPermission, clientsPermission } from '@/config/userCenterUrl'
+import { baseDataPermission } from '@/config/baseDataUrl'
 const mixinsFun = {
   data () {
     return {
@@ -8,12 +10,30 @@ const mixinsFun = {
         view: 'view',
         add: 'add',
         edit: 'edit',
-        delete: 'delete'
-      }
+        delete: 'delete',
+        user: userPermission,
+        tenant: tenantPermission,
+        roles: rolesPermission,
+        permissions: permissionsPermission,
+        menus: menuPermission,
+        appsystems: appsystemsPermission,
+        services: servicesPermission,
+        clients: clientsPermission,
+        baseData: baseDataPermission
+      },
+      superTenantId: '0'
     }
   },
   computed: {
-    ...mapGetters(['tagList', 'tagCurrent'])
+    ...mapGetters(['tagList', 'tagCurrent', 'permissionList', 'keepAlivePage', 'keepAlivePath'])
+  },
+  beforeRouteEnter (to, from, next) {
+    next((vm) => {
+      // 页面缓存配置
+      // console.log(vm.keepAlivePage)
+      vm.$store.commit('common/KEEP_ALIVE', vm.keepAlivePage)
+      // console.log(vm.keepAlivePage)
+    })
   },
   created () {
   },
@@ -155,6 +175,25 @@ const mixinsFun = {
         s = p.replace(/(零.)*零$/, '').replace(/^$/, '零') + unit[0][i] + s
       }
       return head + s.replace(/(零.)*零元/, '元').replace(/(零.)+/g, '零').replace(/^整$/, '零元整')
+    },
+    goUrlCache (path, queryParams) {
+      queryParams = typeof (queryParams) == 'undefined' ? {} : queryParams
+      var arrUrl = path.split('/')
+      var len = arrUrl.length
+      var pathLast = arrUrl[len - 1]
+      queryParams.p = this.encryptStr(pathLast)
+      // 页面缓存配置
+      var index = this.keepAlivePath.indexOf(path)
+      if (index > -1) {
+        var arr = JSON.parse(JSON.stringify(this.keepAlivePage))
+        arr[index] = ''
+        console.log(arr)
+        this.$store.commit('common/KEEP_ALIVE', arr)
+      }
+      this.$router.push({
+        path: path,
+        query: queryParams
+      })
     }
   }
 }

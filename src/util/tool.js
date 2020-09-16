@@ -173,6 +173,23 @@ export function setDeptData (arr) {
   })
   return arr
 }
+// 根据id获取父id列表
+export function getParentId (id) {
+  var idArr = []
+  idArr.unshift(id)
+  var self = this
+  function getId (id) {
+    self.treeResData.forEach((item, index) => {
+      if (item.id == id && item.parentId) {
+        idArr.unshift(item.parentId)
+        getId(item.parentId) 
+      }
+    })
+  }
+  getId(id)
+  return idArr
+}
+
 // 扁平化
 export function flatNavList (arr) {
   for (let v of arr) {
@@ -263,4 +280,16 @@ export function getCookie (name) {
       }
   }
   return null
+}
+
+export function getObjectURL (file) {
+  var url = null
+  if (window.createObjectURL != undefined) {
+    url = window.createObjectURL(file)
+  } else if (window.URL != undefined) {
+    url = window.URL.createObjectURL(file)
+  } else if (window.webkitURL != undefined) {
+    url = window.webkitURL.createObjectURL(file) 
+  }
+  return url
 }

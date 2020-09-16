@@ -8,8 +8,8 @@ export var user = {
 export var userInfo = {
     userInfo: {
         role: ['admin'],
-        userAccount: 'chydream',
-        userName: '驰兮',
+        userAccount: 'admin',
+        userName: 'admin',
         userId: '1826',
         pic: './static/img/main/photo.png'
     }

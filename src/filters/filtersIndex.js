@@ -1,5 +1,22 @@
 const filtersIndex = {
     install: function (Vue, options) {
+        Vue.filter('timeFix', function (value) {
+            if (!value) return
+            var date = new Date(value)
+            var y = date.getFullYear()
+            var m = date.getMonth() + 1
+            var d = date.getDate()
+            var h = date.getHours()
+            var mi = date.getMinutes()
+            var s = date.getSeconds()
+            m = m < 10 ? '0' + m : m
+            d = d < 10 ? '0' + d : d
+            h = h < 10 ? '0' + h : h
+            mi = mi < 10 ? '0' + mi : mi
+            s = s < 10 ? '0' + s : s
+            return y + '-' + m + '-' + d + ' ' + h + ':' + mi + ':' + s
+        })
+
         Vue.filter('capitalize', function (value) {
             if (!value) return
             value = value.toString()

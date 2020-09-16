@@ -23,6 +23,9 @@ import './mixins/install'
 import './filters/install'
 // 引入font-awesome字体图标
 import 'font-awesome/css/font-awesome.min.css'
+// import promise from 'es6-promise'
+// promise.polyfill()
+// import 'babel-polyfill'
 
 Vue.use(ElementUI, {size: 'small', zIndex: 3000, locale})
 

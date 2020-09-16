@@ -1,47 +1,48 @@
 <template>
-  <el-table :data="formatData"
-            :stripe="option.stripe"
-            :row-style="showRow"
-            :row-class-name="rowClassName"
-            v-bind="$attrs"
-            :border="border">
-    <el-table-column v-if="columns.length===0"
-                     width="150">
+  <el-table
+    :data="formatData"
+    :stripe="option.stripe"
+    :row-style="showRow"
+    :row-class-name="rowClassName"
+    v-bind="$attrs"
+    :border="border"
+  >
+    <!-- 序号 -->
+    <el-table-column  type="index" :width="indexWidth" v-if="option.index" align="center" label="序号"></el-table-column>
+    <el-table-column v-if="columns.length===0" width="150">
       <template slot-scope="scope">
-        <span v-for="space in scope.row._level"
-              class="ms-tree-space"
-              :key="space"></span>
-        <span class="tree-ctrl"
-              v-if="iconShow(0,scope.row)"
-              @click="toggleExpanded(scope.$index)">
-          <i v-if="!scope.row._expanded"
-             class="el-icon-plus"></i>
-          <i v-else
-             class="el-icon-minus"></i>
+        <span v-for="space in scope.row._level" class="ms-tree-space" :key="space"></span>
+        <span class="tree-ctrl" v-if="iconShow(0,scope.row)" @click="toggleExpanded(scope.$index)">
+          <i v-if="!scope.row._expanded" class="el-icon-plus"></i>
+          <i v-else class="el-icon-minus"></i>
         </span>
         {{scope.$index}}
       </template>
     </el-table-column>
-    <el-table-column v-else
-                     :align="column.align"
-                     v-for="(column, index) in columns"
-                     :key="column.value"
-                     :label="column.text"
-                     :width="column.width">
+    <el-table-column
+      v-else
+      :align="column.align"
+      v-for="(column, index) in columns"
+      :key="column.value"
+      :label="column.text"
+      :width="column.width"
+    >
       <template slot-scope="scope">
         <slot v-if="column.slotStatus" :name="column.value" :row="scope.row"></slot>
         <template v-else>
-          <span v-if="index === 0"
-                v-for="space in scope.row._level"
-                class="ms-tree-space"
-                :key="space"></span>
-          <span class="tree-ctrl"
-                v-if="iconShow(index,scope.row)"
-                @click="toggleExpanded(scope.$index)">
-            <i v-if="!scope.row._expanded"
-              class="el-icon-plus"></i>
-            <i v-else
-              class="el-icon-minus"></i>
+          <span
+            v-if="index === 0"
+            v-for="space in scope.row._level"
+            class="ms-tree-space"
+            :key="space"
+          ></span>
+          <span
+            class="tree-ctrl"
+            v-if="iconShow(index,scope.row)"
+            @click="toggleExpanded(scope.$index)"
+          >
+            <i v-if="!scope.row._expanded" class="el-icon-plus"></i>
+            <i v-else class="el-icon-minus"></i>
           </span>
           {{scope.row[column.value]}}
         </template>
@@ -67,7 +68,7 @@ export default {
   data () {
     return {}
   },
-  created () {},
+  created () { },
   computed: {
     data: function () {
       return this.option.data || []
@@ -150,7 +151,7 @@ $space-width: 18px;
   width: $space-width;
   height: 14px;
   &::before {
-    content: "";
+    content: '';
   }
 }
 .processContainer {
