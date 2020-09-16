@@ -106,8 +106,8 @@ export default {
     }
   },
   mounted () {
-    this.getDictList('SubjectCategory')
-    this.getEditDetail()
+    // this.getDictList('SubjectCategory')
+    // this.getEditDetail()
   },
   props: {
     dialogVisible: {

@@ -156,7 +156,7 @@ export default {
   },
   mounted () {
     // this.handleList()
-    this.getTreeData()
+    // this.getTreeData()
   },
   methods: {
     // 树点击

@@ -8,8 +8,8 @@ const mixinsPublicData = {
     }
   },
   mounted () {
-    this.getStageList()
-    this.getShoolYear()
+    // this.getStageList()
+    // this.getShoolYear()
   },
   methods: {
     // 获取学段列表

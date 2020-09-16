@@ -38,6 +38,45 @@ const router = new Router({
       ]
     },
     {
+      path: '/auth',
+      name: 'Auth',
+      component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/layout/index'),
+      children: [
+        {
+          path: 'index',
+          name: '权限',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/auth/auth')
+        }
+      ]
+    },
+    {
+      path: '/demo',
+      name: 'Demo',
+      component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/layout/index'),
+      children: [
+        {
+          path: 'index',
+          name: '例子1',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/demo/index')
+        },
+        {
+          path: 'faculty',
+          name: '例子2',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/demo/faculty')
+        },
+        {
+          path: 'subject',
+          name: '例子3',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/demo/subject')
+        },
+        {
+          path: 'school-manage',
+          name: '例子4',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/demo/schoolManage')
+        }
+      ]
+    },
+    {
       path: '/',
       redirect: '/login'
     },

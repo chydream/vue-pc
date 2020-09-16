@@ -5,7 +5,7 @@
     <el-tabs type="border-card" @tab-click="tabClick" v-model="activeIndex">
       <!-- 教职工开始 -->
       <el-tab-pane label="教职工" :style="{height:height}">
-        <faculty v-if="activeIndex === '1'"></faculty>
+        <faculty v-if="activeIndex === '0'"></faculty>
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -13,22 +13,13 @@
 
 <script>
 import cvueTable from '@/components/cvue-table'
-import classes from './class'
-import department from './department'
 import faculty from './faculty'
-import parents from './parents'
-import student from './student'
-import schoolItem from './schoolItem'
 import {getClientHeight} from '@/util/tool'
 export default {
   name: 'schoolManage',
   components: {
     cvueTable,
-    classes,
-    department,
-    faculty,
-    student,
-    schoolItem
+    faculty
   },
   data () {
     return {
