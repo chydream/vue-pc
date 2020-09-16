@@ -140,8 +140,8 @@ export default {
     }
   },
   mounted () {
-    this.handleList(this.selectName, this.selectStageId)
-    this.getStageList()
+    // this.handleList(this.selectName, this.selectStageId)
+    // this.getStageList()
   },
   methods: {
     // 树点击

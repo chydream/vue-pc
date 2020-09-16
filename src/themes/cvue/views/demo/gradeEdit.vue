@@ -111,8 +111,8 @@ export default {
     }
   },
   mounted () {
-    this.getStageList()
-    this.getEditDetail()
+    // this.getStageList()
+    // this.getEditDetail()
   },
   props: {
     dialogVisible: {
