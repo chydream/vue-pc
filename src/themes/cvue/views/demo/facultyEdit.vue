@@ -738,9 +738,9 @@ export default {
     }
   },
   mounted () {
-    this.schoolName = this.$route.query.name
-    this.initEditer()
-    this.getEditDetail()
+    // this.schoolName = this.$route.query.name
+    // this.initEditer()
+    // this.getEditDetail()
   },
   props: {
     dialogVisible: {

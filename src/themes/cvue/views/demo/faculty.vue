@@ -166,8 +166,8 @@ export default {
     }
   },
   mounted () {
-    this.handleList(this.selectEmpNumber, this.selectName, this.selectDeptId)
-    this.getTreeData()
+    // this.handleList(this.selectEmpNumber, this.selectName, this.selectDeptId)
+    // this.getTreeData()
   },
   methods: {
     getTreeData () {
