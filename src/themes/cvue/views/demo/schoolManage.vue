@@ -3,31 +3,10 @@
     <span class="title">{{$route.query.name}}</span>
     <el-button type="default" size="mini" @click="goBack" class="go-back">返回</el-button>
     <el-tabs type="border-card" @tab-click="tabClick" v-model="activeIndex">
-      <!-- 部门开始 -->
-      <el-tab-pane label="部门" :style="{height:height}">
-        <department></department>
-      </el-tab-pane>
-      <!-- 部门结束 -->
       <!-- 教职工开始 -->
       <el-tab-pane label="教职工" :style="{height:height}">
         <faculty v-if="activeIndex === '1'"></faculty>
       </el-tab-pane>
-      <!-- 教职工结束 -->
-      <!-- 学期开始 -->
-      <el-tab-pane label="学期" :style="{height:height}">
-        <school-item></school-item>
-      </el-tab-pane>
-      <!-- 学期结束 -->
-      <!-- 班级开始 -->
-      <el-tab-pane label="班级" :style="{height:height}">
-        <classes></classes>
-      </el-tab-pane>
-      <!-- 班级结束 -->
-      <!-- 学生家长开始 -->
-      <el-tab-pane label="学生" :style="{height:height}">
-        <student></student>
-      </el-tab-pane>
-      <!-- 学生家长结束 -->
     </el-tabs>
   </div>
 </template>
