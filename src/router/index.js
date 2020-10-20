@@ -73,6 +73,11 @@ const router = new Router({
           path: 'school-manage',
           name: '例子4',
           component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/demo/schoolManage')
+        },
+        {
+          path: 'work',
+          name: '工作流',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/jsPlumb/index')
         }
       ]
     },

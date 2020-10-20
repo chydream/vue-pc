@@ -4,7 +4,7 @@
       <i class="fa fa-navicon" @click="toggleCollapse"></i>
     </div>
     <div class="header-right user-name">
-      <el-tooltip class="item" effect="dark" content="头像" placement="bottom">
+      <el-tooltip class="" effect="dark" content="头像" placement="bottom">
         <img class="top-userImg" :src="headImgUrl" @error="loadError" />
       </el-tooltip>
       <el-dropdown trigger="click">
