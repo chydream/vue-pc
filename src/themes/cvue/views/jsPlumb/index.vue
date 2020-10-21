@@ -1,8 +1,8 @@
 <template>
   <div class="flowJsPlumb"  >
     <div id="diagramContainer">
-      <div id="item_left" class="item"></div>
-      <div id="item_right" class="item" style="left:550px;"></div>
+      <div id="item_left" class="item" style="text-align:center">什么</div>
+      <div id="item_right" class="item" style="left:550px;text-align:center">是吧</div>
     </div>
   </div>
 </template>
@@ -49,7 +49,7 @@ export default {
           "FlowId":"840317a2-38ce-4ee1-887e-5739e8bbb35d",
           "ParentIds":"",
           "OpUserIds":",,",
-          "OpDeptIds":",17dd015e620c48a1951fcbb995d9bae0,287a1077ebb0449e81eefd65d823297d,95db4101973f49f88b6d64005b3accff,",
+          "OpDeptIds":"17dd015e620c48a1951fcbb995d9bae0,287a1077ebb0449e81eefd65d823297d,95db4101973f49f88b6d64005b3accff",
           "OpRoleIds":",,",
           "Top":47,
           "Left":128
@@ -66,7 +66,7 @@ export default {
         target: 'item_right',
         endpoint: 'Dot',
         paintStyle: { stroke: 'lightgray', strokeWidth: 5 },
-        overlays: [ ['Arrow', { width: 12, length: 12, location: 0.5 }] ]
+        overlays: [ ['Arrow', [ "Label", { label:"foo", location:0.25, id:"myLabel" } ]] ]
       })
       jsPlumb.bind('click', function (conn, originalEvent) {
         // console.log(conn)

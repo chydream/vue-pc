@@ -127,7 +127,7 @@ export default {
   },
   mounted () {
     this.setCaptcha()
-    this.getTenantArr()
+    // this.getTenantArr()
   },
   methods: {
     // 设置用户名
@@ -179,10 +179,10 @@ export default {
           }
           // console.log(params)
           this.$store.dispatch('user/Login', params).then(res => {
-            // console.log(res)
+            console.log(res)
             this.$store.dispatch('user/GetUserInfo', {access_token: res.accessToken}).then(res => {
               this.loginLoading = false
-              // console.log(res)
+              console.log(res)
               if (this.checked) {
                 setCookie('username', params.username, 24)
               } else {
@@ -190,14 +190,14 @@ export default {
               }
               this.$router.push('/home/index')
             }).catch(() => {
-              this.$store.dispatch('user/Logout').then(res => {
-                this.$router.push('/login')
-                this.$store.commit('common/CLEAR_TAG')
-              }).catch((err) => {
-                this.tip(err.resp_msg, 'error')
-              })
-              this.loginLoading = false
-              this.tip('服务器出错', 'error')
+              // this.$store.dispatch('user/Logout').then(res => {
+              //   this.$router.push('/login')
+              //   this.$store.commit('common/CLEAR_TAG')
+              // }).catch((err) => {
+              //   this.tip(err.resp_msg, 'error')
+              // })
+              // this.loginLoading = false
+              // this.tip('服务器出错', 'error')
               // console.log(err)
             })
           }).catch((err) => {

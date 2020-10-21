@@ -6,50 +6,52 @@ import menu from '@/mock/menuMock'
 import { param } from 'jquery'
 export const login = (params) => {
   return new Promise((resolve, reject) => {
-    axios({
-      url: authUrl + '/oauth/user/token',
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8',
-        'clientId': 'webApp',
-        'clientSecret': 'webApp',
-        'Authorization': ''
-      },
-      data: JSON.stringify(params)
-    }).then(res => {
-      resolve(res.data)
-    }).catch(error => {
-      reject(error.data)
-    })
+    // axios({
+    //   url: authUrl + '/oauth/user/token',
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json; charset=utf-8',
+    //     'clientId': 'webApp',
+    //     'clientSecret': 'webApp',
+    //     'Authorization': ''
+    //   },
+    //   data: JSON.stringify(params)
+    // }).then(res => {
+    //   resolve(res.data)
+    // }).catch(error => {
+    //   reject(error.data)
+    // })
+    resolve({status: 'success', accessToken: '123456789'})
   })
 }
 
 export const getUserInfo = (params) => {
   return new Promise((resolve, reject) => {
-    axios({
-      url: authUrl + '/oauth/userinfo',
-      method: 'GET',
-      params
-    }).then(res => {
-      resolve(res.data)
-    }).catch(error => {
-      reject(error.data)
-    })
+    // axios({
+    //   url: authUrl + '/oauth/userinfo',
+    //   method: 'GET',
+    //   params
+    // }).then(res => {
+    //   resolve(res.data)
+    // }).catch(error => {
+    //   reject(error.data)
+    // })
+    resolve({status: 'success', permissions: [], headImgUrl: '', user: {headImgUrl: ''}})
   })
 }
 
 export const logout = (params) => {
   return new Promise((resolve, reject) => {
-    axios({
-      url: authUrl + '/oauth/remove/token',
-      method: 'POST',
-      params
-    }).then(res => {
-      resolve(res.data)
-    }).catch(error => {
-      reject(error.data)
-    })
-    // resolve({ message: '登出成功', success: true })
+    // axios({
+    //   url: authUrl + '/oauth/remove/token',
+    //   method: 'POST',
+    //   params
+    // }).then(res => {
+    //   resolve(res.data)
+    // }).catch(error => {
+    //   reject(error.data)
+    // })
+    resolve({ message: '登出成功', success: true })
   })
 }
 /**
