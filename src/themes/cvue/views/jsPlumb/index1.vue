@@ -1,7 +1,7 @@
 <template>
   <div class="flowJsPlumb"  >
     <div id="diagramContainer">
-      <div id="item_left" class="item" style="text-align:center" ref="item_left">节点1</div>
+      <div id="item_left" class="item" style="text-align:center">节点1</div>
       <div id="item_right" class="item" style="left:350px;text-align:center">节点2</div>
       <div id="item_third" class="item" style="left:750px;text-align:center">节点3</div>
       <div id="item_forth" class="item" style="left:350px;text-align:center; top: 100px;">节点4</div>
@@ -61,10 +61,8 @@ export default {
       ]
     }
   },
-  mounted () {  
-    var self = this
+  mounted () {
     jsPlumb.bind('ready', function () {
-
       var firstInstance = jsPlumb.getInstance({
         Container: "diagramContainer",
         PaintStyle:{ 
@@ -78,14 +76,74 @@ export default {
         EndpointStyle : { fill: "#567567"  },
         Anchor : [ 0.5, 0.5, 1, 1 ]
       })
-      firstInstance.addGroup({
-        el: self.$refs['item_left'],
-        id: 'item_left',
-        collapsed:true,
-        anchor: 'Continuous',
-        endpoint: ['Dot', {radius: 3}]
+      firstInstance.importDefaults({
+        // Connector: ["Bezier", {curviness: 150}],
+        Anchors: ["TopCenter", "BottomCenter"]
       })
-      // firstInstance.removeGroup("item_left")
+      firstInstance.setSuspendDrawing(true)
+      firstInstance.setSuspendDrawing(false, true)
+      firstInstance.connect({
+        source: "item_left",
+        target: 'item_right',
+        anchors:["Right", "Left" ],
+        endpoint:"Rectangle",
+        endpointStyle:{ fill: "yellow" },
+        deleteEndpointsOnDetach:false,
+        ConnectionsDetachable:false,
+        detachable:false,
+        allowLoopback:false,
+        deleteEndpointsOnDetach:false
+      })
+      firstInstance.setContainer(document.getElementById("diagramContainer"))
+      var ep = firstInstance.addEndpoint('item_right', {  anchors: ['Right'], isSource:true  })
+      var ep2 = firstInstance.addEndpoint('item_third', {  anchors: ['Left']  })
+      firstInstance.makeSource('item_right', {
+        endpoint:"Dot",
+        anchor: "Continuous"
+      })
+
+      firstInstance.makeTarget('item_third', {
+        endpoint:"Dot",
+        anchor: "Continuous"
+      })
+      firstInstance.draggable('item_left')
+      // var connections = [
+      //   { source:"item_left", target:"item_right" },
+      //   { source:"item_right", target:"item_third" }
+      // ]
+      // firstInstance.batch(function(){
+      //   for (var i = 0, j = connections.length; i < j; i++) {
+      //     firstInstance.connect(connections[i])
+      //   }
+      // })
+      // firstInstance.remove('item_third')
+      // firstInstance.empty('item_third')
+      // firstInstance.deleteConnectionsForElement('item_left')
+
+      firstInstance.bind('click', function (conn, originalEvent) {
+        // console.log(conn)
+        // firstInstance.deleteConnection(conn)
+        // firstInstance.detachEveryConnection()
+        firstInstance.deleteEndpoint(ep)
+        // firstInstance.deleteEveryEndpoint()
+      })
+
+      var exampleGreyEndpointOptions = {
+        endpoint:"Rectangle",
+        paintStyle:{ width:25, height:21, fill:'#666' },
+        isSource:true,
+        connectorStyle : { stroke:"#666" },
+        isTarget:true
+      }
+      firstInstance.addEndpoint("item_forth", { 
+        anchor:"Bottom"
+      }, exampleGreyEndpointOptions)
+
+      firstInstance.addEndpoint("item_five", { 
+        anchor:"Top" 
+      }, exampleGreyEndpointOptions)
+      var endpointOptions = { isTarget:true, endpoint:"Rectangle", paintStyle:{ fill:"gray" } }
+      var endpoint = firstInstance.addEndpoint("item_six", endpointOptions);
 
     })
   },

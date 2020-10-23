@@ -78,6 +78,11 @@ const router = new Router({
           path: 'work',
           name: '工作流',
           component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/jsPlumb/index')
+        },
+        {
+          path: 'work-list',
+          name: '工作流1',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/jsPlumb/flow/workFlowDesign.vue')
         }
       ]
     },
