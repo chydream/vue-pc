@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js'
 import { mapGetters } from 'vuex'
-import { userPermission, tenantPermission, rolesPermission, permissionsPermission, menuPermission, appsystemsPermission, servicesPermission, clientsPermission } from '@/config/userCenterUrl'
+// import { userPermission, tenantPermission, rolesPermission, permissionsPermission, menuPermission, appsystemsPermission, servicesPermission, clientsPermission } from '@/config/userCenterUrl'
 import { baseDataPermission } from '@/config/baseDataUrl'
 const mixinsFun = {
   data () {
@@ -10,16 +10,7 @@ const mixinsFun = {
         view: 'view',
         add: 'add',
         edit: 'edit',
-        delete: 'delete',
-        user: userPermission,
-        tenant: tenantPermission,
-        roles: rolesPermission,
-        permissions: permissionsPermission,
-        menus: menuPermission,
-        appsystems: appsystemsPermission,
-        services: servicesPermission,
-        clients: clientsPermission,
-        baseData: baseDataPermission
+        delete: 'delete'
       },
       superTenantId: '0'
     }

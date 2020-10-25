@@ -64,7 +64,16 @@ let menu = {
         },
         {
           id: 1,
-          label: '工作流',
+          label: '上传1',
+          href: '/demo/uploader',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        },
+        {
+          id: 1,
+          label: '上传',
           href: '/demo/work',
           icon: 'fa fa-file-text',
           permission: ['view', 'add', 'delete', 'edit'],

@@ -216,10 +216,6 @@ import VueCropper from 'vue-cropper'
 import codes from "./code";
 
 export default {
-  components: {
-    VueCropper
-    VueCropper
-  },
   data: function() {
     return {
       model: false,
