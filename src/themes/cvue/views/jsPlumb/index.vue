@@ -65,13 +65,19 @@ import { jsPlumb } from 'jsplumb'
 import draggable from 'vuedraggable'
 import flowNode from './node'
 import FlowNodeForm from './node_form'
-import FlowInfo from './/info'
+import FlowInfo from './info'
+import { easyFlowMixin } from './mixins'
+import { getDataA } from './data_A'
+import { getDataB } from './data_B'
+import { getDataC } from './data_C'
+import { getDataD } from './data_D'
 var mousePosition = {
   left: -1,
   top: -1
 }
 export default {
   name: 'jsPlumb',
+  mixins: [easyFlowMixin],
   components: {
     draggable,
     flowNode,
@@ -146,7 +152,19 @@ export default {
         }
       ],
       nodeMenu: {},
-      flowInfoVisible: false
+      flowInfoVisible: false,
+      jsPlumb: null,
+      easyFlowVisible: false,
+      flowInfoVisible: false,
+      loadEasyFlowFinish: false,
+      flowHelpVisible: false,
+      activeElement: {
+        type: undefined,
+        nodeId: undefined,
+        sourceId: undefined,
+        targetId: undefined
+      },
+      zoom: 0.5
     }
   },
   mounted () {
