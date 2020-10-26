@@ -75,14 +75,14 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/demo/schoolManage')
         },
         {
-          path: 'work',
-          name: '上传',
-          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/jsPlumb/index')
+          path: 'uploader',
+          name: '图片上传',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/vueCropper/uploader')
         },
         {
-          path: 'uploader',
-          name: '上传1',
-          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/vueCropper/uploader')
+          path: 'work',
+          name: '工作流',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/jsPlumb/index')
         },
         {
           path: 'work-list',
