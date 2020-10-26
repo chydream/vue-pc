@@ -25,18 +25,7 @@
     </el-row>
     <div style="display:flex;height:calc(100%-47px);">
       <div style="width: 230px;border-right:1px solid #dce3e8;">
-        <div class="flow-menu" ref="tool">
-          <div v-for="menu in menuList" :key="menu.id">
-            <span class="ef-node-pmenu" @click="menu.open = !menu.open"><i :class="{'el-icon-caret-bottom':menu.open,'el-icon-caret-right':!menu.open}"></i>&nbsp;{{menu.name}}</span>
-            <ul v-show="menu.open" class="ef-node-menu-ul">
-              <draggable @end="end" @start="move" v-model="menu.children" :options="draggableOptions">
-                <li v-for="subMenu in menu.children" class="ef-node-menu-li" :key="subMenu.id" :type="subMenu.type">
-                  <i :class="subMenu.ico"></i>{{subMenu.name}}
-                </li>
-              </draggable>
-            </ul>
-          </div>
-        </div>
+         <node-menu @addNode="addNode" ref="nodeMenu"></node-menu>
       </div>
       <div id="efContainer" ref="efContainer" class="container" v-flowDrag>
         <template v-for="node in data.nodeList">
@@ -71,6 +60,7 @@ import { getDataA } from './data_A'
 import { getDataB } from './data_B'
 import { getDataC } from './data_C'
 import { getDataD } from './data_D'
+import nodeMenu from './node_menu'
 var mousePosition = {
   left: -1,
   top: -1
@@ -82,7 +72,8 @@ export default {
     draggable,
     flowNode,
     FlowNodeForm,
-    FlowInfo
+    FlowInfo,
+    nodeMenu
   },
   data () {
     return {
@@ -259,6 +250,66 @@ export default {
     },
     repaintEverything() {
       this.jsPlumb.repaint()
+    },
+    addNode(evt, nodeMenu, mousePosition) {
+      var screenX = evt.originalEvent.clientX, screenY = evt.originalEvent.clientY
+      let efContainer = this.$refs.efContainer
+      var containerRect = efContainer.getBoundingClientRect()
+      var left = screenX, top = screenY
+      // 计算是否拖入到容器中
+      if (left < containerRect.x || left > containerRect.width + containerRect.x || top < containerRect.y || containerRect.y > containerRect.y + containerRect.height) {
+          this.$message.error("请把节点拖入到画布中")
+          return
+      }
+      left = left - containerRect.x + efContainer.scrollLeft
+      top = top - containerRect.y + efContainer.scrollTop
+      // 居中
+      left -= 85
+      top -= 16
+      var nodeId = this.getUUID()
+      // 动态生成名字
+      var origName = nodeMenu.name
+      var nodeName = origName
+      var index = 1
+      while (index < 10000) {
+          var repeat = false
+          for (var i = 0; i < this.data.nodeList.length; i++) {
+              let node = this.data.nodeList[i]
+              if (node.name === nodeName) {
+                  nodeName = origName + index
+                  repeat = true
+              }
+          }
+          if (repeat) {
+              index++
+              continue
+          }
+          break
+      }
+      var node = {
+          id: nodeId,
+          name: nodeName,
+          type: nodeMenu.type,
+          left: left + 'px',
+          top: top + 'px',
+          ico: nodeMenu.ico,
+          state: 'success'
+      }
+      /**
+       * 这里可以进行业务判断、是否能够添加该节点
+       */
+      this.data.nodeList.push(node)
+      this.$nextTick(function () {
+          this.jsPlumb.makeSource(nodeId, this.jsplumbSourceOptions)
+          this.jsPlumb.makeTarget(nodeId, this.jsplumbTargetOptions)
+          this.jsPlumb.draggable(nodeId, {
+              containment: 'parent',
+              stop: function (el) {
+                  // 拖拽节点结束后的对调
+                  console.log('拖拽结束: ', el)
+              }
+          })
+      })
     },
   }
 }
