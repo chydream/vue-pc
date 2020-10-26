@@ -82,7 +82,7 @@ const router = new Router({
         {
           path: 'uploader',
           name: '上传1',
-          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/jsPlumb/uploader')
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/vueCropper/uploader')
         },
         {
           path: 'work-list',
