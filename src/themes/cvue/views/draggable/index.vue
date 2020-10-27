@@ -54,7 +54,7 @@ const message = [
   'sortablejs'
 ]
 export default {
-  name: 'drag',
+  name: 'draged',
   components: {
     draggable
   },
@@ -66,7 +66,14 @@ export default {
       list2: [],
       editable: true,
       isDragging: false,
-      delayedDragging: false
+      delayedDragging: false,
+      myArray: [
+        {people: 'cn', id: 1, name: 'www.itxst.com'},
+        {people: 'cn', id: 2, name: 'www.baidu.com'},
+        {people: 'cn', id: 3, name: 'www.taobao.com'},
+        {people: 'us', id: 4, name: 'www.google.com'}
+      ],
+      drag: false
     }
   },
   methods: {
@@ -79,6 +86,12 @@ export default {
       const relatedElement = relatedContext.element
       const draggedElement = draggedContext.element
       return ((!relatedElement || !relatedElement.fixed) && !draggedElement.fixed)
+    },
+    onStart () {
+      this.drag = true
+    },
+    onEnd () {
+      this.drag = false
     }
   },
   computed: {
