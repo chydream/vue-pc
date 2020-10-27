@@ -88,6 +88,15 @@ let menu = {
           permission: ['view', 'add', 'delete', 'edit'],
           show: true,
           children: []
+        },
+        {
+          id: 1,
+          label: '拖放',
+          href: '/demo/draggable',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
         }
       ]
     }
