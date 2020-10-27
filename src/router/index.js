@@ -93,6 +93,11 @@ const router = new Router({
           path: 'draggable',
           name: '拖放',
           component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/draggable/index.vue')
+        },
+        {
+          path: 'work-flow',
+          name: '工作流2',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/draggable/work.vue')
         }
       ]
     },

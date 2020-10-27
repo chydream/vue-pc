@@ -97,6 +97,15 @@ let menu = {
           permission: ['view', 'add', 'delete', 'edit'],
           show: true,
           children: []
+        },
+        {
+          id: 1,
+          label: '工作流2',
+          href: '/demo/work-flow',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
         }
       ]
     }
