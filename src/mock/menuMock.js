@@ -91,15 +91,6 @@ let menu = {
         },
         {
           id: 1,
-          label: '拖放',
-          href: '/demo/draggable',
-          icon: 'fa fa-file-text',
-          permission: ['view', 'add', 'delete', 'edit'],
-          show: true,
-          children: []
-        },
-        {
-          id: 1,
           label: '工作流2',
           href: '/demo/work-flow',
           icon: 'fa fa-file-text',
