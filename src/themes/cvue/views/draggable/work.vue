@@ -7,7 +7,7 @@
             <el-form ref="ruleForm" label-width="50px" @submit.native.prevent>
               <el-row :gutter="10">
                 <el-col :span="4">
-                  <el-button size="mini" class="search-btn">新增</el-button>
+                  <el-button size="mini" class="search-btn" @click="addNode">新增</el-button>
                 </el-col>
               </el-row>
             </el-form>
@@ -23,6 +23,14 @@
         </el-card>
       </el-col>
     </el-row>
+    <!-- 编辑弹窗 -->
+    <work-edit
+      @closeDialog="closeDialog('edit')"
+      @confirmDialog="confirmDialog('edit')"
+      @handleClose="closeDialog('edit')"
+      v-if="dialogWorkEdit"
+      :dialogVisible="dialogWorkEdit">
+    </work-edit>
   </div>
 </template>
 
@@ -31,13 +39,17 @@
 import cvueTable from '@/components/cvue-table'
 import {getClientHeight} from '@/util/tool'
 import {Endpoint, jsPlumb} from 'jsplumb'
+import workEdit from './workEdit'
 export default {
   name: 'grade',
   components: {
-    cvueTable
+    cvueTable,
+    workEdit
   },
   data () {
     return {
+      node: {},
+      dialogWorkEdit: false,
       flowNodeList: [
         {
           "Id":"1f9e047b-c6b1-4784-a49f-73b91b281034",
@@ -125,8 +137,9 @@ export default {
       targetOption: {
         filter: '.fa-user',
         filterExclude: false,
+        maxConnections: -1,
         anchor: 'Continuous',
-        allowLoopback: true,
+        allowLoopback: false,
         dropOptions: {hoverClass: 'ef-drop-hover'}
       }
     }
@@ -138,33 +151,89 @@ export default {
     }
   },
   mounted () {
-    this.jsPlumb = jsPlumb.getInstance() 
-    this.jsPlumb.ready(() => {
-      this.jsPlumb.importDefaults(this.option)
-      // this.jsPlumb.setSuspendDrawing(true)  // 暂停绘制
-      // this.jsPlumb.setSuspendDrawing(false, true) // 重新绘制
-      this.flowNodeList.forEach((item, index) => {
-        // 允许拖放
-        this.jsPlumb.draggable(item.Id, {
-          containment: 'nodeWrap',
-          grid: [10, 10],
-          stop: function (el) {
-            // console.log('拖拽结束: ', el)
-          }
-        })
-        this.jsPlumb.makeSource(item.Id, this.sourceOption)
-        this.jsPlumb.makeTarget(item.Id, this.targetOption)
-        if (item.ParentIds) {
-          this.jsPlumb.connect({
-            source: item.ParentIds,
-            target: item.Id
-          }, this.targetOption)
-        }
-      })
-    })
+    this.init()
   },
   methods: {
-   
+    init () {
+      var self = this
+      this.jsPlumb = jsPlumb.getInstance() 
+      this.jsPlumb.ready(() => {
+        this.jsPlumb.importDefaults(this.option)
+        // this.jsPlumb.setSuspendDrawing(true)  // 暂停绘制
+        // this.jsPlumb.setSuspendDrawing(false, true) // 重新绘制
+        this.flowNodeList.forEach((item, index) => {
+          // 允许拖放
+          this.jsPlumb.draggable(item.Id, {
+            containment: 'nodeWrap',
+            grid: [10, 10],
+            stop: function (el) {
+              // console.log('拖拽结束: ', el)
+            }
+          })
+          this.jsPlumb.makeSource(item.Id, this.sourceOption)
+          this.jsPlumb.makeTarget(item.Id, this.targetOption)
+          if (item.ParentIds) {
+            this.jsPlumb.connect({
+              source: item.ParentIds,
+              target: item.Id
+            }, this.targetOption)
+          }
+        })
+        this.jsPlumb.bind('click', function (conn, originalEvent) {
+          self.jsPlumb.deleteConnection(conn)
+        })
+        this.jsPlumb.bind("beforeDrop",function (evt) {
+          console.log(123)
+          console.log(self.jsPlumb.hasLine())
+          let from = evt.sourceId
+          let to = evt.target
+          if (from === to) {
+            self.$message.error('节点不支持连接自己')
+            return false
+          }
+          if (this.hasLine(from, to)) {
+            self.$message.error('该关系已存在，不允许重复创建')
+            return false
+          }
+          if (this.hashOppositeLine(from, to)) {
+            self.$message.error('不支持两个节点之间连接回环')
+            return false
+          }
+          self.$message.success('连接成功')
+          return true
+        })
+      })
+    },
+    addNode () {
+      this.dialogWorkEdit = true
+    },
+    closeDialog (params) {
+      if (params == 'edit') {
+        this.dialogWorkEdit = false
+      }
+    },
+    // 确认
+    confirmDialog (params) {
+      if (params == 'edit') {
+        this.dialogWorkEdit = false
+        this.flowNodeList.push(this.node)
+        console.log(this.node)
+        this.setConnect(this.node.Id, this.node.ParentIds)
+      }
+    },
+    setConnect (id, parentId) {
+      console.log(id, parentId)
+      if (id && parentId) {
+        this.$nextTick(() => {
+          this.jsPlumb.makeSource(id, this.sourceOption)
+          this.jsPlumb.makeTarget(id, this.targetOption)
+          this.jsPlumb.connect({
+            source: parentId,
+            target: id
+          }, this.targetOption)
+        })
+      }
+    }
   }
 }
 </script>
