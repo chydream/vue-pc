@@ -102,6 +102,18 @@ const router = new Router({
       ]
     },
     {
+      path: '/live',
+      name: 'Live',
+      component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/layout/index'),
+      children: [
+        {
+          path: 'index',
+          name: '权限',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/live/index')
+        }
+      ]
+    },
+    {
       path: '/',
       redirect: '/login'
     },

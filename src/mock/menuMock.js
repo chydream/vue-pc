@@ -99,6 +99,15 @@ let menu = {
           children: []
         }
       ]
+    },
+    {
+      id: 1,
+      label: '直播',
+      href: '/live/index',
+      icon: 'fa fa-file-text',
+      permission: ['view', 'add', 'delete', 'edit'],
+      show: true,
+      children: []
     }
   ],
   user: [
