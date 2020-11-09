@@ -108,7 +108,7 @@ const router = new Router({
       children: [
         {
           path: 'index',
-          name: '权限',
+          name: '直播',
           component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/live/index')
         }
       ]
