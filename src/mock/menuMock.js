@@ -88,6 +88,15 @@ let menu = {
           permission: ['view', 'add', 'delete', 'edit'],
           show: true,
           children: []
+        },
+        {
+          id: 1,
+          label: '滚动',
+          href: '/demo/scroll-demo',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
         }
       ]
     }

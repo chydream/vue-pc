@@ -96,6 +96,11 @@ const router = new Router({
       redirect: '/login'
     },
     {
+      path: '/demo/scroll-demo',
+      name: '滚动',
+      component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/demo/exam.vue')
+    },
+    {
       path: '/login',
       name: 'Login',
       component: () => import(/* webpackChunkName: "public" */'../themes/login/login')
