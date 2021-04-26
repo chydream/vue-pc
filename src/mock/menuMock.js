@@ -108,6 +108,34 @@ let menu = {
       permission: ['view', 'add', 'delete', 'edit'],
       show: true,
       children: []
+    },
+    {
+      id: 1,
+      label: '图表',
+      href: '#',
+      icon: 'fa fa-file-text',
+      permission: ['view', 'add', 'delete', 'edit'],
+      show: true,
+      children: [
+        {
+          id: 1,
+          label: '图表1',
+          href: '/chart/line',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        },
+        {
+          id: 1,
+          label: '图表2',
+          href: '/chart/index',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        }
+      ]
     }
   ],
   user: [

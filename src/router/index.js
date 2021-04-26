@@ -114,6 +114,23 @@ const router = new Router({
       ]
     },
     {
+      path: '/chart',
+      name: 'chart',
+      component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/layout/index'),
+      children: [
+        {
+          path: 'line',
+          name: '图表',
+          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/chart/line')
+        },
+        {
+          path: 'index',
+          name: '图表',
+          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/chart/index')
+        }
+      ]
+    },
+    {
       path: '/',
       redirect: '/login'
     },

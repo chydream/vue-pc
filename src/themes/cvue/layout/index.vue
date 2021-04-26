@@ -121,7 +121,7 @@ export default {
     // -webkit-box-shadow: 1px 1px 1px 1px #ccc !important;
     // box-shadow: 1px 1px 1px 1px #ccc!important;
     box-sizing: border-box;
-    min-width: 1330px;
+    // min-width: 1330px;
   }
   .fade-enter{
     opacity: 0;
