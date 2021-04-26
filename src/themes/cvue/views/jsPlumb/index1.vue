@@ -2,11 +2,11 @@
   <div class="flowJsPlumb"  >
     <div id="diagramContainer">
       <div id="item_left" class="item" style="text-align:center">节点1</div>
-      <div id="item_right" class="item" style="left:350px;text-align:center">节点2</div>
+      <!-- <div id="item_right" class="item" style="left:350px;text-align:center">节点2</div>
       <div id="item_third" class="item" style="left:750px;text-align:center">节点3</div>
       <div id="item_forth" class="item" style="left:350px;text-align:center; top: 100px;">节点4</div>
       <div id="item_five" class="item" style="left:750px;text-align:center; top: 100px;">节点5</div>
-      <div id="item_six" class="item" style="left:550px;text-align:center; top: 300px;">节点6</div>
+      <div id="item_six" class="item" style="left:550px;text-align:center; top: 300px;">节点6</div> -->
     </div>
   </div>
 </template>

@@ -75,19 +75,41 @@ const router = new Router({
           component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/demo/schoolManage')
         },
         {
-          path: 'work',
-          name: '上传',
-          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/jsPlumb/index')
+          path: 'uploader',
+          name: '图片上传',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/vueCropper/uploader')
         },
         {
-          path: 'uploader',
-          name: '上传1',
-          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/jsPlumb/uploader')
+          path: 'work',
+          name: '工作流',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/jsPlumb/index')
         },
         {
           path: 'work-list',
           name: '工作流1',
           component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/jsPlumb/flow/workFlowDesign.vue')
+        },
+        {
+          path: 'draggable',
+          name: '拖放',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/draggable/index.vue')
+        },
+        {
+          path: 'work-flow',
+          name: '工作流2',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/draggable/work.vue')
+        }
+      ]
+    },
+    {
+      path: '/live',
+      name: 'Live',
+      component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/layout/index'),
+      children: [
+        {
+          path: 'index',
+          name: '直播',
+          component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/live/index')
         }
       ]
     },

@@ -64,7 +64,7 @@ let menu = {
         },
         {
           id: 1,
-          label: '上传1',
+          label: '图片上传',
           href: '/demo/uploader',
           icon: 'fa fa-file-text',
           permission: ['view', 'add', 'delete', 'edit'],
@@ -73,7 +73,7 @@ let menu = {
         },
         {
           id: 1,
-          label: '上传',
+          label: '工作流',
           href: '/demo/work',
           icon: 'fa fa-file-text',
           permission: ['view', 'add', 'delete', 'edit'],
@@ -91,14 +91,23 @@ let menu = {
         },
         {
           id: 1,
-          label: '滚动',
-          href: '/demo/scroll-demo',
+          label: '工作流2',
+          href: '/demo/work-flow',
           icon: 'fa fa-file-text',
           permission: ['view', 'add', 'delete', 'edit'],
           show: true,
           children: []
         }
       ]
+    },
+    {
+      id: 1,
+      label: '直播',
+      href: '/live/index',
+      icon: 'fa fa-file-text',
+      permission: ['view', 'add', 'delete', 'edit'],
+      show: true,
+      children: []
     }
   ],
   user: [
