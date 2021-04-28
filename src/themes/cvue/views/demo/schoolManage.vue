@@ -2,10 +2,11 @@
   <div class="school-manage">
     <span class="title">{{$route.query.name}}</span>
     <el-button type="default" size="mini" @click="goBack" class="go-back">返回</el-button>
-    <el-tabs type="border-card" @tab-click="tabClick" v-model="activeIndex">
+    <el-tabs type="card" @tab-click="tabClick" v-model="activeIndex">
       <!-- 教职工开始 -->
-      <el-tab-pane label="教职工" :style="{height:height}">
-        <faculty v-if="activeIndex === '0'"></faculty>
+      <el-tab-pane :label="item.name" :style="{height:height}" v-for="(item, index) in visitedRoutess" :key="index">
+        <!-- <faculty v-if="activeIndex === 0"></faculty> -->
+        {{item.name}}
       </el-tab-pane>
     </el-tabs>
   </div>
@@ -15,6 +16,7 @@
 import cvueTable from '@/components/cvue-table'
 import faculty from './faculty'
 import {getClientHeight} from '@/util/tool'
+import {mapGetters} from 'vuex'
 export default {
   name: 'schoolManage',
   components: {
@@ -23,10 +25,21 @@ export default {
   },
   data () {
     return {
-      activeIndex: 0
+      activeIndex: 0,
+      visitedRoutes: [
+        {name: '教职工'},
+        {name: '教职工'},
+        {name: '教职工'},
+        {name: '教职工'},
+        {name: '教职工'},
+        {name: '教职工'},
+        {name: '教职工'},
+        {name: '教职工'}
+      ]
     }
   },
   computed: {
+    ...mapGetters(['visitedRoutess']),
     height () {
       var height = getClientHeight() - 200
       return height + 'px'
@@ -42,7 +55,11 @@ export default {
   },
   methods: {
     goBack () {
-      this.closeTagTo('/school-data/school')
+      // this.closeTagTo('/school-data/school')
+      // this.visitedRoutes.push({
+      //   name: '教职工'
+      // })
+      this.$store.commit('common/SET_ROUTES')
     },
     tabClick (item) {
       sessionStorage.setItem(this.$route.path, item.index)

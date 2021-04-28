@@ -31,14 +31,20 @@ const common = {
           // '/school-data/school-edit', 
           // '/school-data/faculty-edit', 
           // '/school-data/student-edit'
-        ]
+        ],
         // keepAlivePage: [],
-        // keepAlivePath: []
+        // keepAlivePath: [],
+        visitedRoutess: []
     },
     getters: {
         
     },
     mutations: {
+        SET_ROUTES (state, params) {
+          state.visitedRoutess.push({
+            name: '教职工'
+          })
+        },
         SET_COLLAPSE (state, params) {
             state.isCollapse = !state.isCollapse
         },
