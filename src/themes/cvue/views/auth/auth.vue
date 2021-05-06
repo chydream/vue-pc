@@ -106,6 +106,7 @@ export default {
     }
   },
   created () {
+    // console.log(this.$route)
   },
   methods: {
     handleChange (value, direction, movedKeys) {

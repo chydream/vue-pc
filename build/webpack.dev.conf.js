@@ -44,7 +44,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
       poll: config.dev.poll,
     },
     disableHostCheck: true,
-    https: true,
+    // https: true,
   },
   plugins: [
     new webpack.DefinePlugin({

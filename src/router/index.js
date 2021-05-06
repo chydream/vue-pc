@@ -120,12 +120,12 @@ const router = new Router({
       children: [
         {
           path: 'line',
-          name: '图表',
+          name: '图表1',
           component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/chart/line')
         },
         {
           path: 'index',
-          name: '图表',
+          name: '图表2',
           component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/chart/index')
         }
       ]

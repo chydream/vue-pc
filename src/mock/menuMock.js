@@ -14,7 +14,7 @@ let menu = {
       label: '权限',
       href: '/auth/index',
       icon: 'fa fa-file-text',
-      permission: ['view', 'add', 'delete', 'edit'],
+      permission: ['add', 'delete', 'edit'],
       show: true,
       children: []
     },
