@@ -26,6 +26,15 @@ import 'font-awesome/css/font-awesome.min.css'
 // import promise from 'es6-promise'
 // promise.polyfill()
 // import 'babel-polyfill'
+import AmapVue from '@amap/amap-vue'
+AmapVue.config.version = '2.0' // 默认2.0，这里可以不修改
+AmapVue.config.key = '7e53fd9d108777f924f22a9a7bf85294'
+AmapVue.config.plugins = [
+  'AMap.ToolBar',
+  'AMap.MoveAnimation'
+  // 在此配置你需要预加载的插件，如果不配置，在使用到的时候会自动异步加载
+]
+Vue.use(AmapVue)
 
 Vue.use(ElementUI, {size: 'small', zIndex: 3000, locale})
 

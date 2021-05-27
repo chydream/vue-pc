@@ -136,6 +136,89 @@ let menu = {
           children: []
         }
       ]
+    },
+    {
+      id: 1,
+      label: '地图',
+      href: '#',
+      icon: 'fa fa-file-text',
+      permission: ['view', 'add', 'delete', 'edit'],
+      show: true,
+      children: [
+        {
+          id: 1,
+          label: '地图',
+          href: '/map/index',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        },
+        {
+          id: 1,
+          label: '地图1',
+          href: '/map/index1',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        },
+        {
+          id: 1,
+          label: '地图2',
+          href: '/map/index2',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        },
+        {
+          id: 1,
+          label: '地图3',
+          href: '/map/index3',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        },
+        {
+          id: 1,
+          label: '地图4',
+          href: '/map/index4',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        },
+        {
+          id: 1,
+          label: '地图5',
+          href: '/map/index5',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        }
+      ]
+    },
+    {
+      id: 1,
+      label: '地图Test',
+      href: '#',
+      icon: 'fa fa-file-text',
+      permission: ['view', 'add', 'delete', 'edit'],
+      show: true,
+      children: [
+        {
+          id: 1,
+          label: '地图',
+          href: '/map-test/index',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        }
+      ]
     }
   ],
   user: [
