@@ -27,6 +27,11 @@ import 'font-awesome/css/font-awesome.min.css'
 // promise.polyfill()
 // import 'babel-polyfill'
 import AmapVue from '@amap/amap-vue'
+import dataV from '@jiaminghi/data-view'
+import Antd from 'ant-design-vue'
+import 'ant-design-vue/dist/antd.css'
+Vue.use(dataV)
+Vue.use(Antd)
 AmapVue.config.version = '2.0' // 默认2.0，这里可以不修改
 AmapVue.config.key = '7e53fd9d108777f924f22a9a7bf85294'
 AmapVue.config.plugins = [

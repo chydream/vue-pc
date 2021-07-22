@@ -63,6 +63,7 @@
 <script>
 import {setCookie, getCookie} from '@/util/tool'
 import {baseServer} from '@/config/config'
+import { Universal, MemoryAccount, Node, AmountFormatter } from '@aeternity/aepp-sdk'
 export default {
   name: 'login',
   data () {

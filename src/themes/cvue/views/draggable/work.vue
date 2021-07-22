@@ -17,7 +17,13 @@
           <!-- 头部 -->
           <div class="home-body" style="min-height:500px;">
             <div class="node-wrap" id="nodeWrap">
-              <div class="item" v-for="(item,index) in flowNodeList" :key="index" :id="item.Id" :style="{'left':item.Left + 'px', 'top':item.Top + 'px'}">{{item.NodeName}}<i class="fa fa-user" style="cursor:pointer"></i></div>
+              <div class="item" 
+                   v-for="(item,index) in flowNodeList" 
+                   :key="index" 
+                   :id="item.Id" 
+                   :style="{'left':item.Left + 'px', 'top':item.Top + 'px'}">
+                   {{item.NodeName}}<i class="fa fa-user" style="cursor:pointer"></i>
+              </div>
             </div>
           </div>
         </el-card>

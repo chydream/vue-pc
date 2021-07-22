@@ -217,6 +217,60 @@ let menu = {
           permission: ['view', 'add', 'delete', 'edit'],
           show: true,
           children: []
+        },
+        {
+          id: 2,
+          label: '线路规划',
+          href: '/map-test/route-plan',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        },
+        {
+          id: 2,
+          label: '大数据',
+          href: '/big-data',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        },
+        {
+          id: 2,
+          label: '多表头',
+          href: '/map-test/table',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        },
+        {
+          id: 2,
+          label: 'circulationTime',
+          href: '/map-test/circulationTime',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        },
+        {
+          id: 2,
+          label: '工作流',
+          href: '/workflow',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
+        },
+        {
+          id: 2,
+          label: '节点',
+          href: '/workflownode',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
         }
       ]
     }

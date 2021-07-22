@@ -176,6 +176,21 @@ const router = new Router({
           path: 'index',
           name: '地图test',
           component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/mapTest/index')
+        },
+        {
+          path: 'route-plan',
+          name: '线路规划',
+          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/mapTest/routePlan')
+        },
+        {
+          path: 'table',
+          name: 'tableData',
+          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/mapTest/table')
+        },
+        {
+          path: 'circulationTime',
+          name: 'circulationTime',
+          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/analysisEcharts/mapEchart')
         }
       ]
     },
@@ -187,6 +202,21 @@ const router = new Router({
       path: '/demo/scroll-demo',
       name: '滚动',
       component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/demo/exam.vue')
+    },
+    {
+      path: '/big-data',
+      name: 'bigData',
+      component: () => import(/* webpackChunkName: "Home" */'../themes/cvue/views/bigData/index.vue')
+    },
+    {
+      path: '/workflow',
+      name: 'workflow',
+      component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/workflow/index')
+    },
+    {
+      path: '/workflownode',
+      name: 'workflownode',
+      component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/workflow/node')
     },
     {
       path: '/login',

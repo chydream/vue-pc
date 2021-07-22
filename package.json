@@ -14,9 +14,13 @@
     "build": "node build/build.js"
   },
   "dependencies": {
-    "@amap/amap-vue": "2.0.11",
+    "@aeternity/aepp-sdk": "^8.1.0",
+    "@amap/amap-vue": "^2.0.11",
+    "@jiaminghi/data-view": "^2.10.0",
+    "ant-design-vue": "^1.7.6",
     "browser-md5-file": "^1.1.1",
-    "echarts": "^4.2.1",
+    "echarts": "^5.1.2",
+    "echarts-gl": "^2.0.5",
     "element-ui": "^2.4.11",
     "jquery": "^3.4.1",
     "jsplumb": "^2.12.7",
