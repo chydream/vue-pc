@@ -3,7 +3,13 @@
     <el-row :gutter="2">
       <el-col :span="2" class="left">
         <p>节点类型列表</p> 
-        <el-button size="mini" class="search-btn" @click="addNode" v-show="false">新增</el-button>   
+        <el-button size="mini" class="search-btn" @click="addNode" v-show="false">新增</el-button>
+        <el-radio-group v-model="connector" class="radio" @change="handleChange">
+          <el-radio label="Bezier">贝塞尔曲线</el-radio>
+          <el-radio label="Flowchart">直角折线</el-radio>
+          <el-radio label="StateMachine">状态线</el-radio>
+          <el-radio label="Straight">直线</el-radio>
+        </el-radio-group>   
         <draggable v-model="myArray" 
             class="drag-start"
             chosenClass="chosen" 
@@ -12,20 +18,31 @@
             :options="optionData" 
             @end="onEnd"
             @start="onStart">
-            <span :id="'node' + index" class="btn-type"  v-for="(item, index) in myArray" :key="index">
+            <span :id="'node' + index" class="btn-type" :type="item.type" v-for="(item, index) in myArray" :key="index">
               <i :class="item.icon" aria-hidden="true"></i>{{item.name}}
-            </span>
+            </span>  
         </draggable>
       </el-col>
       <el-col :span="22" class="right">
         <div ref="efContainer" style="height:100%;" class="drag-end" id="nodeWrap">
-          <span :id="item.Id" class="btn-type"  v-for="(item, index) in flowNodeList" :key="index"
-                :style="{'left':item.Left + 'px','top':item.Top + 'px'}">
-            <i :class="item.icon" aria-hidden="true" style="cursor:crosshair"></i>
-            <em>{{item.NodeName}}</em>
-            <i class="el-icon-edit" aria-hidden="true" style="cursor:default;margin:0 5px;" @click.prevent.stop="handleEdit(item)"></i>
-            <i class="el-icon-circle-close el-node-state-error" aria-hidden="true" style="cursor:pointer;" @click="handleDelete(item, index)"></i>
-          </span>
+          <template v-for="(item, index) in flowNodeList">
+            <span :id="item.Id" class="btn-type"  :key="index" v-if="item.type=='node'"
+                  :style="{'left':item.Left + 'px','top':item.Top + 'px'}">
+              <i :class="item.icon" aria-hidden="true" style="cursor:crosshair"></i>
+              <em>{{item.NodeName}}</em>
+              <i class="el-icon-edit" aria-hidden="true" style="cursor:default;margin:0 5px;" @click.prevent.stop="handleEdit(item)"></i>
+              <i class="el-icon-circle-close el-node-state-error" aria-hidden="true" style="cursor:pointer;" @click="handleDelete(item, index)"></i>
+            </span>
+            <span :id="item.Id" class="condition-type" :key="index"  v-if="item.type=='diamond'"
+              :style="{'left':item.Left + 'px','top':item.Top + 'px'}">
+              <span>
+                <i :class="item.icon" aria-hidden="true" style="cursor:crosshair"></i>
+                <em :title="item.NodeName">{{item.NodeName}}</em>
+                <i class="el-icon-edit" aria-hidden="true" style="cursor:default;margin:0 5px;" @click.prevent.stop="handleEdit(item)"></i>
+                <i class="el-icon-circle-close el-node-state-error" aria-hidden="true" style="cursor:pointer;" @click="handleDelete(item, index)"></i>
+              </span>
+            </span>
+          </template>
         </div>
       </el-col>
     </el-row>
@@ -52,12 +69,13 @@ export default {
   },
   data () {
     return {
+      connector: 'Bezier',
       jsPlumb: null,
       drag: false,
       // 定义要被拖拽对象的数组
       myArray: [
-        {icon: 'fa fa-play-circle-o', name: '节点'},
-        {icon: 'fa fa-navicon', name: '菜单'}
+        {icon: 'fa fa-navicon', name: '节点', type: 'node'},
+        {icon: 'fa fa-navicon', name: '菱形', type: 'diamond'}
       ],
       myArray1: [
         // {icon: 'fa fa-play-circle-o', name: '语音播报1'},
@@ -79,7 +97,9 @@ export default {
           "OpRoleIds":",,",
           "Top":120,
           "Left":20,
-          "icon": 'fa fa-play-circle-o'
+          "icon": 'fa fa-navicon',
+          "condition": '条件',
+          "type": 'node'
         },
         {
           "Id":"cc7423e4-6775-4578-8fb7-342145fea714",
@@ -93,7 +113,9 @@ export default {
           "OpRoleIds":",,",
           "Top":100,
           "Left":200,
-          "icon": 'fa fa-play-circle-o'
+          "icon": 'fa fa-navicon',
+          "condition": '条件',
+          "type": 'node'
         },
         {
           "Id":"e50a1499-3303-4e9d-9010-746d86f1c7b9",
@@ -107,7 +129,9 @@ export default {
           "OpRoleIds":",,",
           "Top":300,
           "Left":428,
-          "icon": 'fa fa-navicon'
+          "icon": 'fa fa-navicon',
+          "condition": '条件',
+          "type": 'node'
         }
       ],
       option: {
@@ -186,7 +210,7 @@ export default {
         this.jsPlumb.connect({
           source: item.ParentIds,
           target: item.Id,
-          label: item.label
+          label: item.condition
         }, this.targetOption)
       }
     },
@@ -202,9 +226,15 @@ export default {
     confirmDialog (params) {
       if (params == 'edit') {
         this.dialogWorkEdit = false
-        this.flowNodeList.push(this.nodeData)
-        console.log(this.nodeData)
-        this.setConnect(this.nodeData.Id, this.nodeData.ParentIds)
+        // this.flowNodeList.push(this.nodeData)
+        // console.log(this.nodeData)
+        this.flowNodeList.forEach((item, index) => {
+          console.log(item.Id === this.nodeData.Id)
+          if(item.Id === this.nodeData.Id) {
+            this.flowNodeList[index] = this.nodeData
+          }
+        })
+        this.setConnect(this.nodeData.Id, this.nodeData.ParentIds, this.nodeData.condition)
       }
     },
     init () {
@@ -239,14 +269,15 @@ export default {
         })
       })
     },
-    setConnect (id, parentId) {
+    setConnect (id, parentId, label) {
       if (id && parentId) {
         this.$nextTick(() => {
           this.jsPlumb.makeSource(id, this.sourceOption)
           this.jsPlumb.makeTarget(id, this.targetOption)
           this.jsPlumb.connect({
             source: parentId,
-            target: id
+            target: id,
+            label: label,
           }, this.targetOption)
         })
       }
@@ -273,9 +304,10 @@ export default {
       left -= 85
       top -= 16
       // console.log(e.item.innerText == '语音播报')
-      if (e.item.innerText == '节点') {
+      // console.log(e.item.getAttribute('type'))
+      if (e.item.getAttribute('type') == 'node') {
         var id = this.getuuid()
-        var item = {
+        let item = {
           "Id": id,
           "NodeName":"新增节点",
           "NodeRemark":"新增节点",
@@ -287,7 +319,33 @@ export default {
           "OpRoleIds":",,",
           "Top":top,
           "Left":left,
-          "icon": 'fa fa-play-circle-o'
+          "icon": 'fa fa-navicon',
+          "condition": '条件',
+          "type": 'node'
+        }
+        this.flowNodeList.push(item)
+        // console.log(this.jsPlumb)
+        this.$nextTick(() => {
+          this.initNode(item)
+        })
+      }
+      if (e.item.getAttribute('type') == 'diamond') {
+        var id = this.getuuid()
+        let item = {
+          "Id": id,
+          "NodeName":"新增节点",
+          "NodeRemark":"新增节点",
+          "NodeType":1,
+          "FlowId":"840317a2-38ce-4ee1-887e-5739e8bbb35d",
+          "ParentIds":"",
+          "OpUserIds":",,",
+          "OpDeptIds":"17dd015e620c48a1951fcbb995d9bae0,287a1077ebb0449e81eefd65d823297d,95db4101973f49f88b6d64005b3accff",
+          "OpRoleIds":",,",
+          "Top":top,
+          "Left":left,
+          "icon": 'fa fa-navicon',
+          "condition": '条件',
+          "type": 'diamond'
         }
         this.flowNodeList.push(item)
         // console.log(this.jsPlumb)
@@ -329,6 +387,10 @@ export default {
         // this.jsPlumb.remove(item.Id)
       }).catch(() => {
       })
+    },
+    handleChange (val) {
+      this.$set(this.option, 'Connector', [val])
+      this.jsPlumb.importDefaults(this.option)
     }
   }
 }
@@ -390,6 +452,49 @@ export default {
   }
   .drag-end span{
     position: absolute;
+  }
+  .radio{
+    text-align: left;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    line-height: 20px;
+  }
+  .el-radio{
+    margin-left: 20px;
+  }
+  .condition-type{
+    display: inline-block;
+    left: 200px;
+    top: 200px;
+    width: 100px;
+    height: 100px;
+    border: 1px solid #ccc;
+    transform: rotate(45deg);
+    cursor: move;
+    color: #fff;
+    background-color: #67C23A;
+    border-color: #67C23A;
+    font-size: 12px;
+    span{
+      // vertical-align: middle;
+      // display: inline-block;
+      transform: rotate(-45deg);
+      // margin-top: 2px;
+      // margin-left: 12px;
+      position: absolute;
+      left: -5px;
+      top: 28px;
+      width: 130px;
+      display: inline-block;
+      em{
+        display: inline-block;
+        width: 50px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: middle;
+      }
+    }
   }
 }
 </style>

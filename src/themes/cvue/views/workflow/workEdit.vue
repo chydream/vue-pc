@@ -42,6 +42,11 @@
                 <el-input v-model.trim="ruleForm.top" :disabled="disabled"></el-input>
               </el-form-item>
             </el-col>
+            <el-col :span="24">
+              <el-form-item label="condition" prop="condition" v-if="ruleForm.parentId != ''">
+                <el-input v-model.trim="ruleForm.condition" :disabled="disabled"></el-input>
+              </el-form-item>
+            </el-col>
           </el-row>
         </el-form>
       </div>
@@ -63,7 +68,8 @@ export default {
         id: '',
         parentId: '',
         left: '',
-        top: ''
+        top: '',
+        condition: ''
       },
       rules: {
         name: [
@@ -115,7 +121,10 @@ export default {
               NodeName: this.ruleForm.name,
               ParentIds: this.ruleForm.parentId,
               Top: this.ruleForm.top,
-              Left: this.ruleForm.left
+              Left: this.ruleForm.left,
+              condition: this.ruleForm.condition,
+              type: this.$parent.nodeData.type,
+              icon: this.$parent.nodeData.icon
             }
             this.$emit('confirmDialog')
             this.dialogLoading = false
@@ -125,7 +134,10 @@ export default {
               NodeName: this.ruleForm.name,
               ParentIds: this.ruleForm.parentId,
               Top: this.ruleForm.top,
-              Left: this.ruleForm.left
+              Left: this.ruleForm.left,
+              condition: this.ruleForm.condition,
+              type: this.$parent.nodeData.type,
+              icon: this.$parent.nodeData.icon
             }
             this.$emit('confirmDialog')
             this.dialogLoading = false
@@ -146,6 +158,7 @@ export default {
         this.$set(this.ruleForm, 'parentId', this.$parent.nodeData.ParentIds)
         this.$set(this.ruleForm, 'left', this.$parent.nodeData.Left)
         this.$set(this.ruleForm, 'top', this.$parent.nodeData.Top)
+        this.$set(this.ruleForm, 'condition', this.$parent.nodeData.condition)
       }
     }
   }

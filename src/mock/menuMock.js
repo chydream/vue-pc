@@ -271,6 +271,15 @@ let menu = {
           permission: ['view', 'add', 'delete', 'edit'],
           show: true,
           children: []
+        },
+        {
+          id: 2,
+          label: '节点1',
+          href: '/workflownode1',
+          icon: 'fa fa-file-text',
+          permission: ['view', 'add', 'delete', 'edit'],
+          show: true,
+          children: []
         }
       ]
     }

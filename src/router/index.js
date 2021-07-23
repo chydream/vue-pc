@@ -219,6 +219,11 @@ const router = new Router({
       component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/workflow/node')
     },
     {
+      path: '/workflownode1',
+      name: 'workflownode1',
+      component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/workflow/node1')
+    },
+    {
       path: '/login',
       name: 'Login',
       component: () => import(/* webpackChunkName: "public" */'../themes/login/login')

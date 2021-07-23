@@ -7,6 +7,7 @@
   </div>
 </template>
 <script>
+/* eslint-disable*/
 import {jsPlumb} from 'jsplumb'
 export default {
   name: 'workFlowNode',
@@ -45,7 +46,9 @@ export default {
           hoverPaintStyle: {outlineStroke: 'lightblue'},
           connectorStyle: {outlineStroke: 'green', strokeWidth: 1},
           connectorHoverStyle: {strokeWidth: 2},
-          endpointStyle: { fill: 'lightgray', outlineStroke: 'darkgray', outlineWidth: 2 }
+          endpointStyle: { fill: 'lightgray', outlineStroke: 'darkgray', outlineWidth: 2 },
+          endpoint: ['Blank', {Overlays: ''}], // 空白端点
+          // EndpointStyle: {fill: '#1879ffa1', outlineWidth: 1}
           // maxConnections: -1,
           // allowLoopback: true,
           // dropOptions: {hoverClass: 'ef-drop-hover'}
