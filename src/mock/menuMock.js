@@ -139,7 +139,7 @@ let menu = {
     },
     {
       id: 1,
-      label: '地图',
+      label: '新地图',
       href: '#',
       icon: 'fa fa-file-text',
       permission: ['view', 'add', 'delete', 'edit'],
@@ -148,134 +148,7 @@ let menu = {
         {
           id: 1,
           label: '地图',
-          href: '/map/index',
-          icon: 'fa fa-file-text',
-          permission: ['view', 'add', 'delete', 'edit'],
-          show: true,
-          children: []
-        },
-        {
-          id: 1,
-          label: '地图1',
-          href: '/map/index1',
-          icon: 'fa fa-file-text',
-          permission: ['view', 'add', 'delete', 'edit'],
-          show: true,
-          children: []
-        },
-        {
-          id: 1,
-          label: '地图2',
-          href: '/map/index2',
-          icon: 'fa fa-file-text',
-          permission: ['view', 'add', 'delete', 'edit'],
-          show: true,
-          children: []
-        },
-        {
-          id: 1,
-          label: '地图3',
-          href: '/map/index3',
-          icon: 'fa fa-file-text',
-          permission: ['view', 'add', 'delete', 'edit'],
-          show: true,
-          children: []
-        },
-        {
-          id: 1,
-          label: '地图4',
-          href: '/map/index4',
-          icon: 'fa fa-file-text',
-          permission: ['view', 'add', 'delete', 'edit'],
-          show: true,
-          children: []
-        },
-        {
-          id: 1,
-          label: '地图5',
-          href: '/map/index5',
-          icon: 'fa fa-file-text',
-          permission: ['view', 'add', 'delete', 'edit'],
-          show: true,
-          children: []
-        }
-      ]
-    },
-    {
-      id: 1,
-      label: '地图Test',
-      href: '#',
-      icon: 'fa fa-file-text',
-      permission: ['view', 'add', 'delete', 'edit'],
-      show: true,
-      children: [
-        {
-          id: 1,
-          label: '地图',
-          href: '/map-test/index',
-          icon: 'fa fa-file-text',
-          permission: ['view', 'add', 'delete', 'edit'],
-          show: true,
-          children: []
-        },
-        {
-          id: 2,
-          label: '线路规划',
-          href: '/map-test/route-plan',
-          icon: 'fa fa-file-text',
-          permission: ['view', 'add', 'delete', 'edit'],
-          show: true,
-          children: []
-        },
-        {
-          id: 2,
-          label: '大数据',
-          href: '/big-data',
-          icon: 'fa fa-file-text',
-          permission: ['view', 'add', 'delete', 'edit'],
-          show: true,
-          children: []
-        },
-        {
-          id: 2,
-          label: '多表头',
-          href: '/map-test/table',
-          icon: 'fa fa-file-text',
-          permission: ['view', 'add', 'delete', 'edit'],
-          show: true,
-          children: []
-        },
-        {
-          id: 2,
-          label: 'circulationTime',
-          href: '/map-test/circulationTime',
-          icon: 'fa fa-file-text',
-          permission: ['view', 'add', 'delete', 'edit'],
-          show: true,
-          children: []
-        },
-        {
-          id: 2,
-          label: '工作流',
-          href: '/workflow',
-          icon: 'fa fa-file-text',
-          permission: ['view', 'add', 'delete', 'edit'],
-          show: true,
-          children: []
-        },
-        {
-          id: 2,
-          label: '节点',
-          href: '/workflownode',
-          icon: 'fa fa-file-text',
-          permission: ['view', 'add', 'delete', 'edit'],
-          show: true,
-          children: []
-        },
-        {
-          id: 2,
-          label: '节点1',
-          href: '/workflownode1',
+          href: '/map-new/index',
           icon: 'fa fa-file-text',
           permission: ['view', 'add', 'delete', 'edit'],
           show: true,
@@ -283,6 +156,161 @@ let menu = {
         }
       ]
     }
+    // {
+    //   id: 1,
+    //   label: '地图',
+    //   href: '#',
+    //   icon: 'fa fa-file-text',
+    //   permission: ['view', 'add', 'delete', 'edit'],
+    //   show: true,
+    //   children: [
+    //     {
+    //       id: 1,
+    //       label: '地图',
+    //       href: '/map/index',
+    //       icon: 'fa fa-file-text',
+    //       permission: ['view', 'add', 'delete', 'edit'],
+    //       show: true,
+    //       children: []
+    //     },
+    //     {
+    //       id: 1,
+    //       label: '地图1',
+    //       href: '/map/index1',
+    //       icon: 'fa fa-file-text',
+    //       permission: ['view', 'add', 'delete', 'edit'],
+    //       show: true,
+    //       children: []
+    //     },
+    //     {
+    //       id: 1,
+    //       label: '地图2',
+    //       href: '/map/index2',
+    //       icon: 'fa fa-file-text',
+    //       permission: ['view', 'add', 'delete', 'edit'],
+    //       show: true,
+    //       children: []
+    //     },
+    //     {
+    //       id: 1,
+    //       label: '地图3',
+    //       href: '/map/index3',
+    //       icon: 'fa fa-file-text',
+    //       permission: ['view', 'add', 'delete', 'edit'],
+    //       show: true,
+    //       children: []
+    //     },
+    //     {
+    //       id: 1,
+    //       label: '地图4',
+    //       href: '/map/index4',
+    //       icon: 'fa fa-file-text',
+    //       permission: ['view', 'add', 'delete', 'edit'],
+    //       show: true,
+    //       children: []
+    //     },
+    //     {
+    //       id: 1,
+    //       label: '地图5',
+    //       href: '/map/index5',
+    //       icon: 'fa fa-file-text',
+    //       permission: ['view', 'add', 'delete', 'edit'],
+    //       show: true,
+    //       children: []
+    //     }
+    //   ]
+    // },
+    // {
+    //   id: 1,
+    //   label: '地图Test',
+    //   href: '#',
+    //   icon: 'fa fa-file-text',
+    //   permission: ['view', 'add', 'delete', 'edit'],
+    //   show: true,
+    //   children: [
+    //     {
+    //       id: 1,
+    //       label: '地图',
+    //       href: '/map-test/index',
+    //       icon: 'fa fa-file-text',
+    //       permission: ['view', 'add', 'delete', 'edit'],
+    //       show: true,
+    //       children: []
+    //     },
+    //     {
+    //       id: 2,
+    //       label: '线路规划',
+    //       href: '/map-test/route-plan',
+    //       icon: 'fa fa-file-text',
+    //       permission: ['view', 'add', 'delete', 'edit'],
+    //       show: true,
+    //       children: []
+    //     },
+    //     {
+    //       id: 2,
+    //       label: '大数据',
+    //       href: '/big-data',
+    //       icon: 'fa fa-file-text',
+    //       permission: ['view', 'add', 'delete', 'edit'],
+    //       show: true,
+    //       children: []
+    //     },
+    //     {
+    //       id: 2,
+    //       label: '多表头',
+    //       href: '/map-test/table',
+    //       icon: 'fa fa-file-text',
+    //       permission: ['view', 'add', 'delete', 'edit'],
+    //       show: true,
+    //       children: []
+    //     },
+    //     {
+    //       id: 2,
+    //       label: 'circulationTime',
+    //       href: '/map-test/circulationTime',
+    //       icon: 'fa fa-file-text',
+    //       permission: ['view', 'add', 'delete', 'edit'],
+    //       show: true,
+    //       children: []
+    //     },
+    //     {
+    //       id: 2,
+    //       label: '工作流',
+    //       href: '/workflow',
+    //       icon: 'fa fa-file-text',
+    //       permission: ['view', 'add', 'delete', 'edit'],
+    //       show: true,
+    //       children: []
+    //     },
+    //     {
+    //       id: 2,
+    //       label: '节点',
+    //       href: '/workflownode',
+    //       icon: 'fa fa-file-text',
+    //       permission: ['view', 'add', 'delete', 'edit'],
+    //       show: true,
+    //       children: []
+    //     },
+    //     {
+    //       id: 2,
+    //       label: '节点1',
+    //       href: '/workflownode1',
+    //       icon: 'fa fa-file-text',
+    //       permission: ['view', 'add', 'delete', 'edit'],
+    //       show: true,
+    //       children: []
+    //     },
+    //     {
+    //       id: 2,
+    //       label: 'marker',
+    //       href: '/map-test/marker',
+    //       icon: 'fa fa-file-text',
+    //       permission: ['view', 'add', 'delete', 'edit'],
+    //       show: true,
+    //       children: []
+    //     }
+    //   ]
+    // }
   ],
   user: [
     {

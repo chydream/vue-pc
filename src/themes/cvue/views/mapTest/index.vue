@@ -126,6 +126,25 @@ export default {
     })
   },
   methods: {
+    drawMark (points) {
+      console.log(points)
+      var self = this
+      AMap.plugin('AMap.MarkerClusterer', function () {
+        var cluster, markers = [];
+        var map = self.aMap
+        for (var i = 0; i < points.length; i += 1) {
+            markers.push(new AMap.Marker({
+                position: points[i]['lnglat'],
+                content: '<div style="background-color: hsla(180, 100%, 50%, 0.7); height: 24px; width: 24px; border: 1px solid hsl(180, 100%, 40%); border-radius: 12px; box-shadow: hsl(180, 100%, 50%) 0px 0px 1px;"></div>',
+                offset: new AMap.Pixel(-15, -15)
+            }))
+        }
+        if (cluster) {
+          cluster.setMap(null);
+        }
+        cluster = new AMap.MarkerClusterer(map, markers, {gridSize: 80});
+      })
+    },
     // 地图的热点
     handleHotspotover (result) {
       let self = this

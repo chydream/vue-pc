@@ -30,6 +30,7 @@
     "video.js": "^7.8.3",
     "videojs-contrib-hls": "^5.15.0",
     "vue": "2.5.2",
+    "vue-amap": "^0.5.10",
     "vue-codemirror": "^4.0.6",
     "vue-cropper": "^0.5.5",
     "vue-hot-reload-api": "^2.3.3",

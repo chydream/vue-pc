@@ -131,69 +131,86 @@ const router = new Router({
       ]
     },
     {
-      path: '/map',
-      name: 'map',
+      path: '/map-new',
+      name: 'manNew',
       component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/layout/index'),
       children: [
         {
           path: 'index',
           name: '地图',
-          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/map/index')
-        },
-        {
-          path: 'index1',
-          name: '地图1',
-          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/map/index1')
-        },
-        {
-          path: 'index2',
-          name: '地图2',
-          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/map/index2')
-        },
-        {
-          path: 'index3',
-          name: '地图3',
-          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/map/index3')
-        },
-        {
-          path: 'index4',
-          name: '地图4',
-          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/map/index4')
-        },
-        {
-          path: 'index5',
-          name: '地图5',
-          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/map/index5')
+          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/mapNew/index')
         }
       ]
     },
-    {
-      path: '/map-test',
-      name: 'map-test',
-      component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/layout/index'),
-      children: [
-        {
-          path: 'index',
-          name: '地图test',
-          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/mapTest/index')
-        },
-        {
-          path: 'route-plan',
-          name: '线路规划',
-          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/mapTest/routePlan')
-        },
-        {
-          path: 'table',
-          name: 'tableData',
-          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/mapTest/table')
-        },
-        {
-          path: 'circulationTime',
-          name: 'circulationTime',
-          component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/analysisEcharts/mapEchart')
-        }
-      ]
-    },
+    // {
+    //   path: '/map',
+    //   name: 'map',
+    //   component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/layout/index'),
+    //   children: [
+    //     {
+    //       path: 'index',
+    //       name: '地图',
+    //       component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/map/index')
+    //     },
+    //     {
+    //       path: 'index1',
+    //       name: '地图1',
+    //       component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/map/index1')
+    //     },
+    //     {
+    //       path: 'index2',
+    //       name: '地图2',
+    //       component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/map/index2')
+    //     },
+    //     {
+    //       path: 'index3',
+    //       name: '地图3',
+    //       component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/map/index3')
+    //     },
+    //     {
+    //       path: 'index4',
+    //       name: '地图4',
+    //       component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/map/index4')
+    //     },
+    //     {
+    //       path: 'index5',
+    //       name: '地图5',
+    //       component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/map/index5')
+    //     }
+    //   ]
+    // },
+    // {
+    //   path: '/map-test',
+    //   name: 'map-test',
+    //   component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/layout/index'),
+    //   children: [
+    //     {
+    //       path: 'index',
+    //       name: '地图test',
+    //       component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/mapTest/index')
+    //     },
+    //     {
+    //       path: 'route-plan',
+    //       name: '线路规划',
+    //       component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/mapTest/routePlan')
+    //     },
+    //     {
+    //       path: 'table',
+    //       name: 'tableData',
+    //       component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/mapTest/table')
+    //     },
+    //     {
+    //       path: 'circulationTime',
+    //       name: 'circulationTime',
+    //       component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/analysisEcharts/mapEchart')
+    //     },
+    //     {
+    //       path: 'marker',
+    //       name: 'marker',
+    //       component: () => import(/* webpackChunkName: "chart" */'../themes/cvue/views/mapTest/marker')
+    //     }
+    //   ]
+    // },
     {
       path: '/',
       redirect: '/login'

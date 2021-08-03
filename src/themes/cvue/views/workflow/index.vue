@@ -42,6 +42,13 @@
                 <i class="el-icon-circle-close el-node-state-error" aria-hidden="true" style="cursor:pointer;" @click="handleDelete(item, index)"></i>
               </span>
             </span>
+            <span :id="item.Id" v-if="item.type=='text'" :key="index" 
+              :style="{'left':item.Left + 'px','top':item.Top + 'px'}">
+              <el-input  class="drag-input" type="text" v-model="item.NodeName" placeholder="请输入">
+                <i :class="item.icon" aria-hidden="true" style="cursor:crosshair" slot="prepend"></i>
+                <i slot="append" class="el-icon-circle-close el-node-state-error" aria-hidden="true" style="cursor:pointer;" @click="handleDelete(item, index)"></i>
+              </el-input>
+            </span>
           </template>
         </div>
       </el-col>
@@ -75,7 +82,8 @@ export default {
       // 定义要被拖拽对象的数组
       myArray: [
         {icon: 'fa fa-navicon', name: '节点', type: 'node'},
-        {icon: 'fa fa-navicon', name: '菱形', type: 'diamond'}
+        {icon: 'fa fa-navicon', name: '菱形', type: 'diamond'},
+        {icon: 'fa fa-navicon', name: '文本框', type: 'text'}
       ],
       myArray1: [
         // {icon: 'fa fa-play-circle-o', name: '语音播报1'},
@@ -346,6 +354,30 @@ export default {
           "icon": 'fa fa-navicon',
           "condition": '条件',
           "type": 'diamond'
+        }
+        this.flowNodeList.push(item)
+        // console.log(this.jsPlumb)
+        this.$nextTick(() => {
+          this.initNode(item)
+        })
+      }
+      if (e.item.getAttribute('type') == 'text') {
+        var id = this.getuuid()
+        let item = {
+          "Id": id,
+          "NodeName":"新增节点",
+          "NodeRemark":"新增节点",
+          "NodeType":1,
+          "FlowId":"840317a2-38ce-4ee1-887e-5739e8bbb35d",
+          "ParentIds":"",
+          "OpUserIds":",,",
+          "OpDeptIds":"17dd015e620c48a1951fcbb995d9bae0,287a1077ebb0449e81eefd65d823297d,95db4101973f49f88b6d64005b3accff",
+          "OpRoleIds":",,",
+          "Top":top,
+          "Left":left,
+          "icon": 'fa fa-navicon',
+          "condition": '条件',
+          "type": 'text'
         }
         this.flowNodeList.push(item)
         // console.log(this.jsPlumb)
